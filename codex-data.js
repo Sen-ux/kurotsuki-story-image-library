@@ -1,10 +1,10 @@
-/* Kurotsuki Academy — editable narrative codex. Expanded story drafts are deliberately distinguished from established names/ranks. */
+/* Kurotsuki Academy codex: source names preserved; expanded lore is editable. */
 window.KUROTSUKI_CODEX = {
   "meta": {
     "title": "Kurotsuki Academy",
     "subtitle": "The Black Moon Codex",
-    "edition": "Living world guide · Expanded lore draft",
-    "disclaimer": "Character identities, affiliations, departments and named threats follow the established story. Where a precise history, hunter-grade rule or creature behaviour was not yet defined, this codex offers an expandable lore interpretation rather than a final canon ruling."
+    "edition": "Living codex · Established names + expandable lore",
+    "disclaimer": "Character identities, relationships, named factions, and known threat classifications draw from the established story. New details (particularly hunter-grade rules, faction biographies and unconfirmed creature behaviour) are drafted as expandable lore rather than fixed canon."
   },
   "world": {
     "heading": "Beyond the lanternlight",
@@ -927,6 +927,148 @@ window.KUROTSUKI_CODEX = {
       "hook": "What will force a merciful hunter to become a judge?",
       "lineage": "Qilin divine-beast lineage",
       "affiliation": "Independent"
+    },
+    "yuzuki-kurenai": {
+      "role": "Grand Warden · Faction Head",
+      "lead": "A commander whose red insignia is known long before her face.",
+      "background": "Yuzuki has built the Wardens into a terrifyingly effective answer to predatory demons. She values civilians' safety above the pride of courts and occultists alike, yet carries the cost of every decision that could not be undone.",
+      "style": "Command tactics, execution-grade swordsmanship and decisive field deployments.",
+      "hook": "A sealed case file may prove that one of her most famous victories was not what it seemed.",
+      "affiliation": "The Crimson Wardens"
+    },
+    "ren-akatsuki": {
+      "role": "Field Captain",
+      "lead": "Disciplined, pragmatic and loyal when action is required.",
+      "background": "Ren leads the kind of difficult operations that never reach the public chronicles. His obedience to the order is sincere, though he occasionally questions whether the last command left room for mercy.",
+      "style": "Yari spear and organised anti-demon formations.",
+      "hook": "A spared enemy has begun appearing in his mission reports.",
+      "affiliation": "The Crimson Wardens"
+    },
+    "kagami-reika": {
+      "role": "Warden",
+      "lead": "A precise hunter with very little patience for carelessness.",
+      "background": "Reika's measured silence hides a relentless attention to detail. She is often the first to suspect when an apparently completed hunt has only driven the danger somewhere else.",
+      "style": "Paired tantō and close-quarters precision.",
+      "hook": "She has quietly preserved a piece of evidence that the order wanted destroyed.",
+      "affiliation": "The Crimson Wardens"
+    },
+    "kujou-satsuki": {
+      "role": "High Exorcist · Faction Head",
+      "lead": "A master of boundaries whose greatest weapon is patience.",
+      "background": "Satsuki sees sealing as a sacred responsibility rather than an act of mercy. An entity restrained without understanding can become an inheritance of danger for every generation that follows.",
+      "style": "Nine-ring shakujō staff, exorcism and layered spiritual barriers.",
+      "hook": "The oldest of the Nine Seals may have been made to conceal a truth rather than a monster.",
+      "affiliation": "The Order of Nine Seals"
+    },
+    "minase-haruto": {
+      "role": "Ritual Specialist",
+      "lead": "An exacting scholar who trusts the shape of a sigil.",
+      "background": "Haruto records every imperfection in an exorcism and every word uttered by a bound spirit. To him, a small error in a ritual is not a detail—it is a door.",
+      "style": "Inscribed ritual brush and formulaic seals.",
+      "hook": "He has found a repeated mistake across centuries of apparently unrelated rites.",
+      "affiliation": "The Order of Nine Seals"
+    },
+    "tachibana-ayame": {
+      "role": "Sealer",
+      "lead": "Calm, diligent and difficult to deceive.",
+      "background": "Ayame is often assigned to settlements that fear the Order almost as much as the entities it binds. Her care with frightened witnesses is as essential as her ritual discipline.",
+      "style": "Ofuda, containment diagrams and patient witness work.",
+      "hook": "One apparition has begun speaking a name she recognises.",
+      "affiliation": "The Order of Nine Seals"
     }
-  }
+  },
+  "additionalCharacters": [
+    {
+      "id": "yuzuki-kurenai",
+      "name": "Yuzuki Kurenai",
+      "group": "The Crimson Wardens",
+      "available": {},
+      "thumbnail": null
+    },
+    {
+      "id": "ren-akatsuki",
+      "name": "Ren Akatsuki",
+      "group": "The Crimson Wardens",
+      "available": {},
+      "thumbnail": null
+    },
+    {
+      "id": "kagami-reika",
+      "name": "Kagami Reika",
+      "group": "The Crimson Wardens",
+      "available": {},
+      "thumbnail": null
+    },
+    {
+      "id": "kujou-satsuki",
+      "name": "Kujou Satsuki",
+      "group": "The Order of Nine Seals",
+      "available": {},
+      "thumbnail": null
+    },
+    {
+      "id": "minase-haruto",
+      "name": "Minase Haruto",
+      "group": "The Order of Nine Seals",
+      "available": {},
+      "thumbnail": null
+    },
+    {
+      "id": "tachibana-ayame",
+      "name": "Tachibana Ayame",
+      "group": "The Order of Nine Seals",
+      "available": {},
+      "thumbnail": null
+    }
+  ],
+  "myths": [
+    {
+      "id": "veil",
+      "name": "The Veil",
+      "type": "Cosmology",
+      "text": "The boundary is not a wall but a collection of traditions, agreements, shrines and wards. Where those fail, impossible visitors enter ordinary roads."
+    },
+    {
+      "id": "ink-oaths",
+      "name": "Oaths Written in Ink",
+      "type": "Ritual Law",
+      "text": "Some spirit bargains are witnessed by names, bloodlines or written signs rather than people. Changing the wording may cost more than breaking the promise."
+    },
+    {
+      "id": "moonless-roads",
+      "name": "The Unmapped Night Roads",
+      "type": "Folklore",
+      "text": "Travellers describe paths that open only when a lantern dies or a familiar sign vanishes. Historians debate whether the roads move or memory does."
+    },
+    {
+      "id": "foxfire",
+      "name": "Foxfire and False Light",
+      "type": "Spiritcraft",
+      "text": "A flame without heat can be a trick, a warning or a beacon. The colour of the flame proves less than the intent behind it."
+    },
+    {
+      "id": "nine-seals",
+      "name": "The Ninefold Boundary",
+      "type": "Exorcism",
+      "text": "The Order's most demanding rites employ overlapping protections so a single broken line cannot release a sealed presence."
+    },
+    {
+      "id": "eclipse-omens",
+      "name": "Omens of the New Eclipse",
+      "type": "Forbidden Record",
+      "text": "Fragmentary reports name the Celestial Horizon of the New Eclipse without agreeing whether it is a being, a place or an approaching event."
+    },
+    {
+      "id": "safe-sanctuary",
+      "name": "A Shrine's Promise",
+      "type": "Custom",
+      "text": "The Shrine Concordat treats hospitality and protection as sacred obligations. Turning away the desperate can stain a sanctuary more deeply than blood."
+    },
+    {
+      "id": "bloodline",
+      "name": "Inheritance and Restraint",
+      "type": "Lineages",
+      "text": "Pure supernatural heritage often carries raw power, but ancestry cannot teach how to wield it. A human hunter's judgment may exceed a divine heir's instinct."
+    }
+  ]
 };
