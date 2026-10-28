@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '*.zip'
+      - '*.png'
       - 'uploads/**'
       - 'bestiary/**'
       - 'dossiers/**'
@@ -26,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install artwork image processor
+        run: python -m pip install 'Pillow>=10,<13'
       - name: Import zipped dossier and preview artwork
         run: python scripts/import_dossier_zip.py
       - name: Move files and rebuild bestiary catalogue
