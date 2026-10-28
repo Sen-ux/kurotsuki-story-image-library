@@ -96,7 +96,15 @@ const cite=(s)=>escape(s||'');
 function tile(title,sub,body,foot,extra=''){return '<div class="tile '+extra+'"><div class="sub">'+cite(sub)+'</div><h3>'+cite(title)+'</h3><p>'+cite(body)+'</p>'+(foot?'<div class="foot">'+cite(foot)+'</div>':'')+'</div>'}
 function btnTile(title,sub,body,foot,kind,id,color){const b=document.createElement('button');b.type='button';b.className='tile accent';b.style.setProperty('--accent',color||'#b78c72');b.innerHTML='<div class="sub">'+cite(sub)+'</div><h3>'+cite(title)+'</h3><p>'+cite(body)+'</p>'+(foot?'<div class="foot">'+cite(foot)+'</div>':'');b.addEventListener('click',()=>openDossier(kind,id));return b}
 function addTiles(el,items){const node=$(el);node.replaceChildren(...items)}
-function portraitCard(c){const b=document.createElement('button');b.type='button';b.className='person';const bio=C.bios[c.id]||{};const image=firstImg(c);b.innerHTML=(image?'<img loading="lazy" src="'+escape(image)+'" onerror="this.onerror=null;this.src=\''+escape(fallbackImg(c)||'')+'\'" alt="'+escape(c.name)+' opening portrait">':'<span class="portrait-blank" aria-label="No portrait yet">墨</span>')+'<section><small>'+cite(c.group)+'</small><h3>'+cite(c.name)+'</h3><p>'+cite(bio.role||'Character dossier')+'</p></section>';b.addEventListener('click',()=>openDossier('person',c.id));return b}
+function portraitCard(c){
+ const b=document.createElement('button');b.type='button';b.className='person dossier-card';
+ const bio=C.bios[c.id]||{};const image=firstImg(c);
+ b.style.setProperty('--group-accent',accentFor(c,bio));
+ b.innerHTML='<div class="dossier-card-art">'+(image?'<img loading="lazy" decoding="async" src="'+escape(image)+'" alt="'+escape(c.name)+' complete dossier artwork preview">':'')+'</div><section><small>'+cite(c.group)+'</small><h3>'+cite(c.name)+'</h3><p>'+cite(bio.role||'Character dossier')+'</p></section>';
+ const art=b.querySelector('.dossier-card-art'),img=art.querySelector('img');
+ if(img)img.addEventListener('error',function(){if(this.dataset.triedFull!=='yes'){this.dataset.triedFull='yes';this.src=opener(c);return;}this.remove();art.classList.add('art-pending')});else art.classList.add('art-pending');
+ b.addEventListener('click',()=>openDossier('person',c.id));return b;
+}
 const groups=[...new Set(chars.map(c=>c.group))].sort();groups.forEach(g=>{let op=document.createElement('option');op.value=g;op.textContent=g;$('person-group').append(op)});
 function renderPeople(){const q=$('person-search').value.toLowerCase().trim(),grp=$('person-group').value;const filtered=chars.filter(c=>{const b=C.bios[c.id]||{};return (!grp||c.group===grp)&&(!q||[c.name,c.group,b.role,b.lead,b.background,b.lineage].join(' ').toLowerCase().includes(q))});$('people-grid').replaceChildren(...filtered.map(portraitCard));$('people-count').textContent=filtered.length+' / '+chars.length+' dossiers shown'+(filtered.some(c=>!c.thumbnail)?' · Profiles without supplied portraits use a text-only card.':'') }
 $('person-search').addEventListener('input',renderPeople);$('person-group').addEventListener('change',renderPeople);renderPeople();
@@ -120,7 +128,11 @@ $('mode-cards').innerHTML=C.modes.map(m=>tile(m.name,m.place,m.focus,'Mode-depen
 const dialog=$('dialog');let lastFocus=null;
 function section(title,text){return text?'<h3>'+cite(title)+'</h3><p>'+cite(text)+'</p>':''}
 function personLink(id){const c=idMap.get(id);return c?'<button type="button" data-person="'+escape(id)+'">'+cite(c.name)+'</button>':''}
-function linkedImage(id){const c=idMap.get(id);if(!c?.id)return '<div class="portrait-blank">墨</div>';const src=opener(c),fallback=fallbackImg(c)||'';return '<img class="dossier-full-art" tabindex="0" title="Click to view the complete artwork" src="'+escape(src)+'" onerror="this.onerror=null;this.src=\''+escape(fallback)+'\'" alt="'+escape(c.name)+' — complete illustrated character dossier">';}
+function linkedImage(id){
+ const c=idMap.get(id);if(!c?.id)return '<div class="portrait-blank">墨</div>';
+ const src=opener(c),backup=firstImg(c);
+ return '<img class="dossier-full-art" tabindex="0" title="Click to view the complete artwork" src="'+escape(src)+'" data-preview="'+escape(backup)+'" alt="'+escape(c.name)+' — complete illustrated character dossier" onerror="if(!this.dataset.triedPreview){this.dataset.triedPreview=\'yes\';this.src=this.dataset.preview}else{this.onerror=null;this.replaceWith(document.createTextNode(\'Dossier illustration pending publication.\'))}">';
+}
 function accentFor(c,b){const role=(b?.role||'').toLowerCase(),grp=(c?.group||'').toLowerCase();if(role.includes('occultism'))return '#67439c';if(role.includes('healing'))return '#3c7560';if(role.includes('history'))return '#956628';if(role.includes('hunters'))return '#a63d38';if(grp.includes('hollow lantern'))return '#ad5539';if(grp.includes('headmaster'))return '#893d4c';if(grp.includes('shrine'))return '#3f725d';if(grp.includes('hollow sutra'))return '#2d8c8e';if(grp.includes('masks'))return '#9b2c43';if(grp.includes('nameless'))return '#426d57';if(grp.includes('legendary'))return '#8660ac';return '#885a43'}
 function uniqueSeal(c,b){const role=(b?.role||'').toLowerCase();if(role.includes('occultism'))return '秘 · OCCULTISM';if(role.includes('healing'))return '癒 · HEALING';if(role.includes('history'))return '史 · HISTORY';if(role.includes('hunters'))return '狩 · HUNTERS';const g=c?.group||'Kurotsuki';return '黒月 · '+g.toUpperCase()}
 function dossierContent(kind,id){
@@ -132,21 +144,26 @@ if(kind==='department'){const d=C.departments.find(x=>x.id===id);return '<div cl
 if(kind==='place'){const d=C.places.find(x=>x.id===id);return '<div class="eyebrow">'+cite(d.type)+'</div><h2 id="dialog-title">'+cite(d.name)+'</h2><p class="tagline">'+cite(d.summary)+'</p>'+section('Location lore',d.details)}
 if(kind==='myth'){const d=C.myths.find(x=>x.id===id);return '<div class="eyebrow">'+cite(d.type)+'</div><h2 id="dialog-title">'+cite(d.name)+'</h2><p class="tagline">'+cite(d.text)+'</p>'}
 return '';}
-function openDossier(kind,id){const body=dossierContent(kind,id);if(!body)return;if(!dialog.classList.contains('open'))lastFocus=document.activeElement;const wrap=$('dialog-body');wrap.innerHTML=body;let personId=kind==='person'?id:kind==='legend'?C.legends.find(l=>l.id===id)?.character:null;if(personId){const c=idMap.get(personId);const peers=chars.filter(p=>p.group===c?.group);const pos=peers.findIndex(p=>p.id===personId);if(pos>=0&&peers.length>1){const prev=peers[(pos-1+peers.length)%peers.length],next=peers[(pos+1)%peers.length];const nav=document.createElement('div');nav.className='dossier-actions';nav.innerHTML='<button type="button" data-next-dossier="'+escape(prev.id)+'">← '+cite(prev.name)+'</button><span class="counter">'+(pos+1)+' / '+peers.length+' · '+cite(c.group)+'</span><button type="button" data-next-dossier="'+escape(next.id)+'">'+cite(next.name)+' →</button>';wrap.append(nav)}}dialog.classList.add('open');dialog.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('dialog-close').focus();for(const b of wrap.querySelectorAll('button[data-person]'))b.addEventListener('click',()=>openDossier('person',b.dataset.person));for(const b of wrap.querySelectorAll('button[data-next-dossier]'))b.addEventListener('click',()=>openDossier('person',b.dataset.nextDossier));for(const img of wrap.querySelectorAll('.dossier-full-art')){img.addEventListener('click',()=>expandPortrait(img));img.addEventListener('keydown',e=>{if(e.key==='Enter')expandPortrait(img)})}}
+function openDossier(kind,id){const body=dossierContent(kind,id);if(!body)return;if(!dialog.classList.contains('open'))lastFocus=document.activeElement;const wrap=$('dialog-body');wrap.innerHTML=body;wrap.classList.remove('folio-turn');void wrap.offsetWidth;wrap.classList.add('folio-turn');let personId=kind==='person'?id:kind==='legend'?C.legends.find(l=>l.id===id)?.character:null;if(personId){const c=idMap.get(personId);const peers=chars.filter(p=>p.group===c?.group);const pos=peers.findIndex(p=>p.id===personId);if(pos>=0&&peers.length>1){const prev=peers[(pos-1+peers.length)%peers.length],next=peers[(pos+1)%peers.length];const nav=document.createElement('div');nav.className='dossier-actions';nav.innerHTML='<button type="button" data-next-dossier="'+escape(prev.id)+'">← '+cite(prev.name)+'</button><span class="counter">'+(pos+1)+' / '+peers.length+' · '+cite(c.group)+'</span><button type="button" data-next-dossier="'+escape(next.id)+'">'+cite(next.name)+' →</button>';wrap.append(nav)}}dialog.classList.add('open');dialog.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('dialog-close').focus();for(const b of wrap.querySelectorAll('button[data-person]'))b.addEventListener('click',()=>openDossier('person',b.dataset.person));for(const b of wrap.querySelectorAll('button[data-next-dossier]'))b.addEventListener('click',()=>openDossier('person',b.dataset.nextDossier));for(const img of wrap.querySelectorAll('.dossier-full-art')){img.addEventListener('click',()=>expandPortrait(img));img.addEventListener('keydown',e=>{if(e.key==='Enter')expandPortrait(img)})}}
 let portraitOverlay;
 function expandPortrait(img){if(!portraitOverlay){portraitOverlay=document.createElement('div');portraitOverlay.className='dossier-fullscreen';portraitOverlay.setAttribute('role','dialog');portraitOverlay.setAttribute('aria-modal','true');portraitOverlay.setAttribute('aria-label','Full-size illustration');portraitOverlay.innerHTML='<img alt="">';portraitOverlay.addEventListener('click',()=>portraitOverlay.classList.remove('open'));document.body.append(portraitOverlay)}portraitOverlay.querySelector('img').src=img.currentSrc||img.src;portraitOverlay.querySelector('img').alt=img.alt;portraitOverlay.classList.add('open')}
 function close(){if(portraitOverlay?.classList.contains('open')){portraitOverlay.classList.remove('open');return;}dialog.classList.remove('open');dialog.setAttribute('aria-hidden','true');document.body.style.overflow='';$('dialog-body').replaceChildren();lastFocus?.focus?.()}
 $('dialog-close').addEventListener('click',close);dialog.addEventListener('click',e=>{if(e.target===dialog)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.classList.contains('open'))close()});
-/* Category changes singe the edge of a virtual parchment sheet in blue spiritual flame. */
-const categoryBurn=document.createElement('div');categoryBurn.className='dossier-burn';categoryBurn.setAttribute('aria-hidden','true');document.body.append(categoryBurn);
+/* Quiet archival navigation: native smooth scroll and a brief ink-wash arrival. */
 const calmMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 for(const anchor of document.querySelectorAll('.nav a[href^="#"],.hero-actions a[href^="#"]')){
  anchor.addEventListener('click',event=>{
   const hash=anchor.getAttribute('href'),dest=hash?document.getElementById(hash.slice(1)):null;
-  if(!dest)return;event.preventDefault();if(calmMotion.matches){dest.scrollIntoView();history.replaceState(null,'',hash);return}
-  categoryBurn.classList.remove('active');void categoryBurn.offsetWidth;categoryBurn.classList.add('active');
-  setTimeout(()=>{dest.scrollIntoView({behavior:'instant',block:'start'});history.replaceState(null,'',hash)},480);
-  setTimeout(()=>categoryBurn.classList.remove('active'),1250)
+  if(!dest)return;
+  event.preventDefault();
+  dest.scrollIntoView({behavior:calmMotion.matches?'instant':'smooth',block:'start'});
+  history.replaceState(null,'',hash);
+  if(!calmMotion.matches){
+    dest.classList.remove('ink-arrival');
+    void dest.offsetWidth;
+    dest.classList.add('ink-arrival');
+    setTimeout(()=>dest.classList.remove('ink-arrival'),850);
+  }
  });
 }
 })();
