@@ -2,16 +2,6 @@
   "version": 1,
   "images": [
     {
-      "id": "aoi-mitsurugi",
-      "name": "Aoi Mitsurugi",
-      "path": "assets/bestiary/aoi-mitsurugi.webp"
-    },
-    {
-      "id": "brother-daichi-morisada",
-      "name": "Brother Daichi Morisada",
-      "path": "assets/bestiary/brother-daichi-morisada.webp"
-    },
-    {
       "id": "chochin-yo",
       "name": "Chochin Yo",
       "path": "assets/bestiary/chochin-yo.webp"
@@ -35,11 +25,6 @@
       "id": "honekaku-o",
       "name": "Honekaku O",
       "path": "assets/bestiary/honekaku-o.webp"
-    },
-    {
-      "id": "hoshi-kaimon",
-      "name": "Hoshi Kaimon",
-      "path": "assets/bestiary/hoshi-kaimon.webp"
     },
     {
       "id": "hyakugan-do",
@@ -72,11 +57,6 @@
       "path": "assets/bestiary/kane-kurai.webp"
     },
     {
-      "id": "kasumi-nagi",
-      "name": "Kasumi Nagi",
-      "path": "assets/bestiary/kasumi-nagi.webp"
-    },
-    {
       "id": "kegareyama",
       "name": "Kegareyama",
       "path": "assets/bestiary/kegareyama.webp"
@@ -85,31 +65,6 @@
       "id": "koboto",
       "name": "Koboto",
       "path": "assets/bestiary/koboto.webp"
-    },
-    {
-      "id": "kohana-menreika",
-      "name": "Kohana Menreika",
-      "path": "assets/bestiary/kohana-menreika.webp"
-    },
-    {
-      "id": "kurogane-rei",
-      "name": "Kurogane Rei",
-      "path": "assets/bestiary/kurogane-rei.webp"
-    },
-    {
-      "id": "lady-utsugi-saigetsu",
-      "name": "Lady Utsugi Saigetsu",
-      "path": "assets/bestiary/lady-utsugi-saigetsu.webp"
-    },
-    {
-      "id": "longqi-seiran",
-      "name": "Longqi Seiran",
-      "path": "assets/bestiary/longqi-seiran.webp"
-    },
-    {
-      "id": "lord-enji-kurobane",
-      "name": "Lord Enji Kurobane",
-      "path": "assets/bestiary/lord-enji-kurobane.webp"
     },
     {
       "id": "mugetsu",
@@ -127,11 +82,6 @@
       "path": "assets/bestiary/narusawa-zuru.webp"
     },
     {
-      "id": "natsume-kohana",
-      "name": "Natsume Kohana",
-      "path": "assets/bestiary/natsume-kohana.webp"
-    },
-    {
       "id": "omokage-onna",
       "name": "Omokage Onna",
       "path": "assets/bestiary/omokage-onna.webp"
@@ -147,16 +97,6 @@
       "path": "assets/bestiary/sennen-koboku.webp"
     },
     {
-      "id": "shirakawa-kage",
-      "name": "Shirakawa Kage",
-      "path": "assets/bestiary/shirakawa-kage.webp"
-    },
-    {
-      "id": "shizuru-nuehara",
-      "name": "Shizuru Nuehara",
-      "path": "assets/bestiary/shizuru-nuehara.webp"
-    },
-    {
       "id": "shoku-no-tsuki",
       "name": "Shoku No Tsuki",
       "path": "assets/bestiary/shoku-no-tsuki.webp"
@@ -165,16 +105,6 @@
       "id": "sueigaja-yo",
       "name": "Sueigaja Yo",
       "path": "assets/bestiary/sueigaja-yo.webp"
-    },
-    {
-      "id": "sumi-arata",
-      "name": "Sumi Arata",
-      "path": "assets/bestiary/sumi-arata.webp"
-    },
-    {
-      "id": "tatsuya-kagetsu",
-      "name": "Tatsuya Kagetsu",
-      "path": "assets/bestiary/tatsuya-kagetsu.webp"
     },
     {
       "id": "togyozuka",
@@ -195,11 +125,6 @@
       "id": "wada-no-mukuro",
       "name": "Wada No Mukuro",
       "path": "assets/bestiary/wada-no-mukuro.webp"
-    },
-    {
-      "id": "yoru-shinkai",
-      "name": "Yoru Shinkai",
-      "path": "assets/bestiary/yoru-shinkai.webp"
     }
   ]
 }
