@@ -96,7 +96,7 @@ The verified `Kurotsuki_Dossiers_27_Ready_For_GitHub.zip` contains 27 full-size 
 
 ## Original background soundtrack
 
-**Veil Beneath the Torii** is an original instrumental composed specifically for Kurotsuki Academy. It blends atmospheric low strings and drone, airy flute-like notes, plucked zither-like patterns, mountain-wind texture and sparse ceremonial drum accents. The source is original procedural synthesis; **no external music recording or sample is used**.
+**Lanterns at Kurotsuki** is an original, livelier Japanese-inspired instrumental composed for the academy. A bright D–E–G–A–B pentatonic melody runs through synthetic koto and shamisen-style plucked strings, flute inspired by shinobue, and gentle matsuri-like taiko, hand-drum and wooden clapper patterns. It keeps a light supernatural atmosphere without the previous solemn drones or heavy cinematic texture. The timbres are synthesised approximations, not recordings of acoustic Japanese instruments; **no external music recording or sample is used**.
 
 The finished audio is published at `assets/audio/veil-beneath-the-torii.mp3`. The floating soundtrack widget on both `index.html` and `gallery.html` offers **Play / Pause** and volume control. Playback is off by default; visitors must choose to play it. Pausing resumes from the same position, and the track loops automatically.
 
