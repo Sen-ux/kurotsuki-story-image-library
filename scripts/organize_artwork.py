@@ -98,6 +98,9 @@ emiko-shigure yae-tsuchigumo jin-seo fuyuka-yukishiro masato-igarashi
 rin-kurogane ayame-byakuren kazuma-shido liang-shuren chiyo-komori
 goro-akatsuki yuzuriha-sazanami han-haejin akane-tsurugi reiha-kiyomizu
 dr-meilin-zhao yasuhide-momose eri-hanabusa maribel mr-hollow tsukuyomi-shizuka
+aoi-mitsurugi brother-daichi-morisada hoshi-kaimon kasumi-nagi kohana-menreika
+kurogane-rei lady-utsugi-saigetsu longqi-seiran lord-enji-kurobane natsume-kohana
+shirakawa-kage shizuru-nuehara sumi-arata tatsuya-kagetsu yoru-shinkai
 """.split()
 CHARACTER_BY_TOKEN = {re.sub(r"[^a-z0-9]", "", item): item for item in CHARACTER_IDS}
 SOURCE_ART = ROOT / "assets" / "source-art"
@@ -198,7 +201,23 @@ def reconcile_archived_artwork():
                 corrected += 1
     return corrected
 
+
+def clean_chatgpt_filename_uploads():
+    """Delete only leftover generic root-level ChatGPT Image PNGs.
+
+    The named original character and bestiary artwork stored beneath assets/
+    is never targeted by this function.
+    """
+    removed = 0
+    for candidate in ROOT.glob("ChatGPT Image *.png"):
+        if candidate.is_file():
+            candidate.unlink()
+            print("Removed unassigned generic upload:", candidate.name)
+            removed += 1
+    return removed
+
 if __name__ == "__main__":
     count = move_root_folders() + ingest_root_pngs() + reconcile_archived_artwork()
+    removed = clean_chatgpt_filename_uploads()
     indexed = index_bestiary()
-    print(f"Done. Processed {count} uploaded file(s); {indexed} bestiary image(s) indexed.")
+    print(f"Done. Processed {count} uploaded file(s), deleted {removed} generic files; {indexed} bestiary image(s) indexed.")
