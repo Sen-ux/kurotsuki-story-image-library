@@ -52,6 +52,12 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
 
 /* The stylesheet lives in assets/design: image URLs above resolve beside it, never beneath assets/design/assets. */
 
+/* Shirayuki remains visible as a standalone legend even without JavaScript. */
+#legend-dynamic-cards{display:contents}
+#legend-shirayuki{display:block;text-decoration:none;color:inherit;border-top:3px solid #7ca5bd;--accent:#7ca5bd;cursor:pointer}
+#legend-shirayuki:focus-visible{outline:3px solid #a8cee2;outline-offset:4px}
+#legend-shirayuki figure{margin:-21px -21px 15px;aspect-ratio:3/2;background:#211a26}
+#legend-shirayuki figure img{width:100%;height:100%;object-fit:contain;object-position:center;background:#211a26}
 /* Four independent Legendary Hunters share one balanced illustrated row. */
 #legend-cards{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
 #legend-cards .tile{min-width:0}
