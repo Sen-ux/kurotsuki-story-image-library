@@ -1,0 +1,38 @@
+name: Build original Kurotsuki soundtrack
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/generate_kurotsuki_theme.py'
+      - '.github/workflows/build-soundtrack.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install synthesizer dependency
+        run: python -m pip install 'numpy>=1.26,<3'
+      - name: Ensure MP3 encoder exists
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          fi
+      - name: Compose and render music
+        run: python scripts/generate_kurotsuki_theme.py
+      - name: Commit original MP3 to the website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/audio/veil-beneath-the-torii.mp3
+          if ! git diff --staged --quiet; then
+            git commit -m "Publish original Kurotsuki Academy soundtrack"
+            git push
+          fi
