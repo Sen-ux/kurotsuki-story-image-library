@@ -1,0 +1,15 @@
+KUROTSUKI ACADEMY — EXTERNAL LINK TEST
+
+Planned public gallery URL (NOT live until you deploy):
+https://Sen-ux.github.io/kurotsuki-story-image-library/
+
+Direct image:
+https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png
+
+Markdown to test in OOC.AI:
+![Maribel Happy](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png)
+
+Another test:
+![Mr. Hollow Questioning](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/mr-hollow/questioning.png)
+
+If Markdown appears as text or nothing loads, the in-app renderer may not support external images. This site only hosts the images; it cannot force external rendering inside OOC.AI.

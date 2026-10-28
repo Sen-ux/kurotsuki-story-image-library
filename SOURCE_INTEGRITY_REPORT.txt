@@ -1,0 +1,12 @@
+Kurotsuki Archive — Source Inventory and Fixes
+
+Input: Kurotsuki_External_Image_Site_Starter(1).zip
+42 character folders, 252 PNG expression files (6 per folder).
+
+Confirmed issue: the six images under characters/sora-mikuni/ were exact byte-for-byte copies of Yae Tsuchigumo images in characters/yae-tsuchigumo/. They were excluded from Sora's gallery; Sora now has one neutral source portrait from previous conversation artwork.
+
+246 original PNG expression files were retained, without recoloring, resizing, or converting.
+1 original Sora neutral portrait was resized to fit a practical image dimension; no expressions invented.
+41 generated WebP thumbnail files are used only by the gallery for lightweight previews; direct PNG links remain unchanged.
+
+Source image naming was standardized to characters/{canonical-slug}/{expression}.png. The original uploaded ZIP remains untouched.

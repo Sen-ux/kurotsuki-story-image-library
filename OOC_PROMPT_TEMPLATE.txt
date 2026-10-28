@@ -1,0 +1,58 @@
+KUROTSUKI ACADEMY — EXTERNALLY HOSTED EXPRESSION IMAGES
+
+This rule applies only if the OOC.AI chat interface actually renders Markdown images from public HTTPS URLs. Test it first.
+Public base: https://Sen-ux.github.io/kurotsuki-story-image-library/characters/
+
+Characters and folder IDs:
+- Akane Tsurugi: akane-tsurugi
+- Aoi Mitsurugi: aoi-mitsurugi
+- Ayame Byakuren: ayame-byakuren
+- Bai Suiren: bai-suiren
+- Brother Daichi Morisada: brother-daichi-morisada
+- Chiyo Komori: chiyo-komori
+- Dr. Meilin Zhao: dr-meilin-zhao
+- Emiko Shigure: emiko-shigure
+- Eri Hanabusa: eri-hanabusa
+- Fuyuka Yukishiro: fuyuka-yukishiro
+- Gorō Akatsuki: goro-akatsuki
+- Han Haejin: han-haejin
+- Haru Amagiri: haru-amagiri
+- Hoshi Kaimon: hoshi-kaimon
+- Jin Seo: jin-seo
+- Kasumi Nagi: kasumi-nagi
+- Kazuma Shidō: kazuma-shido
+- Kohana Menreika: kohana-menreika
+- Koharu Minase: koharu-minase
+- Kurogane Rei: kurogane-rei
+- Lady Utsugi Saigetsu: lady-utsugi-saigetsu
+- Liang Shuren: liang-shuren
+- Lord Enji Kurobane: lord-enji-kurobane
+- Lóngqí Seiran: longqi-seiran
+- Maribel: maribel
+- Masato Igarashi: masato-igarashi
+- Mr. Hollow: mr-hollow
+- Natsume Kohana: natsume-kohana
+- Reiha Kiyomizu: reiha-kiyomizu
+- Reina Onikawa: reina-onikawa
+- Rin Kurogane: rin-kurogane
+- Shirakawa Kage: shirakawa-kage
+- Shizuru Nuehara: shizuru-nuehara
+- Sora Mikuni: sora-mikuni
+- Sumi Arata: sumi-arata
+- Tatsuya Kagetsu: tatsuya-kagetsu
+- Tsukuyomi Shizuka: tsukuyomi-shizuka
+- Tōma Karasuba: toma-karasuba
+- Yae Tsuchigumo: yae-tsuchigumo
+- Yasuhide Momose: yasuhide-momose
+- Yoru Shinkai: yoru-shinkai
+- Yuzuriha Sazanami: yuzuriha-sazanami
+
+Published emotion file choices (PNG, lowercase): happy.png, blushing.png, questioning.png, enthusiastic.png, displeased.png, playful.png.
+Interpret suspicious expressions as questioning.png; upset/angry/unhappy expressions as displeased.png. These are aliases to the existing drawings, not separately generated artwork.
+Sora Mikuni currently has ONLY neutral.png; do not request another Sora expression until new files are uploaded.
+All other listed characters have these six expression PNGs; do not assume neutral.png exists for them.
+
+When a named NPC is physically present and clearly expressing an emotion, optionally show ONE image using Markdown, e.g.:
+![Maribel happy](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png)
+
+Replace the character folder and expression only with combinations present in manifest.json. Use no image for absent characters, passing name mentions, rumors, or historical documents. Do not display the same image on every turn; use a character image only for meaningful new introductions or emotional changes. Do not show more than one external NPC image per exchange. If the platform ignores Markdown images, stop outputting links and continue ordinary narration; use registered Media images for guaranteed in-app support.
