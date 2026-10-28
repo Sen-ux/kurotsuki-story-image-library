@@ -178,23 +178,6 @@ window.KUROTSUKI_CODEX = {
   "rankModifiers": "Modifiers such as A−, A+, or B+ are sometimes used in creature dossier art to refine estimates. All rankings remain provisional until verified in the story.",
   "factions": [
     {
-      "id": "crimson-wardens",
-      "name": "The Crimson Wardens",
-      "kind": "Hunter Organisation",
-      "stance": "Allied",
-      "palette": "#d96066",
-      "crest": "刃",
-      "leader": "Yuzuki Kurenai",
-      "members": [
-        "Yuzuki Kurenai",
-        "Ren Akatsuki",
-        "Kagami Reika"
-      ],
-      "summary": "An elite demon-hunting order renowned for extermination and swift, uncompromising action.",
-      "doctrine": "Where a demon’s predation is proven, the Wardens prefer a decisive end over a costly negotiation. Their crimson insignia is both a warning and an assurance to the vulnerable.",
-      "conflicts": "Their methods often bring them into argument with the Order of Nine Seals, especially where capture is possible."
-    },
-    {
       "id": "order-nine-seals",
       "name": "The Order of Nine Seals",
       "kind": "Spiritual Society",
@@ -209,7 +192,7 @@ window.KUROTSUKI_CODEX = {
       ],
       "summary": "A spiritual society of exorcists, ritualists and occult scholars devoted to keeping the Veil intact.",
       "doctrine": "Binding, investigation and preservation are preferred to destruction; even a dangerous spirit may be the key to understanding a deeper breach.",
-      "conflicts": "Its reliance on seals rather than executions puts it at odds with the Crimson Wardens."
+      "conflicts": "Their commitment to containment sometimes puts them at odds with independent extermination hunters, particularly when dangerous spirits might instead be safely sealed."
     },
     {
       "id": "nameless-blades",
@@ -928,30 +911,6 @@ window.KUROTSUKI_CODEX = {
       "lineage": "Qilin divine-beast lineage",
       "affiliation": "Independent"
     },
-    "yuzuki-kurenai": {
-      "role": "Grand Warden · Faction Head",
-      "lead": "A commander whose red insignia is known long before her face.",
-      "background": "Yuzuki has built the Wardens into a terrifyingly effective answer to predatory demons. She values civilians' safety above the pride of courts and occultists alike, yet carries the cost of every decision that could not be undone.",
-      "style": "Command tactics, execution-grade swordsmanship and decisive field deployments.",
-      "hook": "A sealed case file may prove that one of her most famous victories was not what it seemed.",
-      "affiliation": "The Crimson Wardens"
-    },
-    "ren-akatsuki": {
-      "role": "Field Captain",
-      "lead": "Disciplined, pragmatic and loyal when action is required.",
-      "background": "Ren leads the kind of difficult operations that never reach the public chronicles. His obedience to the order is sincere, though he occasionally questions whether the last command left room for mercy.",
-      "style": "Yari spear and organised anti-demon formations.",
-      "hook": "A spared enemy has begun appearing in his mission reports.",
-      "affiliation": "The Crimson Wardens"
-    },
-    "kagami-reika": {
-      "role": "Warden",
-      "lead": "A precise hunter with very little patience for carelessness.",
-      "background": "Reika's measured silence hides a relentless attention to detail. She is often the first to suspect when an apparently completed hunt has only driven the danger somewhere else.",
-      "style": "Paired tantō and close-quarters precision.",
-      "hook": "She has quietly preserved a piece of evidence that the order wanted destroyed.",
-      "affiliation": "The Crimson Wardens"
-    },
     "kujou-satsuki": {
       "role": "High Exorcist · Faction Head",
       "lead": "A master of boundaries whose greatest weapon is patience.",
@@ -978,27 +937,6 @@ window.KUROTSUKI_CODEX = {
     }
   },
   "additionalCharacters": [
-    {
-      "id": "yuzuki-kurenai",
-      "name": "Yuzuki Kurenai",
-      "group": "The Crimson Wardens",
-      "available": {},
-      "thumbnail": null
-    },
-    {
-      "id": "ren-akatsuki",
-      "name": "Ren Akatsuki",
-      "group": "The Crimson Wardens",
-      "available": {},
-      "thumbnail": null
-    },
-    {
-      "id": "kagami-reika",
-      "name": "Kagami Reika",
-      "group": "The Crimson Wardens",
-      "available": {},
-      "thumbnail": null
-    },
     {
       "id": "kujou-satsuki",
       "name": "Kujou Satsuki",
