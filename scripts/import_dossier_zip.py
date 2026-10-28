@@ -20,13 +20,15 @@ for archive in archives:
         with ZipFile(archive) as pack:
             all_files = [member for member in pack.infolist() if not member.is_dir()]
             mapped = [(member, ALLOWED.fullmatch(member.filename.replace("\\", "/"))) for member in all_files]
-            if not mapped or any(match is None for _, match in mapped):
-                print("Not a Kurotsuki dossier ZIP; leaving untouched:", archive.name)
+            image_files = [(member, match) for member, match in mapped if match is not None]
+            unrelated = [member.filename for member, match in mapped if match is None and member.filename not in {"DOSSIER_UPLOAD_README.txt", "DOSSIER_MAP.json"}]
+            if not image_files or unrelated:
+                print("Not a recognised Kurotsuki dossier ZIP; leaving untouched:", archive.name, unrelated[:3])
                 continue
-            if sum(m.file_size for m, _ in mapped) > MAX_EXTRACTED or any(m.file_size > MAX_MEMBER for m,_ in mapped):
+            if sum(m.file_size for m, _ in image_files) > MAX_EXTRACTED or any(m.file_size > MAX_MEMBER for m,_ in image_files):
                 print("Refusing oversized contents:", archive.name)
                 continue
-            for member, match in mapped:
+            for member, match in image_files:
                 target = ROOT / member.filename
                 target.parent.mkdir(parents=True, exist_ok=True)
                 with pack.open(member) as source, target.open("wb") as output:
