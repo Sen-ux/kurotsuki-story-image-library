@@ -1,4 +1,4 @@
-/* Lanterns at Kurotsuki — original Kurotsuki Academy ambient soundtrack.
+/* Autumn Festival at Kurotsuki — original Kurotsuki Academy ambient soundtrack.
    No autoplay. The pause button preserves the current position. */
 (() => {
   "use strict";
@@ -12,7 +12,7 @@
       '<span class="kurotsuki-player-crest" aria-hidden="true">黒月</span>'+
       '<div class="kurotsuki-player-text">'+
         '<span class="kurotsuki-player-overline">Kurotsuki Academy · Original Soundtrack</span>'+
-        '<span class="kurotsuki-player-title">Lanterns at Kurotsuki</span>'+
+        '<span class="kurotsuki-player-title">Autumn Festival at Kurotsuki</span>'+
       '</div>'+
     '</div>'+
     '<div class="kurotsuki-player-row">'+
@@ -25,9 +25,9 @@
   audio.id="kurotsuki-audio";
   audio.preload="none";
   audio.loop=true;
-  audio.src="assets/audio/veil-beneath-the-torii.mp3?v=traditional-v2";
+  audio.src="assets/audio/autumn-festival-at-kurotsuki.mp3?v=festival-v3";
   audio.volume=.38;
-  audio.setAttribute("aria-label","Lanterns at Kurotsuki, original ambient soundtrack");
+  audio.setAttribute("aria-label","Autumn Festival at Kurotsuki, original ambient soundtrack");
   player.append(audio);
   document.body.append(player);
   const button=player.querySelector("#kurotsuki-audio-toggle");
