@@ -87,7 +87,70 @@ def index_bestiary():
         print("Bestiary catalogue already current:", len(entries), "image(s)")
     return len(entries)
 
+
+# Raw GitHub uploads sometimes land at repository root rather than in
+# bestiary/, dossiers/, or previews/. Match known named academy artwork,
+# preserve every original in a source-art folder, and generate both versions
+# required by the public site's existing dossier and bestiary image paths.
+CHARACTER_IDS = """
+haru-amagiri reina-onikawa bai-suiren koharu-minase toma-karasuba sora-mikuni
+emiko-shigure yae-tsuchigumo jin-seo fuyuka-yukishiro masato-igarashi
+rin-kurogane ayame-byakuren kazuma-shido liang-shuren chiyo-komori
+goro-akatsuki yuzuriha-sazanami han-haejin akane-tsurugi reiha-kiyomizu
+dr-meilin-zhao yasuhide-momose eri-hanabusa maribel mr-hollow tsukuyomi-shizuka
+""".split()
+CHARACTER_BY_TOKEN = {re.sub(r"[^a-z0-9]", "", item): item for item in CHARACTER_IDS}
+SOURCE_ART = ROOT / "assets" / "source-art"
+
+def ingest_root_pngs():
+    from PIL import Image, ImageOps
+    processed = 0
+    unmatched = []
+    for original in sorted(ROOT.glob("*.png")):
+        basename = re.sub(r"^\\d{2}_", "", original.stem)
+        token = re.sub(r"[^a-z0-9]", "", basename.lower())
+        character_id = CHARACTER_BY_TOKEN.get(token)
+        if original.name == "Kurotsuki Academy Headmaster Dossier.png":
+            character_id = "tsukuyomi-shizuka"
+        if character_id:
+            destinations = [(ROOT / "assets" / "dossiers" / f"{character_id}.webp", None),
+                            (ROOT / "assets" / "previews" / f"{character_id}.webp", (1100, 734))]
+            original_folder = SOURCE_ART / "dossiers"
+        elif original.name.lower().startswith("chatgpt image"):
+            unmatched.append(original.name)
+            continue
+        else:
+            # The named remaining PNGs are the bestiary illustrations:
+            # Orihime, Hyakume-inu, and the ranked species sheets.
+            grade_suffix = re.sub(r"_rank_(?:s|a|b|c)(?:plus|minus)?$", "", basename, flags=re.I)
+            beast_slug = name_slug(grade_suffix)
+            destinations = [(ROOT / "assets" / "bestiary" / f"{beast_slug}.webp", None)]
+            original_folder = SOURCE_ART / "bestiary"
+        with Image.open(original) as raw:
+            image = ImageOps.exif_transpose(raw).convert("RGB")
+            for dest, dimensions in destinations:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                artwork = image.copy()
+                if dimensions:
+                    artwork.thumbnail(dimensions, Image.Resampling.LANCZOS)
+                artwork.save(dest, "WEBP", quality=90 if not dimensions else 85, method=6)
+                print("Prepared", dest.relative_to(ROOT))
+        original_folder.mkdir(parents=True, exist_ok=True)
+        preserved = original_folder / original.name
+        if preserved.exists():
+            print("Original already archived:", preserved.relative_to(ROOT))
+            original.unlink()
+        else:
+            original.rename(preserved)
+            print("Preserved original", preserved.relative_to(ROOT))
+        processed += 1
+    if unmatched:
+        print("Unlabelled uploads kept at root for manual character identification:", len(unmatched))
+        for name in unmatched:
+            print("Needs character name:", name)
+    return processed
+
 if __name__ == "__main__":
-    count = move_root_folders()
+    count = move_root_folders() + ingest_root_pngs()
     indexed = index_bestiary()
     print(f"Done. Processed {count} uploaded file(s); {indexed} bestiary image(s) indexed.")
