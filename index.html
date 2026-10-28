@@ -134,4 +134,35 @@ function close(){dialog.classList.remove('open');dialog.setAttribute('aria-hidde
 $('dialog-close').addEventListener('click',close);dialog.addEventListener('click',e=>{if(e.target===dialog)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.classList.contains('open'))close()});
 })();
 </script>
+<script>
+/* Additional bestiary artwork is discovered automatically from the organiser's catalogue. */
+(async function(){
+  try{
+    const response=await fetch("assets/bestiary/catalogue.json",{cache:"no-cache"});
+    if(!response.ok)return;
+    const catalogue=await response.json();
+    const known=new Set(["orihime","gesshoku-onna","hyakume-inu","kegareyama","utsuro-no-koku"]);
+    const host=document.getElementById("beast-cards");
+    if(!host||!Array.isArray(catalogue.images))return;
+    for(const item of catalogue.images){
+      if(known.has(item.id))continue;
+      if(!item.path||!item.path.startsWith("assets/bestiary/"))continue;
+      const card=document.createElement("a");
+      card.className="tile accent";
+      card.style.cssText="--accent:#a27872;text-decoration:none;display:block";
+      card.href=item.path;card.target="_blank";card.rel="noopener";
+      const pic=document.createElement("figure");
+      const img=document.createElement("img");
+      img.src=item.path;img.alt=item.name+" bestiary illustration";img.loading="lazy";
+      img.style.cssText="width:100%;height:100%;object-fit:contain";
+      pic.append(img);
+      const title=document.createElement("h3");title.textContent=item.name;
+      const sub=document.createElement("div");sub.className="sub";sub.textContent="Additional bestiary artwork · Classification pending";
+      const desc=document.createElement("p");desc.textContent="Open the full illustrated field card. Rank, species and lore can be assigned in the main bestiary.";
+      card.append(pic,sub,title,desc);
+      host.append(card);
+    }
+  }catch(error){console.warn("Additional bestiary catalogue not yet available",error)}
+})();
+</script>
 </body></html>
