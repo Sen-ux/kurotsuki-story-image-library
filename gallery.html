@@ -27,5 +27,5 @@ function open(c){chosen=c;emotion=c.available.happy?'happy':Object.keys(c.availa
 function close(){dialog.setAttribute('aria-hidden','true');document.body.style.overflow='';chosen=null}
 async function copy(t){try{await navigator.clipboard.writeText(t);$('msg').textContent='Copied.'}catch(e){window.prompt('Copy the text below:',t)}}
 search.addEventListener('input',render);filter.addEventListener('change',render);$('close').addEventListener('click',close);dialog.addEventListener('click',e=>{if(e.target===dialog)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&chosen)close()});$('copy-url').addEventListener('click',()=>{if(chosen)copy(url())});$('copy-markdown').addEventListener('click',()=>{if(chosen)copy('!['+chosen.name+' — '+emotion+']('+url()+')')});render();})();
-</script><script defer src="assets/audio/player.js?v=1"></script>
+</script><script defer src="assets/audio/player.js?v=traditional-v2"></script>
 </body></html>
