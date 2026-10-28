@@ -357,6 +357,16 @@ window.KUROTSUKI_CODEX = {
       "summary": "A female Qilin-blooded wanderer whose compassion is backed by a guardian's uncompromising strength.",
       "rumor": "A road where she has passed may remain safe for years, though none can prove why.",
       "ethos": "She protects the vulnerable without swearing to any banner."
+    },
+    {
+      "id": "tempest-huntress",
+      "name": "Shirayuki",
+      "title": "The Tempest Huntress",
+      "lineage": "Tempest Divine Spirit — living wind and storm",
+      "character": "shirayuki",
+      "summary": "The fastest of the four independent Legendary Hunters, Shirayuki channels the Tempest Divine Spirit. A wandering fighter who follows curiosity and the promise of a worthy clash, she changes direction, timing and tactics so suddenly that even seasoned hunters cannot predict her next move.",
+      "rumor": "Some swear that even lightning cannot follow her path. Others say she never chooses a path at all—the storm decides where she appears next.",
+      "ethos": "She lives to wander and fight, refusing to let any academy, organisation or fixed road decide where the wind should go."
     }
   ],
   "places": [
@@ -830,6 +840,15 @@ window.KUROTSUKI_CODEX = {
       "hook": "What will force a merciful hunter to become a judge?",
       "lineage": "Qilin divine-beast lineage",
       "affiliation": "Independent"
+    },
+    "shirayuki": {
+      "role": "Independent Legendary Hunter · Tempest Divine Spirit",
+      "lead": "The Tempest Huntress: the fastest and most unpredictable of the four Legendary Hunters.",
+      "background": "Shirayuki is a wandering fighter bound to the Tempest Divine Spirit, whose power grants her overwhelming speed and near-impossible changes of direction. Restless and fiercely independent, she seeks unfamiliar roads and powerful opponents for the sheer thrill of discovery and battle. No one—not even the other legendary hunters—can confidently predict where she will go or how she will fight next.",
+      "style": "Tempest-fuelled acceleration, irregular footwork, sudden shifts of momentum and instinctive, unpredictable combat.",
+      "hook": "Is the tempest guiding her from place to place, or simply racing to keep up?",
+      "lineage": "Bearer of the Tempest Divine Spirit",
+      "affiliation": "Independent · One of the Four Legendary Hunters"
     }
   },
   "additionalCharacters": [],
