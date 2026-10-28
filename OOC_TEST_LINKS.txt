@@ -1,15 +1,21 @@
-KUROTSUKI ACADEMY — EXTERNAL LINK TEST
+KUROTSUKI ACADEMY — EXTERNAL IMAGE LINK TEST
 
-Planned public gallery URL (NOT live until you deploy):
+REPOSITORY
+https://github.com/Sen-ux/kurotsuki-story-image-library
+
+DIRECT PUBLIC PNG — WORKS AS A GITHUB RAW URL EVEN WITHOUT GITHUB PAGES
+https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png
+
+OOC.AI MARKDOWN TEST (paste into a test Prologue)
+![Maribel Happy](https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png)
+
+SECOND IMAGE TEST
+![Mr. Hollow Questioning](https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/mr-hollow/questioning.png)
+
+GITHUB PAGES — ENABLE UNDER REPOSITORY SETTINGS > PAGES FIRST
 https://Sen-ux.github.io/kurotsuki-story-image-library/
 
-Direct image:
+WHEN PAGES IS ENABLED, THE EQUIVALENT PNG IS
 https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png
 
-Markdown to test in OOC.AI:
-![Maribel Happy](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png)
-
-Another test:
-![Mr. Hollow Questioning](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/mr-hollow/questioning.png)
-
-If Markdown appears as text or nothing loads, the in-app renderer may not support external images. This site only hosts the images; it cannot force external rendering inside OOC.AI.
+IMPORTANT: A working public PNG link does not guarantee OOC.AI will display Markdown images in chat. Test in Chat Preview. The official native Media library and its 50-image limit are separate.
