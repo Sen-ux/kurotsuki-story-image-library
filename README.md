@@ -18,9 +18,9 @@ GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch
 - Hunter grades and C–S supernatural threat classification
 - **42 character biographies**, each with a corresponding illustrated dossier
 - All **four remaining factions**, their leaders, philosophies, relations and named members
-- **12 creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
+- **5 featured creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
 - Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
-- Seven locations, a chronicle timeline, eight world mysteries and seven character attributes
+- Seven locations, a chronicle timeline, seven world mysteries and seven character attributes
 - The original **247 PNG expression images** and 42 WebP thumbnails, preserved in `characters/` and `thumbnails/`
 - Searchable character cards, filters, linked dossier panels, a modal reference browser, and gallery expression selection
 
