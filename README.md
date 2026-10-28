@@ -16,12 +16,12 @@ GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch
 
 - Academy overview, Four Departments, and three starting modes
 - Hunter grades and C–S supernatural threat classification
-- **42 character biographies**, each with a corresponding illustrated dossier
+- **43 character biographies**, each with a corresponding illustrated dossier
 - All **four remaining factions**, their leaders, philosophies, relations and named members
 - **5 featured creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
-- Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
+- Four independent legendary hunters (Raiju, Kitsune, Qilin, and Shirayuki, bearer of the Tempest Divine Spirit)
 - Seven locations, a chronicle timeline, six world mysteries and seven character attributes
-- The original **247 PNG expression images** and 42 WebP thumbnails, preserved in `characters/` and `thumbnails/`
+- The original **247 PNG expression images** plus six Shirayuki expressions, and 43 WebP thumbnails, preserved in `characters/` and `thumbnails/`
 - Searchable character cards, filters, linked dossier panels, a modal reference browser, and gallery expression selection
 
 All added historical and behavioral lore is **draft expansion**, not a claim that previously unspecified details are already locked as canon. This distinction is visible on the website. The hunter grade ladder is explicitly marked as proposed. No bell symbolism was added.
@@ -103,3 +103,7 @@ All instruments and ambience are procedural approximations created from original
 The finished recording is published at `assets/audio/autumn-festival-at-kurotsuki.mp3`. A floating soundtrack player on both `index.html` and `gallery.html` provides **Play / Pause** and volume. Playback starts only after the visitor presses Play, pauses/resumes at the same position, and loops.
 
 The music generator is `scripts/generate_kurotsuki_theme.py`. The `Build original Kurotsuki soundtrack` workflow generates and publishes the MP3 after source changes. The site's controls are defined in `assets/audio/player.js` and `assets/audio/player.css`.
+
+## Shirayuki — Fourth Legendary Hunter
+
+Shirayuki, **The Tempest Huntress**, channels the **Tempest Divine Spirit**. She is the fastest and least predictable of the four independent Legendary Hunters. Wandering and fighting are her nature: she pursues unfamiliar roads and challenging opponents rather than contracts or orders. Her existing dossier and six uploaded expressions are processed by `scripts/organize_artwork.py`, with originals preserved under `assets/source-art/`. The codex image is `assets/dossiers/shirayuki.webp`; the card preview is `assets/previews/shirayuki.webp`; the expression gallery uses `characters/shirayuki/{happy,blushing,questioning,enthusiastic,displeased,playful}.png` and `thumbnails/shirayuki.webp`.
