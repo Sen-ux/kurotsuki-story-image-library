@@ -33,14 +33,21 @@ main::before{content:"";position:absolute;inset:0;pointer-events:none;background
 .dossier-fullscreen{position:fixed;inset:0;background:#050508ef;z-index:130;display:none;align-items:center;justify-content:center;padding:22px;cursor:zoom-out}
 .dossier-fullscreen.open{display:flex}
 .dossier-fullscreen img{max-width:98vw;max-height:95dvh;width:auto;height:auto;object-fit:contain}
-.dossier-burn{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:0;visibility:hidden}
-.dossier-burn.active{visibility:visible;animation:blueAshCurtain 1.13s ease-in-out both}
-.dossier-burn::before{content:"";position:absolute;inset:-30%;background:radial-gradient(ellipse at 22% 90%,#44e6ffb0,transparent 30%),radial-gradient(ellipse at 78% 25%,#2265ffbb,transparent 42%),linear-gradient(20deg,transparent 20%,#091d3999 45%,#1a205be0 60%,transparent 80%);filter:blur(24px);transform:rotate(-12deg)}
-.dossier-burn::after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,transparent 12%,#67d8fc 30%,#bfe9ec 32%,#263b6e 36%,#0a1120 46%,#06102a 54%,#3157a4 60%,#a9eff8 64%,transparent 77%);filter:drop-shadow(0 0 28px #3eaeff);clip-path:polygon(0 100%,6% 71%,9% 87%,19% 35%,21% 53%,30% 0,40% 38%,47% 12%,51% 69%,64% 27%,75% 60%,83% 13%,90% 44%,100% 0,100% 100%);transform:translateY(90%) scale(1.1)}
-@keyframes blueAshCurtain{0%{opacity:0}15%{opacity:.78}52%{opacity:1}100%{opacity:0}}
-.dossier-burn.active::after{animation:blueFlameSweep 1.13s ease-in-out both}
-@keyframes blueFlameSweep{0%{transform:translateY(110%) scale(1.1)}50%{transform:translateY(-9%) scale(1.16)}100%{transform:translateY(-135%) scale(1.1)}}
+/* Ink-and-parchment navigation: no flash or flames. */
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+.dossier-card{overflow:hidden;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease!important;will-change:transform}
+.dossier-card:hover,.dossier-card:focus-visible{transform:translateY(-5px);border-color:var(--group-accent,#a8895c)!important;box-shadow:0 20px 35px #000b,inset 0 0 0 6px #6d3e2320!important}
+.dossier-card-art{width:100%;aspect-ratio:3/2;display:grid;place-items:center;overflow:hidden;background:#201a1b url("paper-grain.svg") center/160px;position:relative}
+.dossier-card-art img,.person .dossier-card-art img{width:100%!important;height:100%!important;display:block;aspect-ratio:3/2!important;object-fit:contain!important;object-position:center center!important;background:transparent!important;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.dossier-card:hover .dossier-card-art img{transform:scale(1.025)}
+.dossier-card-art.art-pending:after{content:"Illustrated dossier pending";font:italic 15px "Cormorant Garamond",Georgia,serif;letter-spacing:.03em;color:#c3a78d;position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center}
+.dossier-card section{border-top:2px solid var(--group-accent,#927d58)}
+.dossier-card section h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.08}
+.folio-turn{animation:folioEnter .4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes folioEnter{from{opacity:.25;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+.ink-arrival h2,.ink-arrival .section-heading{animation:inkArrival .75s ease both}
+@keyframes inkArrival{0%{opacity:.5;filter:blur(3px);transform:translateY(8px)}100%{opacity:1;filter:none;transform:none}}
 @media(max-width:860px){.dialog-layout{grid-template-columns:1fr!important}.dialog-inner{padding:16px!important}.dialog-layout img{max-height:unset!important}.dialog .dialog-close{z-index:2}.person-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(prefers-reduced-motion:reduce){.dossier-burn,.dossier-burn.active,.dossier-burn.active::after{animation:none!important;visibility:hidden!important}.dossier-actions button,.person{transition:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.dossier-actions button,.person,.dossier-card,.dossier-card-art img{transition:none!important}.folio-turn,.ink-arrival h2,.ink-arrival .section-heading{animation:none!important}}
 
 /* The stylesheet lives in assets/design: image URLs above resolve beside it, never beneath assets/design/assets. */
