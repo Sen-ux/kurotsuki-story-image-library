@@ -1,0 +1,36 @@
+name: Organize uploaded artwork
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bestiary/**'
+      - 'dossiers/**'
+      - 'previews/**'
+      - 'scenery/**'
+      - 'assets/bestiary/**'
+      - 'scripts/organize_artwork.py'
+      - '.github/workflows/organize-artwork.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Move files and rebuild bestiary catalogue
+        run: python scripts/organize_artwork.py
+      - name: Commit organized assets if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- assets/bestiary assets/dossiers assets/previews assets/scenery bestiary dossiers previews scenery
+          if ! git diff --staged --quiet; then
+            git commit -m "Organize uploaded Kurotsuki artwork under assets"
+            git push
+          fi
