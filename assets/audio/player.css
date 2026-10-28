@@ -1,6 +1,6 @@
 /* Kurotsuki Academy — restrained floating soundtrack player. */
 .kurotsuki-player{
-  position:fixed;z-index:65;right:clamp(12px,2vw,28px);bottom:clamp(12px,2vw,26px);
+  position:fixed;z-index:155;right:clamp(12px,2vw,28px);bottom:clamp(12px,2vw,26px);
   width:min(380px,calc(100vw - 24px));padding:12px 15px 13px;
   display:flex;flex-direction:column;gap:9px;
   color:#f3e4cb;background:linear-gradient(115deg,#131219f2,#251c26f6 62%,#151319f7);
