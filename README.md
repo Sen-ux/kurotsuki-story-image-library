@@ -1,74 +1,64 @@
-# Kurotsuki Academy — Story Image Library
+# Kurotsuki Academy — Character Expression Library
 
-A brand-new static site with **42 character folders**, original PNG expressions, a searchable gallery, and direct image URLs for testing in OOC.AI.
+**Repository:** https://github.com/Sen-ux/kurotsuki-story-image-library
 
-## What is included
+This repository is already created and contains the uploaded Kurotsuki Academy image gallery.
 
-- 41 characters × 6 uploaded expressions = **246 original, unmodified expression PNGs**.
-- Sora Mikuni: **1 correct neutral PNG** added from the earlier Kurotsuki portrait. The six `sora-mikuni` images in the supplied ZIP were exact byte-for-byte duplicates of Yae Tsuchigumo and have been **excluded**, not mislabeled.
-- Six expression types: `happy`, `blushing`, `questioning`, `enthusiastic`, `displeased`, `playful`.
-- `suspicious` maps to **questioning**; `upset` maps to **displeased** in the prompt, without making fake new images.
-- `tsuyukomi-shizuka` from the ZIP has been corrected to public folder `tsukuyomi-shizuka` to match the headmaster's proper name.
-- No actual neutral expressions supplied for the other 41 characters. Their cards start on `happy` in the gallery; the OOC prompt does not invent neutral images.
-- No Crimson Wardens or Order of Nine Seals portraits in this uploaded ZIP.
+- **42 character folders**
+- **247 individual PNG portraits** with 42 WebP gallery thumbnails
+- **0 missing image files** in `manifest.json` (checked against the GitHub repository)
+- **Sora Mikuni:** one confirmed neutral portrait. The original expression PNGs assigned to Sora were actually duplicates of Yae Tsuchigumo, so those were not reused.
+- Other character expressions: `happy`, `blushing`, `questioning`, `enthusiastic`, `displeased`, `playful`. Most character folders do not have `neutral.png`.
 
-## Publish as a completely NEW GitHub repository
+## View the gallery (GitHub Pages)
 
-Suggested GitHub account: `Sen-ux` (currently connected in ChatGPT). New repository name: `kurotsuki-story-image-library`.
+1. Open **Settings → Pages** on this repository: https://github.com/Sen-ux/kurotsuki-story-image-library/settings/pages
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Choose **main** as branch and **/(root)** as folder, then save.
+4. Check Pages for the deployment status and published URL.
 
-### Option A — GitHub Desktop (easy for 247 PNGs)
+**Expected gallery address (only when Pages is enabled and deployed):**
+https://Sen-ux.github.io/kurotsuki-story-image-library/
 
-1. Go to https://github.com/new and create a **Public** repository called `kurotsuki-story-image-library`. You can leave *Add README* off.
-2. Download the finished ZIP and extract it onto your computer. You should see `index.html`, `data.js`, `manifest.json`, `characters/`, `thumbnails/`, etc at the **root**.
-3. Install/open https://desktop.github.com/ and sign in. Choose **File → Clone repository** and select your newly created repository.
-4. Copy the **contents** of the extracted folder into the cloned repository's folder (not the ZIP itself, and not an extra wrapping folder).
-5. GitHub Desktop → review Changes → enter a summary such as `Add complete Kurotsuki image archive` → **Commit to main** → **Push origin**.
-6. On GitHub, open that repository → **Settings → Pages** → **Source: Deploy from a branch** → **Branch: main**, **Folder: /(root)** → **Save**.
-7. Once the deployment completes, visit `https://Sen-ux.github.io/kurotsuki-story-image-library/` to confirm. Then try a direct `.png` link in a private browser window.
+The gallery uses `index.html` and `data.js` and runs as a static website. It has search, group filters, per-character emotion selectors and buttons for copying direct image links. `manifest.json` is the machine-readable map of characters and file paths.
 
-**Why GitHub Desktop?** GitHub's website upload interface accepts a maximum of 100 files at once; this project contains more, so using Desktop is easier. All files are individually well under the 25 MiB browser limit.
+## Use the PNGs immediately—even without GitHub Pages
 
-### Option B — optional automated publication on your PC
+Because the repository is **public**, each committed file also has a stable GitHub raw URL. Example:
 
-With Git and GitHub CLI (`gh`) installed and authenticated, run `publish-new-repo.sh` or `Publish-New-Kurotsuki-Repo.ps1` from the extracted site folder. These scripts create **only the new** `Sen-ux/kurotsuki-story-image-library` repository, refuse to overwrite an existing repository, and push the code/files. You must still enable Pages in Settings manually. You can inspect the plain-text scripts before running them.
+https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png
 
-## Directory layout
+Markdown image test for OOC.AI:
 
-```
-index.html
-manifest.json
-data.js
-characters/
-  maribel/
-    happy.png
-    blushing.png
-    questioning.png
-    enthusiastic.png
-    displeased.png
-    playful.png
-  mr-hollow/
-    ...
-  sora-mikuni/
-    neutral.png        # ONLY confirmed Sora portrait
-thumbnails/
-OOC_PROMPT_TEMPLATE.txt
-OOC_TEST_LINKS.txt
+```markdown
+![Maribel — happy](https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png)
 ```
 
-## OOC.AI integration
+You can replace `maribel/happy.png` with a character ID / emotion filename in `manifest.json`. Note that raw GitHub image URLs work as ordinary public file links, but **OOC.AI may or may not render externally hosted Markdown images**. Test in the story's actual Prologue/Chat Preview. External hosting does not automatically register or bypass OOC.AI's native 50-image Media limit.
 
-Native OOC.AI Media scene images and external Markdown images are **different mechanisms**. The website does NOT automatically connect to OOC.AI merely because it is published.
+Once Pages is active, you may instead use:
+https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png
 
-1. First test a direct PNG URL in an incognito browser: `https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png`.
-2. If that works, test this line in an OOC.AI Prologue or chat preview:
+## Expression selection rules for OOC.AI
 
-   `![Maribel Happy](https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png)`
+See [OOC_PROMPT_TEMPLATE.txt](./OOC_PROMPT_TEMPLATE.txt) for a character-folder map and proposed image-selection guidance. Show only one portrait for an NPC who is actually present, and only for meaningful introductions or emotional changes. Do not link images for absent characters or invent missing emotion files.
 
-3. If it renders, add the tested `OOC_PROMPT_TEMPLATE.txt` guidelines to your story in a suitable custom-instructions field (subject to character limits).
-4. If it doesn't render, use OOC.AI's official Media upload and `Copy Code` support for important scenes; external GitHub storage alone cannot bypass that platform limitation.
+Filename aliases for storytelling purposes:
+- `suspicious` → `questioning.png`
+- `upset` → `displeased.png`
 
-All GitHub Pages content is publicly accessible to people with the direct URL.
+These are aliases, not extra files.
 
-## Updating emotions
+## Maintenance
 
-Drop a new `.png` into a matching `characters/{id}/` folder and edit `manifest.json` and `data.js` to register it, then push. Or rerun the site-generation script with an updated input ZIP.
+To add a new expression:
+1. Commit `characters/<character-id>/<emotion>.png`.
+2. Add that path to the character's `available` object in **both** `manifest.json` and `data.js`.
+3. If desired, replace `thumbnails/<character-id>.webp` with a new preview.
+4. Commit and push on `main`; GitHub Pages will rebuild automatically if configured to deploy from the branch.
+
+The repository is a **public gallery**—do not upload private or sensitive pictures. The website itself does not automatically sync portraits with OOC.AI.
+
+### Quick test files
+
+See [OOC_TEST_LINKS.txt](./OOC_TEST_LINKS.txt) for copy-and-paste URLs.
