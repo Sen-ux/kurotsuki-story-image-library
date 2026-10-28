@@ -202,6 +202,78 @@ def reconcile_archived_artwork():
     return corrected
 
 
+
+def ingest_shirayuki_uploads():
+    """Import the seven explicitly named Shirayuki uploads without losing originals.
+
+    The main dossier is converted into full-size and preview WebPs.
+    Expression PNGs retain their original image data and correct mood names.
+    A square, uncropped thumbnail completes the gallery integration.
+    """
+    from PIL import Image, ImageOps
+    import shutil
+
+    dossier_name = "Shirayuki_ The Tempest Huntress Dossier.png"
+    dossier_source = ROOT / dossier_name
+    source_archive = SOURCE_ART / "dossiers" / dossier_name
+    expressions = {
+        "shirayuki_Blushing.png": "blushing",
+        "shirayuki_Displeased.png": "displeased",
+        "shirayuki_Enthusiastic_Hunt.png": "enthusiastic",
+        "shirayuki_Happy.png": "happy",
+        "shirayuki_Playful.png": "playful",
+        "shirayuki_Questioning.png": "questioning",
+    }
+    changes = 0
+    if dossier_source.is_file():
+        source_archive.parent.mkdir(parents=True, exist_ok=True)
+        # Preserve the exact uploaded artwork, including any text/design.
+        if not source_archive.exists():
+            shutil.copy2(dossier_source, source_archive)
+        full_path = ROOT / "assets" / "dossiers" / "shirayuki.webp"
+        preview_path = ROOT / "assets" / "previews" / "shirayuki.webp"
+        thumb_path = ROOT / "thumbnails" / "shirayuki.webp"
+        for path in (full_path, preview_path, thumb_path):
+            path.parent.mkdir(parents=True, exist_ok=True)
+        with Image.open(dossier_source) as raw:
+            image = ImageOps.exif_transpose(raw).convert("RGB")
+            image.save(full_path, "WEBP", quality=92, method=6)
+            preview = image.copy()
+            preview.thumbnail((1100, 734), Image.Resampling.LANCZOS)
+            preview.save(preview_path, "WEBP", quality=88, method=6)
+            # Gallery cards use a square frame; contain instead of cropping
+            # so the character, title and dossier art all remain intact.
+            small = image.copy()
+            small.thumbnail((520, 520), Image.Resampling.LANCZOS)
+            square = Image.new("RGB", (520, 520), (31, 26, 35))
+            square.paste(small, ((520-small.width)//2, (520-small.height)//2))
+            square.save(thumb_path, "WEBP", quality=88, method=6)
+        dossier_source.unlink()
+        changes += 1
+        print("Imported Shirayuki dossier, preview, and gallery thumbnail")
+
+    destination = ROOT / "characters" / "shirayuki"
+    archive = SOURCE_ART / "expressions" / "shirayuki"
+    for filename, emotion in expressions.items():
+        original = ROOT / filename
+        if not original.is_file():
+            continue
+        destination.mkdir(parents=True, exist_ok=True)
+        archive.mkdir(parents=True, exist_ok=True)
+        archived = archive / filename
+        if not archived.exists():
+            shutil.copy2(original, archived)
+        target = destination / (emotion + ".png")
+        # Don't rename or re-encode the actual expression.
+        if not target.exists() or not same_file(original, target):
+            shutil.copy2(original, target)
+        original.unlink()
+        changes += 1
+        print("Imported Shirayuki expression:", emotion)
+
+    return changes
+
+
 def clean_chatgpt_filename_uploads():
     """Delete only leftover generic root-level ChatGPT Image PNGs.
 
@@ -217,7 +289,7 @@ def clean_chatgpt_filename_uploads():
     return removed
 
 if __name__ == "__main__":
-    count = move_root_folders() + ingest_root_pngs() + reconcile_archived_artwork()
+    count = move_root_folders() + ingest_shirayuki_uploads() + ingest_root_pngs() + reconcile_archived_artwork()
     removed = clean_chatgpt_filename_uploads()
     indexed = index_bestiary()
     print(f"Done. Processed {count} uploaded file(s), deleted {removed} generic files; {indexed} bestiary image(s) indexed.")
