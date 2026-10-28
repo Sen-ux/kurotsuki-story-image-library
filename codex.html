@@ -27,6 +27,49 @@ main{max-width:1330px;margin:auto;padding:12px clamp(18px,3vw,45px) 90px}.chapte
 @media(max-width:760px){.top{position:static;display:block}.nav{margin-top:9px}.nav a{padding:6px}.intro-panel,.dialog-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.dialog-inner{padding:18px}.cards,.cards.wide{grid-template-columns:1fr}.person-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:390px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;600&family=Zen+Old+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<style id="kurotsuki-ink-redesign">
+:root{--bg:#151415;--panel:#e5d5b6;--text:#f2e8d8;--gold:#d9b278;--muted:#b8aa9b}
+body{font-family:"Cormorant Garamond","Zen Old Mincho",Georgia,serif;background:radial-gradient(ellipse at 50% 0,#48272a 0,transparent 48%),#111015;color:#efe2ce}
+body:before{content:"";position:fixed;inset:0;background-image:url("assets/design/paper-grain.svg");opacity:.075;mix-blend-mode:screen;pointer-events:none;z-index:50}
+.top{background:linear-gradient(90deg,#181117f5,#342323f3,#171117f5);border-bottom:1px solid #a77b55;box-shadow:0 4px 24px #050405}
+.brand{font-family:"Noto Serif JP",serif;font-size:14px}.nav a{font-size:13px;letter-spacing:.05em}
+.hero{min-height:620px;background:linear-gradient(90deg,#090b0ecb,#171114a3 40%,#080a0cc7),url("assets/scenery/academy-gate.webp") center 44%/cover,radial-gradient(circle at 50% 10%,#613533,#171315 68%);border-bottom:4px solid #763b39}
+.hero:before{top:52px;right:auto;left:calc(50% - 136px);width:272px;height:272px;background:url("assets/design/torii-crest.svg") center/contain no-repeat;opacity:.32;border-radius:0}
+.hero:after{background:repeating-linear-gradient(0deg,transparent 0 27px,#dfab7530 28px,transparent 29px);opacity:.09}
+.hero h1{font-size:clamp(53px,8vw,110px);text-shadow:0 4px 15px #080709;letter-spacing:.045em}
+.hero h1 small{font-size:clamp(20px,3vw,36px);color:#eed8aa}
+.hero p{font-size:22px;color:#f0dcc8;text-shadow:0 3px 8px #080709}
+.kanji{font-family:"Noto Serif JP",serif;color:#c17a64}
+.eyebrow{letter-spacing:.28em;color:#e4c494}
+.chapter{position:relative}.chapter:not(:first-child):before{content:"";display:block;height:38px;background:url("assets/design/brush-divider.svg") center/contain no-repeat;opacity:.78;margin-bottom:36px}
+.chap-head{border-bottom:1px solid #9c8062}.chap-no{color:#dfa190;font-size:13px}.chap-head h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(39px,5vw,61px);font-weight:600;letter-spacing:.01em}
+.chapter-intro{font-size:20px;line-height:1.5;color:#d3c0a5}
+.tile,.panel,.person{border:1px solid #a68c68;background:linear-gradient(145deg,#ecdfc7,#c9b28f);color:#26201e;box-shadow:inset 0 0 0 5px #3427240c,0 10px 26px #0008}
+.tile:after,.panel:after{content:"";position:absolute;inset:7px;border:1px solid #94765735;pointer-events:none}
+.tile{border-radius:2px}.tile:hover,.person:hover{border-color:#dfb36f;box-shadow:0 10px 32px #000a}
+.tile h3,.panel h3,.person h3{color:#28191b;font-weight:600;font-size:25px}
+.tile p,.panel p,.person p,.tile .foot{color:#57443b;font-size:17px}
+.tile .sub,.person small{color:#8c3531;font-weight:600}
+.tile .rank{color:#902e33}.pills .pill{background:#eee0cb}
+.panel{position:relative}.quote{color:#713a30;border-left-color:#9e3c32}
+.stats div{background:linear-gradient(140deg,#292023,#3d2927);border-color:#86684b}
+.filters input,.filters select{font-family:system-ui,sans-serif;background:#eadac0;color:#332422;border:1px solid #a58968}
+.person img{aspect-ratio:16/11;object-fit:cover;object-position:center 25%;background:#211a1c}
+.person section{padding:15px 17px 22px}.person h3{font-size:23px}
+.person p{color:#644f45;font-size:15px}.portrait-blank{background:#d2bf9e;color:#7f473c}
+.dialog{background:#060708eb}.dialog-inner{max-width:1180px;padding:clamp(20px,3vw,45px);background:linear-gradient(145deg,#ede0c7,#c7b08b);border:5px double #947459;color:#2a211f}
+.dialog .eyebrow{color:#9f4440}.dialog h2{font-family:"Cormorant Garamond",serif;font-size:clamp(37px,5vw,66px);color:#2f2220}.dialog h3{color:#893a33}.dialog p,.dialog .tagline{color:#554136;font-size:20px}
+.dialog-layout{grid-template-columns:minmax(270px,1.05fr) 1fr}
+.dialog-layout img{width:100%;height:auto;max-height:78vh;aspect-ratio:auto;object-fit:contain;border:3px double #805b4a;box-shadow:0 12px 28px #24161544}
+.dialog-list button{background:#dfcaa8;color:#3b2928;border-color:#977457}
+.dialog a{color:#713c31;border-color:#865941}.pill{color:#67503f;border-color:#a58b66}
+#academy .panel:first-child{background:linear-gradient(130deg,#e9dac0,#b99e7c)}
+#people .person{transition:transform .2s ease}#people .person:hover{transform:translateY(-4px)}
+footer{border-top:2px solid #8d5647;font-size:13px}
+@media(max-width:760px){.hero{min-height:500px}.dialog-layout{grid-template-columns:1fr}.person-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.person img{aspect-ratio:3/4}.tile p,.panel p{font-size:17px}}
+</style>
+<style>.bestiary-dossier{margin:0 0 20px;max-width:640px}.bestiary-dossier img{display:block;width:100%;height:auto;border:3px double #8f6b56}.tile figure img{display:block;width:100%;height:100%;object-fit:cover}</style>
 </head>
 <body>
 <div class="top"><a class="brand" href="#top">黒月 · KUROTSUKI</a><nav class="nav" aria-label="Codex navigation"><a href="#academy">Academy</a><a href="#ranks">Ranks</a><a href="#people">Characters</a><a href="#factions">Factions</a><a href="#bestiary">Bestiary</a><a href="#legends">Legends</a><a href="#world">World</a><a href="gallery.html">Expression Gallery ↗</a></nav></div>
@@ -47,12 +90,12 @@ main{max-width:1330px;margin:auto;padding:12px clamp(18px,3vw,45px) 90px}.chapte
 <script>
 (()=>{'use strict';
 const C=window.KUROTSUKI_CODEX,L=window.KUROTSUKI_LIBRARY,$=id=>document.getElementById(id);
-const chars=[...L.characters,...(C.additionalCharacters||[])];const idMap=new Map(chars.map(c=>[c.id,c]));const escape=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const firstImg=c=>c?.thumbnail||null;
+const chars=[...L.characters,...(C.additionalCharacters||[])];const idMap=new Map(chars.map(c=>[c.id,c]));const escape=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');const opener=c=>c?.id?"assets/dossiers/"+c.id+".webp":null;const firstImg=c=>c?.id?"assets/previews/"+c.id+".webp":null;const fallbackImg=c=>c?.thumbnail||null;
 const cite=(s)=>escape(s||'');
 function tile(title,sub,body,foot,extra=''){return '<div class="tile '+extra+'"><div class="sub">'+cite(sub)+'</div><h3>'+cite(title)+'</h3><p>'+cite(body)+'</p>'+(foot?'<div class="foot">'+cite(foot)+'</div>':'')+'</div>'}
 function btnTile(title,sub,body,foot,kind,id,color){const b=document.createElement('button');b.type='button';b.className='tile accent';b.style.setProperty('--accent',color||'#b78c72');b.innerHTML='<div class="sub">'+cite(sub)+'</div><h3>'+cite(title)+'</h3><p>'+cite(body)+'</p>'+(foot?'<div class="foot">'+cite(foot)+'</div>':'');b.addEventListener('click',()=>openDossier(kind,id));return b}
 function addTiles(el,items){const node=$(el);node.replaceChildren(...items)}
-function portraitCard(c){const b=document.createElement('button');b.type='button';b.className='person';const bio=C.bios[c.id]||{};const image=firstImg(c);b.innerHTML=(image?'<img loading="lazy" src="'+escape(image)+'" alt="'+escape(c.name)+' portrait">':'<span class="portrait-blank" aria-label="No portrait yet">墨</span>')+'<section><small>'+cite(c.group)+'</small><h3>'+cite(c.name)+'</h3><p>'+cite(bio.role||'Character dossier')+'</p></section>';b.addEventListener('click',()=>openDossier('person',c.id));return b}
+function portraitCard(c){const b=document.createElement('button');b.type='button';b.className='person';const bio=C.bios[c.id]||{};const image=firstImg(c);b.innerHTML=(image?'<img loading="lazy" src="'+escape(image)+'" onerror="this.onerror=null;this.src=\''+escape(fallbackImg(c)||'')+'\'" alt="'+escape(c.name)+' opening portrait">':'<span class="portrait-blank" aria-label="No portrait yet">墨</span>')+'<section><small>'+cite(c.group)+'</small><h3>'+cite(c.name)+'</h3><p>'+cite(bio.role||'Character dossier')+'</p></section>';b.addEventListener('click',()=>openDossier('person',c.id));return b}
 const groups=[...new Set(chars.map(c=>c.group))].sort();groups.forEach(g=>{let op=document.createElement('option');op.value=g;op.textContent=g;$('person-group').append(op)});
 function renderPeople(){const q=$('person-search').value.toLowerCase().trim(),grp=$('person-group').value;const filtered=chars.filter(c=>{const b=C.bios[c.id]||{};return (!grp||c.group===grp)&&(!q||[c.name,c.group,b.role,b.lead,b.background,b.lineage].join(' ').toLowerCase().includes(q))});$('people-grid').replaceChildren(...filtered.map(portraitCard));$('people-count').textContent=filtered.length+' / '+chars.length+' dossiers shown'+(filtered.some(c=>!c.thumbnail)?' · Profiles without supplied portraits use a text-only card.':'') }
 $('person-search').addEventListener('input',renderPeople);$('person-group').addEventListener('change',renderPeople);renderPeople();
@@ -65,9 +108,9 @@ $('threat-grades').innerHTML=C.threatGrades.map(d=>'<div class="tile accent" sty
 addTiles('faction-cards',C.factions.map(f=>btnTile(f.name,f.kind+' · '+f.stance,f.summary,'Leader: '+f.leader,'faction',f.id,f.palette)));
 $('species-cards').innerHTML=C.species.map(d=>tile(d.name,'Classification',d.desc,'')).join('');
 for(const g of [...new Set(C.bestiary.map(b=>b.species))].sort()){const op=document.createElement('option');op.value=g;op.textContent=g;$('beast-group').append(op)}
-function renderBeasts(){const q=$('beast-search').value.toLowerCase(),g=$('beast-group').value;const items=C.bestiary.filter(b=>(!g||b.species===g)&&(!q||[b.name,b.species,b.summary].join(' ').toLowerCase().includes(q)));addTiles('beast-cards',items.map(b=>btnTile(b.name,'Rank '+b.grade+' · '+b.species,b.summary,'Open investigation dossier','beast',b.id,b.grade==='S'?'#df737e':'#b5a084')))}
+function renderBeasts(){const q=$('beast-search').value.toLowerCase(),g=$('beast-group').value;const items=C.bestiary.filter(b=>(!g||b.species===g)&&(!q||[b.name,b.species,b.summary].join(' ').toLowerCase().includes(q)));addTiles('beast-cards',items.map(b=>{const card=btnTile(b.name,'Rank '+b.grade+' · '+b.species,b.summary,'Open investigation dossier','beast',b.id,b.grade==='S'?'#df737e':'#b5a084');if(['orihime','gesshoku-onna','hyakume-inu','kegareyama','utsuro-no-koku'].includes(b.id)){const pic=document.createElement('figure');const im=document.createElement('img');im.src='assets/bestiary/'+b.id+'.webp';im.loading='lazy';im.alt=b.name+' illustrated threat dossier';im.onerror=()=>{pic.remove()};pic.append(im);card.prepend(pic)}return card}))}
 $('beast-search').addEventListener('input',renderBeasts);$('beast-group').addEventListener('change',renderBeasts);renderBeasts();
-addTiles('legend-cards',C.legends.map(l=>{const char=idMap.get(l.character);const b=btnTile(l.title,l.lineage,l.summary,l.name,'legend',l.id,'#d7a875');if(firstImg(char)){const f=document.createElement('figure');f.style.margin='-21px -21px 15px';const im=document.createElement('img');im.src=firstImg(char);im.alt=l.name+' character illustration';im.loading='lazy';f.append(im);b.prepend(f)}return b}));
+addTiles('legend-cards',C.legends.map(l=>{const char=idMap.get(l.character);const b=btnTile(l.title,l.lineage,l.summary,l.name,'legend',l.id,'#d7a875');if(firstImg(char)){const f=document.createElement('figure');f.style.margin='-21px -21px 15px';const im=document.createElement('img');im.src=firstImg(char);im.onerror=()=>{im.onerror=null;im.src=fallbackImg(char)||''};im.alt=l.name+' character illustration';im.loading='lazy';f.append(im);b.prepend(f)}return b}));
 addTiles('place-cards',C.places.map(d=>btnTile(d.name,d.type,d.summary,'Explore location','place',d.id,'#91aeab')));
 $('timeline').innerHTML=C.chronicles.map(t=>'<div class="time"><small>'+cite(t.era)+'</small><h3>'+cite(t.title)+'</h3><p>'+cite(t.text)+'</p></div>').join('');
 addTiles('myth-cards',C.myths.map(m=>btnTile(m.name,m.type,m.text,'Explore tradition','myth',m.id,'#b89bd9')));
@@ -76,11 +119,11 @@ $('mode-cards').innerHTML=C.modes.map(m=>tile(m.name,m.place,m.focus,'Mode-depen
 const dialog=$('dialog');let lastFocus=null;
 function section(title,text){return text?'<h3>'+cite(title)+'</h3><p>'+cite(text)+'</p>':''}
 function personLink(id){const c=idMap.get(id);return c?'<button type="button" data-person="'+escape(id)+'">'+cite(c.name)+'</button>':''}
-function linkedImage(id){const c=idMap.get(id);return c?.thumbnail?'<img src="'+escape(c.thumbnail)+'" alt="'+escape(c.name)+' portrait">':'<div class="portrait-blank">墨</div>'}
+function linkedImage(id){const c=idMap.get(id);return c?.id?'<img src="'+escape(opener(c))+'" onerror="this.onerror=null;this.src=\''+escape(fallbackImg(c)||'')+'\'" alt="'+escape(c.name)+' illustrated opening dossier">':'<div class="portrait-blank">墨</div>'}
 function dossierContent(kind,id){
 if(kind==='person'){const c=idMap.get(id),b=C.bios[id]||{};if(!c)return '';return '<div class="dialog-layout"><div>'+linkedImage(id)+'</div><div><div class="eyebrow">'+cite(c.group)+'</div><h2 id="dialog-title">'+cite(c.name)+'</h2><p class="tagline">'+cite(b.lead)+'</p><div class="pills"><span class="pill">'+cite(b.role||c.group)+'</span>'+(b.lineage?'<span class="pill">'+cite(b.lineage)+'</span>':'')+(b.year?'<span class="pill">Year '+b.year+'</span>':'')+(b.pronouns?'<span class="pill">'+cite(b.pronouns)+'</span>':'')+'</div>'+section('Background',b.background)+section('Weapons & expertise',b.style)+section('Open story thread',b.hook)+(c.available&&Object.keys(c.available).length?'<a target="_blank" rel="noopener" href="gallery.html">View expression gallery ↗</a>':'<p>No portrait variants are currently provided for this character.</p>')+'</div></div>'}
 if(kind==='faction'){const f=C.factions.find(x=>x.id===id);if(!f)return '';let ids=f.members.map(p=>typeof p==='string'&&idMap.has(p)?p:chars.find(c=>c.name===p)?.id).filter(Boolean);return '<div class="eyebrow">'+cite(f.kind)+' · '+cite(f.stance)+'</div><h2 id="dialog-title">'+cite(f.name)+'</h2><p class="tagline">'+cite(f.summary)+'</p>'+section('Doctrine',f.doctrine)+section('Relations & tensions',f.conflicts)+section('Leadership',f.leader)+(ids.length?'<h3>Known members</h3><div class="dialog-list">'+ids.map(personLink).join('')+'</div>':f.members.length?'<h3>Known members</h3><p>'+cite(f.members.join(' · '))+'</p>':'')}
-if(kind==='beast'){const b=C.bestiary.find(x=>x.id===id);return '<div class="eyebrow">Threat '+cite(b.grade)+' · '+cite(b.species)+'</div><h2 id="dialog-title">'+cite(b.name)+'</h2><p class="tagline">'+cite(b.summary)+'</p>'+section('Field observations',b.behavior)+section('Hunter guidance',b.advice)+'<p><small>Bestiary notes are open to revision as new missions reveal more.</small></p>'}
+if(kind==='beast'){const b=C.bestiary.find(x=>x.id===id);const art=['orihime','gesshoku-onna','hyakume-inu','kegareyama','utsuro-no-koku'].includes(b.id)?'<figure class="bestiary-dossier"><img src="assets/bestiary/'+escape(b.id)+'.webp" onerror="this.parentElement.remove()" alt="'+escape(b.name)+' illustrated bestiary dossier"></figure>':'';return art+'<div class="eyebrow">Threat '+cite(b.grade)+' · '+cite(b.species)+'</div><h2 id="dialog-title">'+cite(b.name)+'</h2><p class="tagline">'+cite(b.summary)+'</p>'+section('Field observations',b.behavior)+section('Hunter guidance',b.advice)+'<p><small>Bestiary notes are open to revision as new missions reveal more.</small></p>'}
 if(kind==='legend'){const l=C.legends.find(x=>x.id===id);return '<div class="dialog-layout"><div>'+linkedImage(l.character)+'</div><div><div class="eyebrow">Independent · Divine Beast</div><h2 id="dialog-title">'+cite(l.title)+'</h2><p class="tagline">'+cite(l.name)+' — '+cite(l.lineage)+'</p>'+section('Known legend',l.summary)+section('Rumour',l.rumor)+section('Creed',l.ethos)+'<div class="dialog-list">'+personLink(l.character)+'</div></div></div>'}
 if(kind==='department'){const d=C.departments.find(x=>x.id===id);return '<div class="eyebrow">Academy Department</div><h2 id="dialog-title">'+cite(d.name)+'</h2><p class="tagline">'+cite(d.motto)+'</p>'+section('Purpose',d.purpose)+section('Training & tools',d.methods)+'<h3>Department Head & associated characters</h3><div class="dialog-list">'+d.people.map(personLink).join('')+'</div>'}
 if(kind==='place'){const d=C.places.find(x=>x.id===id);return '<div class="eyebrow">'+cite(d.type)+'</div><h2 id="dialog-title">'+cite(d.name)+'</h2><p class="tagline">'+cite(d.summary)+'</p>'+section('Location lore',d.details)}
