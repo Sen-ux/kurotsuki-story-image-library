@@ -96,8 +96,10 @@ The verified `Kurotsuki_Dossiers_27_Ready_For_GitHub.zip` contains 27 full-size 
 
 ## Original background soundtrack
 
-**Lanterns at Kurotsuki** is an original, livelier Japanese-inspired instrumental composed for the academy. A bright D–E–G–A–B pentatonic melody runs through synthetic koto and shamisen-style plucked strings, flute inspired by shinobue, and gentle matsuri-like taiko, hand-drum and wooden clapper patterns. It keeps a light supernatural atmosphere without the previous solemn drones or heavy cinematic texture. The timbres are synthesised approximations, not recordings of acoustic Japanese instruments; **no external music recording or sample is used**.
+**Autumn Festival at Kurotsuki** is the site's **new, fully recomposed original festival theme**: a buoyant, cheerful Japanese-matsuri-inspired dance with synthetic koto and shamisen-style strings, a chirpy shinobue-style flute melody, brisk taiko and shime-daiko-style drums, wooden clappers, and a lively pentatonic hook. Gentle environmental effects evoke a bustling autumn celebration: footsteps, market-stall clatter, distant nonverbal crowd murmur and fluttering dry leaves. The soundtrack is predominantly joyful and whimsical; only a brief musical passing tone suggests the setting's supernatural charm. This piece contains **no bells or bell symbolism**.
 
-The finished audio is published at `assets/audio/veil-beneath-the-torii.mp3`. The floating soundtrack widget on both `index.html` and `gallery.html` offers **Play / Pause** and volume control. Playback is off by default; visitors must choose to play it. Pausing resumes from the same position, and the track loops automatically.
+All instruments and ambience are procedural approximations created from original synthesis, without copyrighted melodies, field recordings, samples or intelligible voices.
 
-The original score is rendered by `scripts/generate_kurotsuki_theme.py` through the `Build original Kurotsuki soundtrack` GitHub Actions workflow. Editing the generator and pushing to `main` regenerates the MP3; it can also be run manually from the GitHub Actions tab. The browser player is implemented by `assets/audio/player.js` and `assets/audio/player.css`.
+The finished recording is published at `assets/audio/autumn-festival-at-kurotsuki.mp3`. A floating soundtrack player on both `index.html` and `gallery.html` provides **Play / Pause** and volume. Playback starts only after the visitor presses Play, pauses/resumes at the same position, and loops.
+
+The music generator is `scripts/generate_kurotsuki_theme.py`. The `Build original Kurotsuki soundtrack` workflow generates and publishes the MP3 after source changes. The site's controls are defined in `assets/audio/player.js` and `assets/audio/player.css`.
