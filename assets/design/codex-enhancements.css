@@ -51,3 +51,11 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.dossier-actions button,.person,.dossier-card,.dossier-card-art img{transition:none!important}.folio-turn,.ink-arrival h2,.ink-arrival .section-heading{animation:none!important}}
 
 /* The stylesheet lives in assets/design: image URLs above resolve beside it, never beneath assets/design/assets. */
+
+/* Four independent Legendary Hunters share one balanced illustrated row. */
+#legend-cards{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+#legend-cards .tile{min-width:0}
+#legend-cards .tile figure{aspect-ratio:3/2;overflow:hidden}
+#legend-cards .tile figure img{width:100%;height:100%;object-fit:contain;background:#20171e}
+@media(max-width:1120px){#legend-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:690px){#legend-cards{grid-template-columns:1fr}}
