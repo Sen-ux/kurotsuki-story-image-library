@@ -1,64 +1,74 @@
-# Kurotsuki Academy — Character Expression Library
+# Kurotsuki Academy — The Black Moon Codex
+
+A dark Eastern-fantasy horror world guide and companion character-expression archive.
+
+## The website
+
+**Main codex:** https://Sen-ux.github.io/kurotsuki-story-image-library/
+
+**Expression gallery:** https://Sen-ux.github.io/kurotsuki-story-image-library/gallery.html
 
 **Repository:** https://github.com/Sen-ux/kurotsuki-story-image-library
 
-This repository is already created and contains the uploaded Kurotsuki Academy image gallery.
+GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch → main → /(root)** before the public website URLs will work. This repository contains a complete static site, but actual Pages deployment status is not confirmed by the editor.
 
-- **42 character folders**
-- **247 individual PNG portraits** with 42 WebP gallery thumbnails
-- **0 missing image files** in `manifest.json` (checked against the GitHub repository)
-- **Sora Mikuni:** one confirmed neutral portrait. The original expression PNGs assigned to Sora were actually duplicates of Yae Tsuchigumo, so those were not reused.
-- Other character expressions: `happy`, `blushing`, `questioning`, `enthusiastic`, `displeased`, `playful`. Most character folders do not have `neutral.png`.
+## Codex contents
 
-## View the gallery (GitHub Pages)
+- Academy overview, Four Departments, and three starting modes
+- Hunter grades and C–S supernatural threat classification
+- **48 character biographies** — 42 illustrated characters plus 6 members of the Crimson Wardens and Order of Nine Seals without supplied portraits
+- All **six factions**, their leaders, philosophies, relations and named members
+- **12 creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
+- Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
+- Seven locations, a chronicle timeline, eight world mysteries and seven character attributes
+- The original **247 PNG expression images** and 42 WebP thumbnails, preserved in `characters/` and `thumbnails/`
+- Searchable character cards, filters, linked dossier panels, a modal reference browser, and gallery expression selection
 
-1. Open **Settings → Pages** on this repository: https://github.com/Sen-ux/kurotsuki-story-image-library/settings/pages
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Choose **main** as branch and **/(root)** as folder, then save.
-4. Check Pages for the deployment status and published URL.
+All added historical and behavioral lore is **draft expansion**, not a claim that previously unspecified details are already locked as canon. This distinction is visible on the website. The hunter grade ladder is explicitly marked as proposed. No bell symbolism was added.
 
-**Expected gallery address (only when Pages is enabled and deployed):**
-https://Sen-ux.github.io/kurotsuki-story-image-library/
+## Editing lore
 
-The gallery uses `index.html` and `data.js` and runs as a static website. It has search, group filters, per-character emotion selectors and buttons for copying direct image links. `manifest.json` is the machine-readable map of characters and file paths.
+The text and structured lore live in **`codex-data.js`** as `window.KUROTSUKI_CODEX`. Its keys include:
 
-## Use the PNGs immediately—even without GitHub Pages
+- `world`, `departments`, `hunterGrades`, `threatGrades`
+- `factions`, `species`, `bestiary`, `legends`
+- `places`, `chronicles`, `myths`, `attributes`, `modes`
+- `bios` (the dictionary keyed by each character's folder ID)
+- `additionalCharacters` (text-only records for characters without uploaded images)
 
-Because the repository is **public**, each committed file also has a stable GitHub raw URL. Example:
+The landing page is **`index.html`**. `codex.html` is a second direct entry to the same codex. The original character archive is now **`gallery.html`**.
 
+The character-image manifest remains `manifest.json`, with the gallery's rendering data in `data.js`. Don't remove or rename existing PNGs without updating those files.
+
+### Add lore to a character
+
+Edit the entry in `codex-data.js` under `bios`, for example `bios["maribel"]`, and change `role`, `lead`, `background`, `style`, and `hook`. Commit the edited file. No rebuilding or dependencies are required.
+
+### Add a creature
+
+Add another object with `id`, `name`, `grade`, `species`, `summary`, `behavior`, and `advice` to the `bestiary` array. For now, creature entries are text dossiers rather than artwork; they do not consume any OOC.AI Media slots.
+
+### Missing portrait assets
+
+The user-provided ZIP did not contain portraits for the three Crimson Wardens or the three Order of Nine Seals members. The website displays text-only bios for these six rather than using unrelated artwork. Sora Mikuni has only one verified neutral portrait; duplicate images that were actually Yae Tsuchigumo were excluded.
+
+## OOC.AI image integration
+
+OOC.AI's official Media library and these external GitHub URLs are separate. The website does not automatically embed images in the story. External Markdown images should be tested in OOC.AI's chat preview before relying on them.
+
+**Test URL:**
 https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png
 
-Markdown image test for OOC.AI:
+**Markdown test:**
 
 ```markdown
-![Maribel — happy](https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png)
+![Maribel Happy](https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/characters/maribel/happy.png)
 ```
 
-You can replace `maribel/happy.png` with a character ID / emotion filename in `manifest.json`. Note that raw GitHub image URLs work as ordinary public file links, but **OOC.AI may or may not render externally hosted Markdown images**. Test in the story's actual Prologue/Chat Preview. External hosting does not automatically register or bypass OOC.AI's native 50-image Media limit.
+`OOC_PROMPT_TEMPLATE.txt` contains the additional expression-routing guidance and character folder patterns.
 
-Once Pages is active, you may instead use:
-https://Sen-ux.github.io/kurotsuki-story-image-library/characters/maribel/happy.png
+## Publishing
 
-## Expression selection rules for OOC.AI
+GitHub Pages: [Open repository settings](https://github.com/Sen-ux/kurotsuki-story-image-library/settings/pages) → deploy `main` branch from `/(root)`.
 
-See [OOC_PROMPT_TEMPLATE.txt](./OOC_PROMPT_TEMPLATE.txt) for a character-folder map and proposed image-selection guidance. Show only one portrait for an NPC who is actually present, and only for meaningful introductions or emotional changes. Do not link images for absent characters or invent missing emotion files.
-
-Filename aliases for storytelling purposes:
-- `suspicious` → `questioning.png`
-- `upset` → `displeased.png`
-
-These are aliases, not extra files.
-
-## Maintenance
-
-To add a new expression:
-1. Commit `characters/<character-id>/<emotion>.png`.
-2. Add that path to the character's `available` object in **both** `manifest.json` and `data.js`.
-3. If desired, replace `thumbnails/<character-id>.webp` with a new preview.
-4. Commit and push on `main`; GitHub Pages will rebuild automatically if configured to deploy from the branch.
-
-The repository is a **public gallery**—do not upload private or sensitive pictures. The website itself does not automatically sync portraits with OOC.AI.
-
-### Quick test files
-
-See [OOC_TEST_LINKS.txt](./OOC_TEST_LINKS.txt) for copy-and-paste URLs.
+The website is a static site with no tracking, accounts, external libraries or build tooling.
