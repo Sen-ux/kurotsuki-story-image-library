@@ -1,4 +1,260 @@
 {
   "version": 1,
-  "images": []
+  "images": [
+    {
+      "id": "01-chochin-yo",
+      "name": "01 Chochin Yo",
+      "path": "assets/bestiary/01-chochin-yo.webp"
+    },
+    {
+      "id": "01-haruamagiri",
+      "name": "01 Haruamagiri",
+      "path": "assets/bestiary/01-haruamagiri.webp"
+    },
+    {
+      "id": "01-orihime",
+      "name": "01 Orihime",
+      "path": "assets/bestiary/01-orihime.webp"
+    },
+    {
+      "id": "02-gesshoku-onna",
+      "name": "02 Gesshoku Onna",
+      "path": "assets/bestiary/02-gesshoku-onna.webp"
+    },
+    {
+      "id": "02-reinaonikawa",
+      "name": "02 Reinaonikawa",
+      "path": "assets/bestiary/02-reinaonikawa.webp"
+    },
+    {
+      "id": "02-sueigaja-yo",
+      "name": "02 Sueigaja Yo",
+      "path": "assets/bestiary/02-sueigaja-yo.webp"
+    },
+    {
+      "id": "03-baisuiren",
+      "name": "03 Baisuiren",
+      "path": "assets/bestiary/03-baisuiren.webp"
+    },
+    {
+      "id": "03-hyakume-inu",
+      "name": "03 Hyakume Inu",
+      "path": "assets/bestiary/03-hyakume-inu.webp"
+    },
+    {
+      "id": "03-kane-kurai",
+      "name": "03 Kane Kurai",
+      "path": "assets/bestiary/03-kane-kurai.webp"
+    },
+    {
+      "id": "04-hana-kusare",
+      "name": "04 Hana Kusare",
+      "path": "assets/bestiary/04-hana-kusare.webp"
+    },
+    {
+      "id": "04-kegareyama",
+      "name": "04 Kegareyama",
+      "path": "assets/bestiary/04-kegareyama.webp"
+    },
+    {
+      "id": "04-koharuminase",
+      "name": "04 Koharuminase",
+      "path": "assets/bestiary/04-koharuminase.webp"
+    },
+    {
+      "id": "05-togyozuka",
+      "name": "05 Togyozuka",
+      "path": "assets/bestiary/05-togyozuka.webp"
+    },
+    {
+      "id": "05-tomakarasuba",
+      "name": "05 Tomakarasuba",
+      "path": "assets/bestiary/05-tomakarasuba.webp"
+    },
+    {
+      "id": "05-utsuro-no-koku",
+      "name": "05 Utsuro No Koku",
+      "path": "assets/bestiary/05-utsuro-no-koku.webp"
+    },
+    {
+      "id": "06-hyakugan-do",
+      "name": "06 Hyakugan Do",
+      "path": "assets/bestiary/06-hyakugan-do.webp"
+    },
+    {
+      "id": "06-soramikuni",
+      "name": "06 Soramikuni",
+      "path": "assets/bestiary/06-soramikuni.webp"
+    },
+    {
+      "id": "07-emikoshigure",
+      "name": "07 Emikoshigure",
+      "path": "assets/bestiary/07-emikoshigure.webp"
+    },
+    {
+      "id": "07-gala-setsu",
+      "name": "07 Gala Setsu",
+      "path": "assets/bestiary/07-gala-setsu.webp"
+    },
+    {
+      "id": "08-jorogumo",
+      "name": "08 Jorogumo",
+      "path": "assets/bestiary/08-jorogumo.webp"
+    },
+    {
+      "id": "08-yaetsuchigumo",
+      "name": "08 Yaetsuchigumo",
+      "path": "assets/bestiary/08-yaetsuchigumo.webp"
+    },
+    {
+      "id": "09-honekaku-o",
+      "name": "09 Honekaku O",
+      "path": "assets/bestiary/09-honekaku-o.webp"
+    },
+    {
+      "id": "09-jinseo",
+      "name": "09 Jinseo",
+      "path": "assets/bestiary/09-jinseo.webp"
+    },
+    {
+      "id": "10-fuyukayukishiro",
+      "name": "10 Fuyukayukishiro",
+      "path": "assets/bestiary/10-fuyukayukishiro.webp"
+    },
+    {
+      "id": "10-mugetsu",
+      "name": "10 Mugetsu",
+      "path": "assets/bestiary/10-mugetsu.webp"
+    },
+    {
+      "id": "11-masatoigarashi",
+      "name": "11 Masatoigarashi",
+      "path": "assets/bestiary/11-masatoigarashi.webp"
+    },
+    {
+      "id": "12-rinkurogane",
+      "name": "12 Rinkurogane",
+      "path": "assets/bestiary/12-rinkurogane.webp"
+    },
+    {
+      "id": "13-ayamebyakuren",
+      "name": "13 Ayamebyakuren",
+      "path": "assets/bestiary/13-ayamebyakuren.webp"
+    },
+    {
+      "id": "14-kazumashido",
+      "name": "14 Kazumashido",
+      "path": "assets/bestiary/14-kazumashido.webp"
+    },
+    {
+      "id": "15-liangshuren",
+      "name": "15 Liangshuren",
+      "path": "assets/bestiary/15-liangshuren.webp"
+    },
+    {
+      "id": "16-chiyokomori",
+      "name": "16 Chiyokomori",
+      "path": "assets/bestiary/16-chiyokomori.webp"
+    },
+    {
+      "id": "17-goroakatsuki",
+      "name": "17 Goroakatsuki",
+      "path": "assets/bestiary/17-goroakatsuki.webp"
+    },
+    {
+      "id": "18-yuzurihasazanami",
+      "name": "18 Yuzurihasazanami",
+      "path": "assets/bestiary/18-yuzurihasazanami.webp"
+    },
+    {
+      "id": "19-hanhaejin",
+      "name": "19 Hanhaejin",
+      "path": "assets/bestiary/19-hanhaejin.webp"
+    },
+    {
+      "id": "20-akanetsurugi",
+      "name": "20 Akanetsurugi",
+      "path": "assets/bestiary/20-akanetsurugi.webp"
+    },
+    {
+      "id": "21-reihakiyomizu",
+      "name": "21 Reihakiyomizu",
+      "path": "assets/bestiary/21-reihakiyomizu.webp"
+    },
+    {
+      "id": "22-drmeilinzhao",
+      "name": "22 Drmeilinzhao",
+      "path": "assets/bestiary/22-drmeilinzhao.webp"
+    },
+    {
+      "id": "23-yasuhidemomose",
+      "name": "23 Yasuhidemomose",
+      "path": "assets/bestiary/23-yasuhidemomose.webp"
+    },
+    {
+      "id": "24-erihanabusa",
+      "name": "24 Erihanabusa",
+      "path": "assets/bestiary/24-erihanabusa.webp"
+    },
+    {
+      "id": "25-maribel",
+      "name": "25 Maribel",
+      "path": "assets/bestiary/25-maribel.webp"
+    },
+    {
+      "id": "26-mrhollow",
+      "name": "26 Mrhollow",
+      "path": "assets/bestiary/26-mrhollow.webp"
+    },
+    {
+      "id": "kagegui",
+      "name": "Kagegui",
+      "path": "assets/bestiary/kagegui.webp"
+    },
+    {
+      "id": "kairai-shin",
+      "name": "Kairai Shin",
+      "path": "assets/bestiary/kairai-shin.webp"
+    },
+    {
+      "id": "koboto",
+      "name": "Koboto",
+      "path": "assets/bestiary/koboto.webp"
+    },
+    {
+      "id": "muso-no-mayu",
+      "name": "Muso No Mayu",
+      "path": "assets/bestiary/muso-no-mayu.webp"
+    },
+    {
+      "id": "narusawa-zuru",
+      "name": "Narusawa Zuru",
+      "path": "assets/bestiary/narusawa-zuru.webp"
+    },
+    {
+      "id": "omokage-onna",
+      "name": "Omokage Onna",
+      "path": "assets/bestiary/omokage-onna.webp"
+    },
+    {
+      "id": "sennen-koboku",
+      "name": "Sennen Koboku",
+      "path": "assets/bestiary/sennen-koboku.webp"
+    },
+    {
+      "id": "shoku-no-tsuki",
+      "name": "Shoku No Tsuki",
+      "path": "assets/bestiary/shoku-no-tsuki.webp"
+    },
+    {
+      "id": "tokoyo-jo",
+      "name": "Tokoyo Jo",
+      "path": "assets/bestiary/tokoyo-jo.webp"
+    },
+    {
+      "id": "wada-no-mukuro",
+      "name": "Wada No Mukuro",
+      "path": "assets/bestiary/wada-no-mukuro.webp"
+    }
+  ]
 }
