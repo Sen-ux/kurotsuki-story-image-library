@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Compose an original dark-fantasy ambient soundtrack for Kurotsuki Academy.
+"""Compose a playful, traditionally Japanese-inspired theme for Kurotsuki Academy.
 
-"Veil Beneath the Torii" — an original 85-second, repeatable instrumental.
+"Lanterns at Kurotsuki" — an original repeatable instrumental.
 Synthesis only: no copyrighted compositions, external audio files or samples.
 Run: python scripts/generate_kurotsuki_theme.py
 Requires: numpy; ffmpeg for final MP3 encoding.
@@ -20,10 +20,10 @@ AUDIO_DIR = ROOT / "assets" / "audio"
 AUDIO_DIR.mkdir(parents=True, exist_ok=True)
 MP3 = AUDIO_DIR / "veil-beneath-the-torii.mp3"
 SR = 24000
-BPM = 68
+BPM = 102
 BEAT = 60 / BPM
-TOTAL_BEATS = 96
-TAIL = 2.5
+TOTAL_BEATS = 128
+TAIL = 1.75
 N = int((TOTAL_BEATS * BEAT + TAIL) * SR)
 OUT = np.zeros((N, 2), np.float32)
 RNG = np.random.default_rng(280926)
@@ -103,81 +103,128 @@ def synth_drum() -> np.ndarray:
     return (body+tap).astype(np.float32)
 
 
-# A near-continuous low drone in D and A: soft, slightly wavering string resonance.
+# Japanese-inspired min'yo/yo pentatonic colour (D-E-G-A-B), no borrowed melody.
+# The music is brighter and more active than the original solemn underscore.
+# The timbres are synthesized approximations of koto, shamisen, shinobue,
+# and Japanese hand-drum/woodblock rhythms; no commercial samples are used.
+
+def synth_shamisen(midi: int, duration: float) -> np.ndarray:
+    """Dry three-string-style pluck with sharp attack and sympathetic buzz."""
+    n=max(1,int(duration*SR))
+    t=np.arange(n,dtype=np.float64)/SR
+    f=hz(midi)
+    phi=2*PI*f*t + .13*np.exp(-t*24)
+    wire=(.72*np.sin(phi)+.39*np.sin(2*phi+.11)+
+          .22*np.sin(3*phi+.19)+.12*np.sin(4*phi+.43))
+    attack=(1-np.exp(-170*t))
+    envelope=np.exp(-4.1*t)*attack
+    snap=RNG.normal(0,1,n)*np.exp(-55*t)*.09
+    sympathetic=.12*np.sin(PI*2*f*.997*t)*np.exp(-2.9*t)
+    release=np.minimum(1,np.maximum(0,duration-t)/.10)
+    return ((wire+sympathetic)*envelope+snap).astype(np.float32)*release
+
+
+def synth_shime() -> np.ndarray:
+    """Small, dry hand-drum/wood-stick accent rather than a metal bell."""
+    t=np.arange(int(.22*SR),dtype=np.float64)/SR
+    noise=RNG.normal(0,1,len(t))
+    # Noise highpass via subtracting a short moving average.
+    smooth=np.convolve(noise,np.ones(24)/24,mode="same")
+    click=(noise-smooth)*np.exp(-51*t)*.19
+    wood=(.57*np.sin(2*PI*255*t)+.24*np.sin(2*PI*373*t))*np.exp(-37*t)
+    return (click+wood).astype(np.float32)
+
+
+def synth_hyoshigi() -> np.ndarray:
+    """Two hardwood clappers: dry, pitched, non-metallic."""
+    t=np.arange(int(.15*SR),dtype=np.float64)/SR
+    ch=.52*np.sin(2*PI*762*t)+.26*np.sin(2*PI*1164*t)
+    ch+=.10*RNG.normal(0,1,len(t))
+    return (ch*np.exp(-48*t)).astype(np.float32)
+
+
+# A little evening air persists, but the old low drones and mournful
+# cinematic chord wash are removed entirely.
 t=np.arange(N,dtype=np.float64)/SR
-drone = (.29*np.sin(2*PI*hz(38)*t)
-         + .15*np.sin(2*PI*hz(45)*t+.4)
-         + .06*np.sin(2*PI*hz(50)*t+.8))
-drone *= .72 + .22*np.sin(2*PI*.038*t)**2
-fade_start = np.minimum(1,t/4.0)
-fade_end = np.minimum(1,np.maximum(0,(N/SR-t))/3.0)
-drone = (drone * fade_start * fade_end).astype(np.float32)
-place(drone, 0, .19, -.1)
+fade_start=np.minimum(1,t/1.1)
+fade_end=np.minimum(1,np.maximum(0,N/SR-t)/1.8)
+wind_slow=RNG.normal(0,.2,int(N/2800)+2)
+wind=np.interp(np.arange(N),np.arange(len(wind_slow))*2800,wind_slow)
+wind_high=RNG.normal(0,1,N)*.012
+place(((wind*.5+wind_high)*fade_start*fade_end).astype(np.float32),0,.013,.32)
 
-# Restrained moving mountain wind, with no recordings or samples.
-gust_positions = np.arange(0,N,2300)
-gust_knots = RNG.normal(0,1,len(gust_positions)+1)
-wind_low = np.interp(np.arange(N),gust_positions,
-                     gust_knots[:-1])
-wind_hiss = RNG.normal(0,1,N).astype(np.float32)
-wind_smoothed = np.cumsum(np.pad(wind_hiss,(1,0)).astype(np.float64))
-smooth_size = 45
-smoothed = np.zeros(N,dtype=np.float64)
-smoothed[smooth_size:] = (wind_smoothed[smooth_size+1:]-wind_smoothed[1:-smooth_size])/smooth_size
-wind = (.8*wind_low+.8*smoothed)*fade_start*fade_end
-place(wind.astype(np.float32),0,.0085,.18)
-
-# Four-chord modal progression slowly returns to its home beneath the torii.
-harmony = [
-    (50,57,62,65),  # Dm
-    (46,53,58,62),  # Bb
-    (43,50,55,58),  # Gm
-    (50,57,62,65),  # Dm
-    (43,50,55,58),  # Gm
-    (50,57,62,65),  # Dm
+# The main figure repeats with natural variations, like quiet night-time
+# festival music drifting from the Hollow Lantern courtyard.
+section_roots=(50,55,57,50,55,57,50,50)
+koto_patterns=[
+    (62,69,71,74,69,67,64,62, 64,67,69,74,71,69,67,64),
+    (67,71,74,76,74,71,69,67, 64,67,71,74,76,74,71,69),
+    (69,74,76,79,76,74,71,69, 67,69,71,76,74,71,69,64),
+    (62,64,67,69,74,71,69,67, 64,67,69,71,74,69,67,62),
+    (67,69,71,74,76,74,71,69, 67,71,74,79,76,74,71,67),
+    (69,71,74,76,79,76,74,71, 69,71,74,76,74,71,69,64),
+    (62,69,71,74,76,74,71,69, 67,69,71,74,69,67,64,62),
+    (62,64,67,69,74,71,69,67, 64,67,69,74,71,69,64,62),
 ]
-for section,chord in enumerate(harmony):
-    start=section*16*BEAT
-    for i,note in enumerate(chord):
-        place(synth_pad(note,16*BEAT+1.1,(-.65,-.2,.2,.65)[i]),
-              start,.024 if i<2 else .017,(-.65,-.2,.2,.65)[i])
-
-# An original six-phrase koto-like arpeggio: delicate but slightly dissonant.
-pluck_patterns = [
-    [62,69,65,72,69,65,62,60],
-    [58,65,62,70,65,62,58,57],
-    [55,62,58,67,62,58,55,53],
-    [62,69,65,74,69,65,62,60],
-    [55,62,58,69,67,62,58,55],
-    [62,69,65,72,69,65,62,62],
+shamisen_patterns=[
+    (50,57,62,57, 50,57,62,57),
+    (55,62,67,62, 55,62,67,62),
+    (57,64,69,64, 57,64,69,64),
+    (50,57,62,57, 50,57,62,57),
+    (55,62,67,62, 55,62,67,62),
+    (57,64,69,64, 57,64,69,64),
+    (50,57,62,57, 50,57,62,57),
+    (50,57,62,57, 50,57,62,57),
 ]
-positions = (0,2.5,4.5,6,8.5,10.5,12.5,14)
-for section,pattern in enumerate(pluck_patterns):
-    for j,(position,note) in enumerate(zip(positions,pattern)):
-        gain = .078 if j in (0,3,5) else .052
-        place(synth_pluck(note,1.8,(-.55,.55)[j%2]),
-              (section*16+position)*BEAT,gain,(-.55,.55)[j%2])
-
-# Breath-driven flute melody: intentionally sparse and entirely newly composed.
-flute_notes = [
-    (2,69,2.5),(6.5,65,2.1),(11,67,1.5),(13.2,62,2.3),
-    (18,70,2.2),(22,69,3.2),(27,65,2.1),(30,62,1.2),
-    (34,67,2.4),(39,65,2.0),(43,62,2.9),
-    (51,69,2.8),(55,72,1.9),(60,69,3.0),
-    (67,67,2.1),(71,65,2.9),(77,62,2.0),
-    (82,69,2.5),(86,65,2.2),(91,62,3.2),
+# Original flute responses; short skips and sustained ends rather than dirges.
+flute_phrases=[
+    ((2,74,1.4),(4,76,.65),(5,74,.8),(7,71,1.2),(9,69,.9),(11,71,.9),(13,74,1.8)),
+    ((1,76,1.0),(3,74,.75),(4,71,1.6),(7,69,.9),(9,71,.9),(11,74,1.0),(13,76,1.5)),
+    ((2,79,1.0),(4,76,1.1),(6,74,.8),(8,71,1.0),(10,74,.8),(12,76,1.1),(14,79,1.0)),
+    ((1,76,.8),(3,74,.9),(5,71,1.2),(8,69,1.0),(10,67,1.0),(12,69,1.0),(14,74,1.0)),
+    ((2,74,1.0),(4,76,.9),(6,79,1.3),(9,76,.8),(11,74,.9),(13,71,1.7)),
+    ((1,74,.9),(3,76,.9),(5,79,.9),(7,81,1.1),(10,79,.7),(12,76,1.0),(14,74,1.0)),
+    ((1,74,1.4),(4,71,.8),(6,69,.9),(8,71,1.1),(11,74,.9),(13,76,1.5)),
+    ((1,76,.9),(3,74,.9),(5,71,.8),(7,69,1.2),(10,67,1.0),(12,69,.9),(14,74,1.0)),
 ]
-for idx,(beat,note,duration) in enumerate(flute_notes):
-    place(synth_flute(note,duration*BEAT),beat*BEAT,
-          .077 if idx%5 else .062,(-.21,.17)[idx%2])
-
-for i,beat in enumerate((0,8,16,32,40,48,64,80,88)):
-    place(synth_drum(),beat*BEAT,.092 if i%3 else .11,(-.08,.08)[i%2])
+for sec in range(8):
+    offset=16*sec
+    root=section_roots[sec]
+    # Subtle tonic pluck on every measure; no heavy held chord beds.
+    for b in (0,4,8,12):
+        place(synth_pluck(root,1.8,-.05), (offset+b)*BEAT, .065,-.32)
+        place(synth_pluck(root+12,1.4,.1),(offset+b+.03)*BEAT,.040,.24)
+    # Koto is the centrepiece: brighter scale and rippling eighth notes.
+    for i,pitch in enumerate(koto_patterns[sec]):
+        vel=.102 if i in (0,3,8,12) else .078
+        place(synth_pluck(pitch,1.22,.22),(offset+i)*BEAT,vel,(-.48,.40)[i%2])
+        if i in (3,11):
+            place(synth_pluck(pitch+12,.85,.33),(offset+i+.53)*BEAT,.034,.55)
+    # Dry shamisen call-and-response in a slightly off-beat dance rhythm.
+    for i,note in enumerate(shamisen_patterns[sec]):
+        b=i*2+.50
+        place(synth_shamisen(note,.65), (offset+b)*BEAT,
+              .064 if i%2 else .077,(-.40,.42)[i%2])
+    # Flute has clear, singable melodic movement and little grace notes.
+    for i,(beat,note,dur) in enumerate(flute_phrases[sec]):
+        if i in (1,4) and note>65:
+            place(synth_flute(note-2,.25*BEAT),(offset+beat-.28)*BEAT,.019,.03)
+        place(synth_flute(note,dur*BEAT),(offset+beat)*BEAT,
+              .079 if sec in (2,5) else .069,(-.10,.18)[sec%2])
+    # Moderate, understated matsuri-like percussion—not martial or gloomy.
+    for b in (0,4,8,12):
+        place(synth_drum(),(offset+b)*BEAT,.070 if b in (0,8) else .049,-.12)
+    for b in (2,6,10,14):
+        place(synth_shime(),(offset+b)*BEAT,.11,.31)
+    for b in (3.5,7.5,11.5,15.5):
+        place(synth_shime(),(offset+b)*BEAT,.063,-.24)
+    if sec in (1,3,5,7):
+        for b in (0,8):
+            place(synth_hyoshigi(),(offset+b+.05)*BEAT,.085,.5)
 
 # Dry/wet wooden-room echo creates long misty tails rather than sharp repeats.
 dry=OUT.copy()
-taps=[(.103,.13),(.167,.11),(.283,.095),(.431,.082),
-      (.619,.07),(.887,.052),(1.18,.036),(1.56,.025)]
+taps=[(.083,.072),(.157,.055),(.274,.042),(.441,.031),(.723,.018)]
 for i,(delay,gain) in enumerate(taps):
     shift=round(delay*SR)
     OUT[shift:,i%2] += dry[:-shift,i%2]*gain
@@ -201,7 +248,7 @@ try:
     subprocess.run([
         "ffmpeg","-hide_banner","-loglevel","error","-y",
         "-i",str(wav),"-codec:a","libmp3lame","-b:a","128k",
-        "-metadata","title=Veil Beneath the Torii",
+        "-metadata","title=Lanterns at Kurotsuki",
         "-metadata","artist=Kurotsuki Academy - Original Soundtrack",
         str(MP3)],check=True)
 finally:
