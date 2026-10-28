@@ -16,8 +16,8 @@ GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch
 
 - Academy overview, Four Departments, and three starting modes
 - Hunter grades and C–S supernatural threat classification
-- **45 character biographies** — 42 illustrated characters plus 3 members of the Order of Nine Seals without supplied portraits
-- All **five factions**, their leaders, philosophies, relations and named members
+- **42 character biographies**, each with a corresponding illustrated dossier
+- All **four remaining factions**, their leaders, philosophies, relations and named members
 - **12 creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
 - Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
 - Seven locations, a chronicle timeline, eight world mysteries and seven character attributes
@@ -50,7 +50,7 @@ Add another object with `id`, `name`, `grade`, `species`, `summary`, `behavior`,
 
 ### Missing portrait assets
 
-The portraits for the three Order of Nine Seals members have not been supplied. The site displays text-only biographies for them rather than assigning unrelated artwork. Sora Mikuni has only one verified neutral portrait; duplicate images that were actually Yae Tsuchigumo were excluded.
+Sora Mikuni has only one verified neutral expression portrait; duplicate images that were actually Yae Tsuchigumo were excluded.
 
 ## OOC.AI image integration
 
