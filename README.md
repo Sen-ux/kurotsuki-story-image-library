@@ -20,7 +20,7 @@ GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch
 - All **four remaining factions**, their leaders, philosophies, relations and named members
 - **5 featured creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
 - Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
-- Seven locations, a chronicle timeline, seven world mysteries and seven character attributes
+- Seven locations, a chronicle timeline, six world mysteries and seven character attributes
 - The original **247 PNG expression images** and 42 WebP thumbnails, preserved in `characters/` and `thumbnails/`
 - Searchable character cards, filters, linked dossier panels, a modal reference browser, and gallery expression selection
 
