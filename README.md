@@ -72,3 +72,12 @@ https://raw.githubusercontent.com/Sen-ux/kurotsuki-story-image-library/main/char
 GitHub Pages: [Open repository settings](https://github.com/Sen-ux/kurotsuki-story-image-library/settings/pages) → deploy `main` branch from `/(root)`.
 
 The website is a static site with no tracking, accounts, external libraries or build tooling.
+
+
+## Illustrated parchment-and-ink redesign (October 2026)
+
+The codex homepage (`index.html`) and direct codex entry (`codex.html`) now feature custom parchment textures, original vector ink-brush dividers and torii crest, seal-red accents, classical serif typography, full character opening dossiers and illustrated bestiary cards. The existing expression archive remains at `gallery.html` and its 247 PNG expression assets are unchanged.
+
+**Artwork upload is a separate step.** The site's JavaScript points to `assets/dossiers/<character-id>.webp` (42 large dossier covers), `assets/previews/<character-id>.webp` (42 fast card previews), `assets/bestiary/<creature-id>.webp` (5 collage crops) and `assets/scenery/<scene-id>.webp` (3 opening illustrations). These are supplied in the separate `Kurotsuki_Illustrated_Dossier_Artwork_Ready.zip` pack and are **not in the repository until uploaded**. Until then, character cards fall back to previously committed expression thumbnails. Bestiary art stays hidden until present, and the hero retains a colour-gradient fallback.
+
+To publish artwork, download/extract the supplied ZIP and run `powershell -ExecutionPolicy Bypass -File .\Upload-Kurotsuki-Artwork.ps1` in PowerShell (Git for Windows and GitHub authentication required). Or copy the `assets/` directory into your GitHub Desktop clone, commit, and push to `main`. The deployment does not overwrite your existing text/gallery files.
