@@ -337,6 +337,20 @@
       "thumbnail": "thumbnails/yoru-shinkai.webp"
     },
     {
+      "id": "shirayuki",
+      "name": "Shirayuki",
+      "group": "Independent Legendary Hunters",
+      "available": {
+        "happy": "characters/shirayuki/happy.png",
+        "blushing": "characters/shirayuki/blushing.png",
+        "questioning": "characters/shirayuki/questioning.png",
+        "enthusiastic": "characters/shirayuki/enthusiastic.png",
+        "displeased": "characters/shirayuki/displeased.png",
+        "playful": "characters/shirayuki/playful.png"
+      },
+      "thumbnail": "thumbnails/shirayuki.webp"
+    },
+    {
       "id": "longqi-seiran",
       "name": "Lóngqí Seiran",
       "group": "Independent Legendary Hunters",
