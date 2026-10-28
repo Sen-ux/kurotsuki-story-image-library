@@ -86,3 +86,10 @@ To publish artwork, download/extract the supplied ZIP and run `powershell -Execu
 ## Automatic full-dossier archive import
 
 To add the prepared 27-portrait ZIP, upload it directly to the repository root (or an `uploads/` folder) without extracting it. The GitHub Actions workflow **Organize uploaded artwork** validates the ZIP, imports `assets/dossiers/*.webp` and `assets/previews/*.webp`, and removes the ZIP automatically in an Actions-authored commit. You do not need to extract or rename individual files. This runs automatically when a ZIP is committed to `main`; GitHub Actions must be permitted to write repository contents. You can view the run under **Actions**. All changes to the Crimson Wardens are removed from published faction content, faction-associated biographies, and the reader-facing guides.
+
+
+## Corrected dossier thumbnails and smooth navigation (28 October 2026)
+
+The character cards now display `assets/previews/<character-id>.webp` without cropping; if a preview is absent they try the corresponding `assets/dossiers/<character-id>.webp`. **Older expression thumbnails are no longer used as dossier covers.** The large dossiers use the full illustration, and clicking an illustration expands it. Category navigation now uses gentle smooth scrolling and ink-fade highlights instead of a blue-fire screen transition. Dossier-to-dossier navigation softly fades in the new page.
+
+The verified `Kurotsuki_Dossiers_27_Ready_For_GitHub.zip` contains 27 full-size and 27 preview images, plus `DOSSIER_UPLOAD_README.txt` and `DOSSIER_MAP.json`. The repository's automatic artwork importer recognises and safely ignores these two metadata files. **Upload the ZIP directly into the repository root**, commit to `main`, and check that the `Organize uploaded artwork` GitHub Action succeeds; the workflow extracts the images and removes the ZIP from the repository. If the gallery still displays an 'Illustrated dossier pending' placeholder, the artwork has not been extracted successfully; review the workflow's run logs.
