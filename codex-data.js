@@ -325,69 +325,6 @@ window.KUROTSUKI_CODEX = {
       "summary": "A recorded void-like anomaly notorious for distorted distance and contradictory testimony.",
       "behavior": "Signs and boundaries fail to agree on where the phenomenon begins.",
       "advice": "Record observations from outside the suspected perimeter."
-    },
-    {
-      "id": "mourning-actors",
-      "name": "The Mourning Actors",
-      "grade": "B",
-      "species": "Revenants",
-      "summary": "A procession of disquieting stage-like revenants whose movements echo rituals they no longer understand.",
-      "behavior": "They repeat gestures and ceremonies to an audience that may never have existed.",
-      "advice": "Do not interrupt the pattern without identifying its cause."
-    },
-    {
-      "id": "sunlit-eclipse-wolf",
-      "name": "Sunlit Eclipse Wolf",
-      "grade": "A",
-      "species": "Unknown",
-      "summary": "A great wolf-like presence associated with a disturbing reversal of daylight and eclipse.",
-      "behavior": "Its outline seems to contradict the light that falls on it.",
-      "advice": "Avoid chasing silhouettes; establish multiple observation points."
-    },
-    {
-      "id": "verdant-hollow-tree",
-      "name": "Verdant Hollow Tree",
-      "grade": "B",
-      "species": "Cursed",
-      "summary": "A seemingly thriving tree whose hollow core conceals a curse-driven interior ecology.",
-      "behavior": "The nearby undergrowth may appear unnaturally receptive to human presence.",
-      "advice": "Do not enter exposed roots or cavities without a ward."
-    },
-    {
-      "id": "crimson-eye",
-      "name": "The Crimson Eye",
-      "grade": "A",
-      "species": "Eldritch",
-      "summary": "An immense watching phenomenon more easily described by the fear of its gaze than by any stable body.",
-      "behavior": "Reported in reflections and sealed chambers where no opening should exist.",
-      "advice": "Cover reflective surfaces and withdraw in pairs."
-    },
-    {
-      "id": "celestial-horizon",
-      "name": "Celestial Horizon of the New Eclipse",
-      "grade": "S",
-      "species": "Unknown",
-      "summary": "An apex celestial-scale phenomenon whose very name appears in forbidden field records.",
-      "behavior": "What witnesses describe as an approaching horizon may be something looking back.",
-      "advice": "Treat the first credible report as a regional emergency."
-    },
-    {
-      "id": "spectral-foxes",
-      "name": "Spectral Foxes",
-      "grade": "C",
-      "species": "Revenants",
-      "summary": "Fox-shaped spirit lights that haunt old roads, graves and shrines.",
-      "behavior": "Often harmless, but may lure travellers toward memories they have tried to bury.",
-      "advice": "Approach with respect; offer safe passage rather than violence."
-    },
-    {
-      "id": "lantern-wisps",
-      "name": "Lantern Wisps",
-      "grade": "C",
-      "species": "Yokai & Spirits",
-      "summary": "Small wandering lights that appear at the edge of mist and shrine paths. Usually harmless.",
-      "behavior": "Circle lanterns and unattended offerings; sometimes guide lost travellers home.",
-      "advice": "Observe before assuming hostile intent."
     }
   ],
   "legends": [
@@ -920,12 +857,6 @@ window.KUROTSUKI_CODEX = {
       "name": "Foxfire and False Light",
       "type": "Spiritcraft",
       "text": "A flame without heat can be a trick, a warning or a beacon. The colour of the flame proves less than the intent behind it."
-    },
-    {
-      "id": "eclipse-omens",
-      "name": "Omens of the New Eclipse",
-      "type": "Forbidden Record",
-      "text": "Fragmentary reports name the Celestial Horizon of the New Eclipse without agreeing whether it is a being, a place or an approaching event."
     },
     {
       "id": "safe-sanctuary",
