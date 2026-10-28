@@ -178,23 +178,6 @@ window.KUROTSUKI_CODEX = {
   "rankModifiers": "Modifiers such as A−, A+, or B+ are sometimes used in creature dossier art to refine estimates. All rankings remain provisional until verified in the story.",
   "factions": [
     {
-      "id": "order-nine-seals",
-      "name": "The Order of Nine Seals",
-      "kind": "Spiritual Society",
-      "stance": "Allied / Neutral",
-      "palette": "#8b9ee8",
-      "crest": "封",
-      "leader": "Kujou Satsuki",
-      "members": [
-        "Kujou Satsuki",
-        "Minase Haruto",
-        "Tachibana Ayame"
-      ],
-      "summary": "A spiritual society of exorcists, ritualists and occult scholars devoted to keeping the Veil intact.",
-      "doctrine": "Binding, investigation and preservation are preferred to destruction; even a dangerous spirit may be the key to understanding a deeper breach.",
-      "conflicts": "Their commitment to containment sometimes puts them at odds with independent extermination hunters, particularly when dangerous spirits might instead be safely sealed."
-    },
-    {
       "id": "nameless-blades",
       "name": "The Nameless Blades",
       "kind": "Independent Hunters",
@@ -508,9 +491,9 @@ window.KUROTSUKI_CODEX = {
       "text": "Martial and occult study became intertwined with healing and the keeping of historical records."
     },
     {
-      "era": "Age of competing orders",
-      "title": "The red blade and the sealed page",
-      "text": "Exterminators and ritual societies learned that the same entity could inspire entirely different judgments."
+      "era": "The growth of hunter traditions",
+      "title": "Different ways through the darkness",
+      "text": "As threats multiplied, hunters and scholars developed different ways to protect communities: martial force, healing rites, historical knowledge and careful negotiation."
     },
     {
       "era": "The concealed courts",
@@ -910,55 +893,9 @@ window.KUROTSUKI_CODEX = {
       "hook": "What will force a merciful hunter to become a judge?",
       "lineage": "Qilin divine-beast lineage",
       "affiliation": "Independent"
-    },
-    "kujou-satsuki": {
-      "role": "High Exorcist · Faction Head",
-      "lead": "A master of boundaries whose greatest weapon is patience.",
-      "background": "Satsuki sees sealing as a sacred responsibility rather than an act of mercy. An entity restrained without understanding can become an inheritance of danger for every generation that follows.",
-      "style": "Nine-ring shakujō staff, exorcism and layered spiritual barriers.",
-      "hook": "The oldest of the Nine Seals may have been made to conceal a truth rather than a monster.",
-      "affiliation": "The Order of Nine Seals"
-    },
-    "minase-haruto": {
-      "role": "Ritual Specialist",
-      "lead": "An exacting scholar who trusts the shape of a sigil.",
-      "background": "Haruto records every imperfection in an exorcism and every word uttered by a bound spirit. To him, a small error in a ritual is not a detail—it is a door.",
-      "style": "Inscribed ritual brush and formulaic seals.",
-      "hook": "He has found a repeated mistake across centuries of apparently unrelated rites.",
-      "affiliation": "The Order of Nine Seals"
-    },
-    "tachibana-ayame": {
-      "role": "Sealer",
-      "lead": "Calm, diligent and difficult to deceive.",
-      "background": "Ayame is often assigned to settlements that fear the Order almost as much as the entities it binds. Her care with frightened witnesses is as essential as her ritual discipline.",
-      "style": "Ofuda, containment diagrams and patient witness work.",
-      "hook": "One apparition has begun speaking a name she recognises.",
-      "affiliation": "The Order of Nine Seals"
     }
   },
-  "additionalCharacters": [
-    {
-      "id": "kujou-satsuki",
-      "name": "Kujou Satsuki",
-      "group": "The Order of Nine Seals",
-      "available": {},
-      "thumbnail": null
-    },
-    {
-      "id": "minase-haruto",
-      "name": "Minase Haruto",
-      "group": "The Order of Nine Seals",
-      "available": {},
-      "thumbnail": null
-    },
-    {
-      "id": "tachibana-ayame",
-      "name": "Tachibana Ayame",
-      "group": "The Order of Nine Seals",
-      "available": {},
-      "thumbnail": null
-    }
-  ],
+  "additionalCharacters": [],
   "myths": [
     {
       "id": "veil",
@@ -983,12 +920,6 @@ window.KUROTSUKI_CODEX = {
       "name": "Foxfire and False Light",
       "type": "Spiritcraft",
       "text": "A flame without heat can be a trick, a warning or a beacon. The colour of the flame proves less than the intent behind it."
-    },
-    {
-      "id": "nine-seals",
-      "name": "The Ninefold Boundary",
-      "type": "Exorcism",
-      "text": "The Order's most demanding rites employ overlapping protections so a single broken line cannot release a sealed presence."
     },
     {
       "id": "eclipse-omens",
