@@ -93,3 +93,11 @@ To add the prepared 27-portrait ZIP, upload it directly to the repository root (
 The character cards now display `assets/previews/<character-id>.webp` without cropping; if a preview is absent they try the corresponding `assets/dossiers/<character-id>.webp`. **Older expression thumbnails are no longer used as dossier covers.** The large dossiers use the full illustration, and clicking an illustration expands it. Category navigation now uses gentle smooth scrolling and ink-fade highlights instead of a blue-fire screen transition. Dossier-to-dossier navigation softly fades in the new page.
 
 The verified `Kurotsuki_Dossiers_27_Ready_For_GitHub.zip` contains 27 full-size and 27 preview images, plus `DOSSIER_UPLOAD_README.txt` and `DOSSIER_MAP.json`. The repository's automatic artwork importer recognises and safely ignores these two metadata files. **Upload the ZIP directly into the repository root**, commit to `main`, and check that the `Organize uploaded artwork` GitHub Action succeeds; the workflow extracts the images and removes the ZIP from the repository. If the gallery still displays an 'Illustrated dossier pending' placeholder, the artwork has not been extracted successfully; review the workflow's run logs.
+
+## Original background soundtrack
+
+**Veil Beneath the Torii** is an original instrumental composed specifically for Kurotsuki Academy. It blends atmospheric low strings and drone, airy flute-like notes, plucked zither-like patterns, mountain-wind texture and sparse ceremonial drum accents. The source is original procedural synthesis; **no external music recording or sample is used**.
+
+The finished audio is published at `assets/audio/veil-beneath-the-torii.mp3`. The floating soundtrack widget on both `index.html` and `gallery.html` offers **Play / Pause** and volume control. Playback is off by default; visitors must choose to play it. Pausing resumes from the same position, and the track loops automatically.
+
+The original score is rendered by `scripts/generate_kurotsuki_theme.py` through the `Build original Kurotsuki soundtrack` GitHub Actions workflow. Editing the generator and pushing to `main` regenerates the MP3; it can also be run manually from the GitHub Actions tab. The browser player is implemented by `assets/audio/player.js` and `assets/audio/player.css`.
