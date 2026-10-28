@@ -3,12 +3,15 @@ on:
   push:
     branches: [main]
     paths:
+      - '*.zip'
+      - 'uploads/**'
       - 'bestiary/**'
       - 'dossiers/**'
       - 'previews/**'
       - 'scenery/**'
       - 'assets/bestiary/**'
       - 'scripts/organize_artwork.py'
+      - 'scripts/import_dossier_zip.py'
       - '.github/workflows/organize-artwork.yml'
   workflow_dispatch:
 permissions:
@@ -23,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Import zipped dossier and preview artwork
+        run: python scripts/import_dossier_zip.py
       - name: Move files and rebuild bestiary catalogue
         run: python scripts/organize_artwork.py
       - name: Commit organized assets if changed
