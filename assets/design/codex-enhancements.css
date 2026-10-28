@@ -1,0 +1,44 @@
+
+/* Black Moon Codex: fibre-textured parchment, sumi ink, individual dossier seals. */
+html{background:#0b0d12}
+body{background:linear-gradient(130deg,#0b0e15e8,#221b20dc 53%,#090b12ee),url("assets/design/ink-brush-field.svg") center top/cover fixed,#0e1015!important}
+body::before{background-image:url("assets/design/ink-brush-field.svg"),url("assets/design/paper-grain.svg")!important;background-size:cover,200px 200px!important;opacity:.19!important;mix-blend-mode:normal!important;z-index:0!important}
+main,.top,.hero,footer{position:relative;z-index:1}
+main::before{content:"";position:absolute;inset:0;pointer-events:none;background:url("assets/design/ink-brush-field.svg") center/100% auto repeat-y;opacity:.14;z-index:-1}
+.tile,.panel,.person,.dialog-inner{background-image:linear-gradient(125deg,#f8edd5b0,#c0a07830 61%,#75513322),url("assets/design/aged-parchment.svg")!important;background-size:cover,340px 360px!important;background-blend-mode:multiply,normal;color:#30251e}
+.tile,.panel,.person{box-shadow:0 12px 24px #0009,inset 0 0 0 7px #6d3e2320}
+.tile::before,.panel::before,.person::before{content:"";position:absolute;inset:0;pointer-events:none;background:url("assets/design/ink-brush-field.svg") center/cover;opacity:.09;mix-blend-mode:multiply}
+.person{position:relative;overflow:hidden}
+.person img{width:100%;height:auto!important;aspect-ratio:3/2!important;object-fit:contain!important;background:#171318}
+.person section{position:relative}
+.dialog{background:rgba(6,7,10,.93)!important;z-index:100}
+.dialog-inner{max-width:min(96vw,1420px)!important;max-height:96dvh!important;padding:clamp(14px,2.8vw,42px)!important;border:8px ridge #9a7957!important;overflow-y:auto}
+.dialog-inner::before{content:"";position:absolute;inset:0;pointer-events:none;background:url("assets/design/ink-brush-field.svg") center/cover;opacity:.13;mix-blend-mode:multiply}
+.dialog-layout{grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr)!important;align-items:start;gap:clamp(18px,3vw,42px)}
+.dialog-layout>div{min-width:0;position:relative}
+.dialog-layout img,.dossier-full-art{width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:top center!important;display:block;background:#130e11;border:4px double #81613f;box-shadow:0 18px 40px #2b1d1b60}
+.dossier-full-art{cursor:zoom-in}
+.dialog-inner:has(.dossier-full-art){--dossier-accent:#9b5149}
+.dossier-inscription{font:600 12px/1.4 "Noto Serif JP",serif;letter-spacing:.21em;text-transform:uppercase;color:var(--dossier-accent,#88413a);margin-top:9px;border-bottom:1px solid #8b684c;padding:4px 0 12px}
+.dossier-kicker{font:12px/1.6 system-ui,sans-serif;letter-spacing:.18em;color:#684534;text-transform:uppercase}
+.dossier-stamp{display:inline-flex;margin:10px 0;padding:7px 11px;border:2px solid var(--dossier-accent,#a04b43);color:var(--dossier-accent,#a04b43);font:700 13px "Noto Serif JP",serif;letter-spacing:.16em;transform:rotate(-3deg)}
+.dossier-character{border-top:5px solid var(--dossier-accent,#8b5149)}
+.dossier-character h2{color:var(--dossier-accent,#874337)!important}
+.dossier-character .tagline{font-size:21px;line-height:1.35}
+.dossier-character h3{border-bottom:1px solid #7f664b52;padding-bottom:4px}
+.dossier-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
+.dossier-actions button{background:linear-gradient(115deg,#2b1820,#4b313b);color:#f4e1c0;border:1px solid #b79062;padding:10px 15px;cursor:pointer;font:14px "Cormorant Garamond",serif}
+.dossier-actions button:hover{background:#704d4d}
+.dossier-actions .counter{font:12px system-ui,sans-serif;color:#624637;margin:auto}
+.dossier-fullscreen{position:fixed;inset:0;background:#050508ef;z-index:130;display:none;align-items:center;justify-content:center;padding:22px;cursor:zoom-out}
+.dossier-fullscreen.open{display:flex}
+.dossier-fullscreen img{max-width:98vw;max-height:95dvh;width:auto;height:auto;object-fit:contain}
+.dossier-burn{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:0;visibility:hidden}
+.dossier-burn.active{visibility:visible;animation:blueAshCurtain 1.13s ease-in-out both}
+.dossier-burn::before{content:"";position:absolute;inset:-30%;background:radial-gradient(ellipse at 22% 90%,#44e6ffb0,transparent 30%),radial-gradient(ellipse at 78% 25%,#2265ffbb,transparent 42%),linear-gradient(20deg,transparent 20%,#091d3999 45%,#1a205be0 60%,transparent 80%);filter:blur(24px);transform:rotate(-12deg)}
+.dossier-burn::after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,transparent 12%,#67d8fc 30%,#bfe9ec 32%,#263b6e 36%,#0a1120 46%,#06102a 54%,#3157a4 60%,#a9eff8 64%,transparent 77%);filter:drop-shadow(0 0 28px #3eaeff);clip-path:polygon(0 100%,6% 71%,9% 87%,19% 35%,21% 53%,30% 0,40% 38%,47% 12%,51% 69%,64% 27%,75% 60%,83% 13%,90% 44%,100% 0,100% 100%);transform:translateY(90%) scale(1.1)}
+@keyframes blueAshCurtain{0%{opacity:0}15%{opacity:.78}52%{opacity:1}100%{opacity:0}}
+.dossier-burn.active::after{animation:blueFlameSweep 1.13s ease-in-out both}
+@keyframes blueFlameSweep{0%{transform:translateY(110%) scale(1.1)}50%{transform:translateY(-9%) scale(1.16)}100%{transform:translateY(-135%) scale(1.1)}}
+@media(max-width:860px){.dialog-layout{grid-template-columns:1fr!important}.dialog-inner{padding:16px!important}.dialog-layout img{max-height:unset!important}.dialog .dialog-close{z-index:2}.person-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.dossier-burn,.dossier-burn.active,.dossier-burn.active::after{animation:none!important;visibility:hidden!important}.dossier-actions button,.person{transition:none!important}}
