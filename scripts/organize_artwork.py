@@ -107,7 +107,7 @@ def ingest_root_pngs():
     processed = 0
     unmatched = []
     for original in sorted(ROOT.glob("*.png")):
-        basename = re.sub(r"^\\d{2}_", "", original.stem)
+        basename = re.sub(r"^[0-9]{2}_", "", original.stem)
         token = re.sub(r"[^a-z0-9]", "", basename.lower())
         character_id = CHARACTER_BY_TOKEN.get(token)
         if original.name == "Kurotsuki Academy Headmaster Dossier.png":
@@ -150,7 +150,55 @@ def ingest_root_pngs():
             print("Needs character name:", name)
     return processed
 
+
+def reconcile_archived_artwork():
+    """Repair files classified before numbered-character filenames were recognised."""
+    from PIL import Image, ImageOps
+    originals = SOURCE_ART / "bestiary"
+    if not originals.is_dir():
+        return 0
+    corrected = 0
+    for saved in sorted(originals.glob("*.png")):
+        # Historical imports used numbered filenames verbatim, e.g. 01_HaruAmagiri.
+        original_key = name_slug(saved.stem)
+        old_webp = ROOT / "assets" / "bestiary" / f"{original_key}.webp"
+        basename = re.sub(r"^[0-9]{2}_", "", saved.stem)
+        token = re.sub(r"[^a-z0-9]", "", basename.lower())
+        character_id = CHARACTER_BY_TOKEN.get(token)
+        if character_id:
+            full = ROOT / "assets" / "dossiers" / f"{character_id}.webp"
+            small = ROOT / "assets" / "previews" / f"{character_id}.webp"
+            full.parent.mkdir(parents=True, exist_ok=True)
+            small.parent.mkdir(parents=True, exist_ok=True)
+            with Image.open(saved) as raw:
+                art = ImageOps.exif_transpose(raw).convert("RGB")
+                art.save(full, "WEBP", quality=90, method=6)
+                preview = art.copy()
+                preview.thumbnail((1100, 734), Image.Resampling.LANCZOS)
+                preview.save(small, "WEBP", quality=85, method=6)
+            moved = SOURCE_ART / "dossiers" / saved.name
+            moved.parent.mkdir(parents=True, exist_ok=True)
+            if moved.exists():
+                saved.unlink()
+            else:
+                saved.rename(moved)
+            if old_webp.exists():
+                old_webp.unlink()
+            print("Reassigned named portrait to dossiers:", character_id)
+            corrected += 1
+        else:
+            without_grade = re.sub(r"_rank_(?:s|a|b|c)(?:plus|minus)?$", "", basename, flags=re.I)
+            proper_webp = ROOT / "assets" / "bestiary" / f"{name_slug(without_grade)}.webp"
+            if old_webp.exists() and old_webp != proper_webp:
+                if proper_webp.exists():
+                    old_webp.unlink()
+                else:
+                    old_webp.rename(proper_webp)
+                print("Corrected bestiary artwork name:", proper_webp.name)
+                corrected += 1
+    return corrected
+
 if __name__ == "__main__":
-    count = move_root_folders() + ingest_root_pngs()
+    count = move_root_folders() + ingest_root_pngs() + reconcile_archived_artwork()
     indexed = index_bestiary()
     print(f"Done. Processed {count} uploaded file(s); {indexed} bestiary image(s) indexed.")
