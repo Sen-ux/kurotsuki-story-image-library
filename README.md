@@ -16,8 +16,8 @@ GitHub Pages must be enabled under **Settings → Pages → Deploy from a branch
 
 - Academy overview, Four Departments, and three starting modes
 - Hunter grades and C–S supernatural threat classification
-- **48 character biographies** — 42 illustrated characters plus 6 members of the Crimson Wardens and Order of Nine Seals without supplied portraits
-- All **six factions**, their leaders, philosophies, relations and named members
+- **45 character biographies** — 42 illustrated characters plus 3 members of the Order of Nine Seals without supplied portraits
+- All **five factions**, their leaders, philosophies, relations and named members
 - **12 creature dossiers** and species categories (Demons, Aberrations, Revenants, Cursed, Eldritch, Unknown, Yokai & Spirits)
 - Three independent divine-beast legendary hunters (Raiju, Kitsune, Qilin)
 - Seven locations, a chronicle timeline, eight world mysteries and seven character attributes
@@ -50,7 +50,7 @@ Add another object with `id`, `name`, `grade`, `species`, `summary`, `behavior`,
 
 ### Missing portrait assets
 
-The user-provided ZIP did not contain portraits for the three Crimson Wardens or the three Order of Nine Seals members. The website displays text-only bios for these six rather than using unrelated artwork. Sora Mikuni has only one verified neutral portrait; duplicate images that were actually Yae Tsuchigumo were excluded.
+The portraits for the three Order of Nine Seals members have not been supplied. The site displays text-only biographies for them rather than assigning unrelated artwork. Sora Mikuni has only one verified neutral portrait; duplicate images that were actually Yae Tsuchigumo were excluded.
 
 ## OOC.AI image integration
 
@@ -81,3 +81,8 @@ The codex homepage (`index.html`) and direct codex entry (`codex.html`) now feat
 **Artwork upload is a separate step.** The site's JavaScript points to `assets/dossiers/<character-id>.webp` (42 large dossier covers), `assets/previews/<character-id>.webp` (42 fast card previews), `assets/bestiary/<creature-id>.webp` (5 collage crops) and `assets/scenery/<scene-id>.webp` (3 opening illustrations). These are supplied in the separate `Kurotsuki_Illustrated_Dossier_Artwork_Ready.zip` pack and are **not in the repository until uploaded**. Until then, character cards fall back to previously committed expression thumbnails. Bestiary art stays hidden until present, and the hero retains a colour-gradient fallback.
 
 To publish artwork, download/extract the supplied ZIP and run `powershell -ExecutionPolicy Bypass -File .\Upload-Kurotsuki-Artwork.ps1` in PowerShell (Git for Windows and GitHub authentication required). Or copy the `assets/` directory into your GitHub Desktop clone, commit, and push to `main`. The deployment does not overwrite your existing text/gallery files.
+
+
+## Automatic full-dossier archive import
+
+To add the prepared 27-portrait ZIP, upload it directly to the repository root (or an `uploads/` folder) without extracting it. The GitHub Actions workflow **Organize uploaded artwork** validates the ZIP, imports `assets/dossiers/*.webp` and `assets/previews/*.webp`, and removes the ZIP automatically in an Actions-authored commit. You do not need to extract or rename individual files. This runs automatically when a ZIP is committed to `main`; GitHub Actions must be permitted to write repository contents. You can view the run under **Actions**. All changes to the Crimson Wardens are removed from published faction content, faction-associated biographies, and the reader-facing guides.
