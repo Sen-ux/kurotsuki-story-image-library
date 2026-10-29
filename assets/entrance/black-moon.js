@@ -23,7 +23,7 @@
    '<span class="bm-shirayuki-index">THE LEGENDARY HUNTERS · INDEPENDENT</span>'+
    '<div class="bm-shirayuki-head"><span class="bm-shirayuki-glyph" aria-hidden="true">白</span><div><span class="bm-shirayuki-name" id="bm-shirayuki-name">Shirayuki</span><span class="bm-shirayuki-role">The Tempest Huntress</span></div></div>'+
    '<p>A restless legendary hunter who goes where the wind takes her. Catching her before she disappears again is quite another matter.</p>'+
-   '<div class="bm-shirayuki-warning"><span aria-hidden="true">⚠</span><span>Be warned: her plum wine is deceptively strong. One cup is quite enough.</span></div>'+
+   '<div class="bm-shirayuki-warning"><span aria-hidden="true">⚠</span><span>Her plum wine is deceptively strong. Do not steal it — she will throw hands, and she will very much win.</span></div>'+
    '</aside>'+
    '<header class="bm-top"><div class="bm-brand"><span class="bm-mon">黒月</span><span>KUROTSUKI ACADEMY</span></div>'+
    '<nav class="bm-toplinks" aria-label="Opening navigation">'+
