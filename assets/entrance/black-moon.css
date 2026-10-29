@@ -150,7 +150,7 @@ body.bm-ready #gate-scene>.gate-fallback-art,
 body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 /* The guide is a real interface overlay, not painted onto the art. */
 #blackmoon-landing .bm-guide{
- position:absolute;left:clamp(22px,5.2vw,88px);top:clamp(220px,43%,440px);
+ position:absolute;left:clamp(22px,5.2vw,88px);top:auto;bottom:clamp(22px,6vh,78px);
  z-index:20;width:clamp(235px,20vw,300px);padding:17px 18px 16px;
  border:1px solid #c8a376a3;border-radius:7px;
  background:radial-gradient(circle at 10% 0%,#79504844,transparent 55%),linear-gradient(135deg,#171721f3,#18191ef2 76%);
@@ -194,14 +194,14 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 #blackmoon-landing .bm-guide-actions button:focus-visible{outline:2px solid #d9eff2;outline-offset:2px}
 @keyframes bm-guide-arrival{from{opacity:0;transform:translate(-10px,6px)}to{opacity:1;transform:none}}
 @media(max-width:950px){
- #blackmoon-landing .bm-guide{left:clamp(13px,3vw,25px);top:42%;width:250px;padding:13px}
+ #blackmoon-landing .bm-guide{left:clamp(13px,3vw,25px);top:auto;bottom:clamp(18px,5vh,52px);width:250px;padding:13px}
  #blackmoon-landing .bm-guide-name{font-size:19px}
  #blackmoon-landing .bm-guide p{font-size:11px;line-height:1.4}
  #blackmoon-landing .bm-guide-head{margin:5px 0}
 }
 @media(max-width:650px){
  #blackmoon-landing .bm-guide{
-  left:12px;top:auto;bottom:clamp(12px,7vh,55px);
+  left:12px;top:auto;bottom:clamp(8px,2vh,22px);
   width:min(285px,calc(100% - 24px));padding:12px;
  }
  #blackmoon-landing .bm-guide::before{top:-8px;left:26px;border-bottom:0;border-top:1px solid #c8a376a3}
@@ -292,10 +292,10 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
    width:min(272px,calc(100vw - 24px));max-height:min(44dvh,310px);
    overflow-y:auto;overscroll-behavior:contain;
  }
- #blackmoon-landing .bm-guide{left:12px;top:auto;bottom:clamp(10px,5vh,40px)}
+ #blackmoon-landing .bm-guide{left:12px;top:auto;bottom:clamp(8px,2vh,22px)}
 }
 @media(max-height:620px) and (min-width:651px){
- #blackmoon-landing .bm-guide{top:36%}
+ #blackmoon-landing .bm-guide{top:auto;bottom:clamp(8px,2vh,22px)}
  #blackmoon-landing .bm-shirayuki-pin{top:32%}
  #blackmoon-landing .bm-shirayuki-card{top:41%;max-height:51dvh;overflow-y:auto}
 }
