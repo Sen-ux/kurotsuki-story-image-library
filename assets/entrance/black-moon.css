@@ -65,11 +65,32 @@ opacity:.31;animation:bm-rise 18s linear infinite}
 @keyframes bm-haze{to{transform:translate(3%, -2%);opacity:.35}}
 @keyframes bm-breathe{to{transform:scale(1.018)}}
 #blackmoon-landing button:focus-visible,#blackmoon-landing a:focus-visible{outline:2px solid #a7ebff;outline-offset:3px}
-#bm-burn-stage{position:fixed;z-index:240;inset:0;width:100%;height:100%;pointer-events:none;display:none}
-body.bm-burning{overflow:hidden!important}
-body.bm-burning #bm-burn-stage{display:block}
-body.bm-burning #gate-scene{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
-body.bm-burning #kurotsuki-player{visibility:hidden!important}
+#bm-page-stage{position:fixed;z-index:240;inset:0;width:100%;height:100%;pointer-events:none;display:none}
+body.bm-turning{overflow:hidden!important}
+body.bm-turning #bm-page-stage{display:block}
+body.bm-turning #gate-scene{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+body.bm-turning #kurotsuki-player{visibility:hidden!important}
+
+/* The illustration is static and unadorned until the reader turns the page. */
+#blackmoon-landing .bm-art{animation:none!important;transform:none!important}
+#blackmoon-landing .bm-haze,#blackmoon-landing .bm-embers{display:none!important}
+#blackmoon-landing .bm-open-page{
+ position:absolute;inset:69px 0 0;display:block;z-index:8;width:100%;height:auto;
+ padding:0;background:transparent;border:0;border-radius:0;cursor:pointer;
+ -webkit-tap-highlight-color:transparent
+}
+#blackmoon-landing .bm-open-page:hover{background:transparent}
+#blackmoon-landing .bm-open-page:focus-visible{
+ outline:2px solid #e9c693;outline-offset:-6px
+}
+#blackmoon-landing .bm-sr-only{
+ position:absolute;width:1px;height:1px;overflow:hidden;white-space:nowrap;
+ clip:rect(0,0,0,0);clip-path:inset(50%)
+}
+#bm-page-stage{background:transparent;contain:strict}
+body.bm-turning #blackmoon-landing{pointer-events:none!important}
+@media(max-width:650px){#blackmoon-landing .bm-open-page{top:56px}}
+
 #site .site-top{position:fixed!important;left:0!important;right:0!important;top:var(--km-bar-height,78px)!important;
 width:100%!important;z-index:110!important}
 #site .shell{padding-top:78px!important}
