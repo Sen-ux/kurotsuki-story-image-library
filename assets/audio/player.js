@@ -1,5 +1,5 @@
 /* Kurotsuki Academy — Black Moon Records: original soundtrack playlist.
-   Playback is user initiated. A missing upload never disables the player. */
+   The main theme attempts autoplay on entry, with first-interaction fallback for browser policies. */
 (() => {
   "use strict";
   if (document.getElementById("kurotsuki-player")) return;
@@ -34,7 +34,7 @@
       '<button class="km-play" id="km-toggle" type="button" aria-pressed="false" aria-label="Play music"><span id="km-play-symbol">▶</span></button>'+
       '<button class="km-icon" id="km-next" type="button" title="Next track" aria-label="Next track">››</button>'+
       '</div><div class="km-sound"><span aria-hidden="true">♫</span><label class="km-sr-only" for="km-volume">Volume</label><input id="km-volume" type="range" min="0" max="100" step="1" value="38" aria-label="Music volume"></div></div>'+
-    '<div class="km-state" id="km-state" role="status" aria-live="polite">READY · PRESS PLAY TO LISTEN</div>'+
+    '<div class="km-state" id="km-state" role="status" aria-live="polite">STARTING THE BLACK MOON THEME…</div>'+
     '<div class="km-list-panel" id="km-playlist" hidden><div class="km-list-head"><span>THE BLACK MOON COLLECTION</span><small>13 TRACKS</small></div><div class="km-list" id="km-track-list" role="group" aria-label="Choose a song"></div></div>';
   const audio=document.createElement("audio");
   audio.id="kurotsuki-audio";
@@ -47,7 +47,29 @@
   const btn=find("km-toggle"), symbol=find("km-play-symbol"), volume=find("km-volume");
   const panel=find("km-playlist"), list=find("km-track-list"), playlistBtn=find("km-playlist-toggle");
   const seek=find("km-seek"), state=find("km-state"), elapsed=find("km-elapsed"), duration=find("km-duration");
-  let index=0, request=0, hasError=false;
+  let index=0, request=0, hasError=false, pendingAutoplay=false;
+  const resumeFromGesture=event=>{
+    if(!pendingAutoplay)return;
+    if(event.type==="keydown"&&(event.key==="Tab"||event.key==="Escape"||event.repeat))return;
+    const target=event.target;
+    if(target instanceof Element&&target.closest("#kurotsuki-player"))return;
+    pendingAutoplay=false;
+    play();
+  };
+  const removeGestureFallback=()=>{
+    pendingAutoplay=false;
+    document.removeEventListener("pointerdown",resumeFromGesture,true);
+    document.removeEventListener("keydown",resumeFromGesture,true);
+    player.classList.remove("autoplay-blocked");
+  };
+  const armGestureFallback=()=>{
+    if(pendingAutoplay)return;
+    pendingAutoplay=true;
+    player.classList.add("autoplay-blocked");
+    state.textContent="BROWSER BLOCKED AUTOPLAY · TAP THE PAGE TO START";
+    document.addEventListener("pointerdown",resumeFromGesture,true);
+    document.addEventListener("keydown",resumeFromGesture,true);
+  };
   const fmt=n=>{if(!Number.isFinite(n)||n<0)return "0:00";n=Math.floor(n);return Math.floor(n/60)+":"+String(n%60).padStart(2,"0");};
   try{const saved=localStorage.getItem("kurotsuki.music.volume");if(saved!==null&&Number.isFinite(Number(saved)))volume.value=Math.min(100,Math.max(0,Number(saved)));}catch(e){}
   audio.volume=Number(volume.value)/100;
@@ -99,7 +121,15 @@
       await audio.play();
       if(serial===request){state.textContent="NOW PLAYING · "+tracks[index].tag;render();}
     }catch(error){
-      if(serial===request&&!hasError){player.classList.add("has-error");state.textContent="AUDIO UNAVAILABLE · REFRESH THE PAGE";render();}
+      if(serial===request&&!hasError){
+        if(error&&error.name==="NotAllowedError"){
+          armGestureFallback();
+        }else{
+          removeGestureFallback();
+          player.classList.add("has-error");state.textContent="AUDIO UNAVAILABLE · REFRESH THE PAGE";
+        }
+        render();
+      }
     }
   }
   btn.addEventListener("click",()=>{if(audio.paused)play();else{++request;audio.pause();state.textContent="PAUSED · THE NIGHT CAN WAIT";render();}});
@@ -113,9 +143,10 @@
   audio.addEventListener("timeupdate",render);
   audio.addEventListener("durationchange",render);
   audio.addEventListener("loadedmetadata",render);
-  audio.addEventListener("playing",()=>{hasError=false;player.classList.remove("has-error");state.textContent="NOW PLAYING · "+tracks[index].tag;render();});
+  audio.addEventListener("playing",()=>{hasError=false;removeGestureFallback();player.classList.remove("has-error");state.textContent="NOW PLAYING · "+tracks[index].tag;render();});
   audio.addEventListener("pause",render);
   audio.addEventListener("ended",()=>select(index+1,true));
   audio.addEventListener("error",()=>{hasError=true;player.classList.add("has-error");state.textContent="AUDIO UNAVAILABLE · REFRESH THE PAGE";render();});
   select(0,false);
+  play();
 })();
