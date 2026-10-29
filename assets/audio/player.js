@@ -14,9 +14,13 @@
     {title:"The Lantern's Mischievous Guide",artist:"Maribel",tag:"CHARACTER THEME",seconds:163,path:"assets/audio/tracks/the-lanterns-mischievous-guide.mp3"},
     {title:"A Smile Behind the Smoke",artist:"Mr. Hollow",tag:"CHARACTER THEME",seconds:205,path:"assets/audio/tracks/a-smile-behind-the-smoke.mp3"},
     {title:"The Hunt's Tempest",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:168,path:"assets/audio/tracks/the-hunts-tempest.mp3"},
+    {title:"A Hunt for the Divine",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:0,path:"assets/audio/tracks/a-hunt-for-the-divine.mp3"},
     {title:"Thunder Without a Master",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:203,path:"assets/audio/tracks/thunder-without-a-master.mp3"},
+    {title:"Spirit of the Lightning Wolf",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:0,path:"assets/audio/tracks/spirit-of-the-lightning-wolf.mp3"},
     {title:"The Foxfire Masquerade",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:182,path:"assets/audio/tracks/the-foxfire-masquerade.mp3"},
-    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/mercy-beneath-the-jade-sky.mp3"}
+    {title:"Mischief of the Fox",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:0,path:"assets/audio/tracks/mischief-of-the-fox.mp3"},
+    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/mercy-beneath-the-jade-sky.mp3"},
+    {title:"Will of the Qilin",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:0,path:"assets/audio/tracks/will-of-the-qilin.mp3"}
   ];
   const player=document.createElement("aside");
   player.id="kurotsuki-player";
@@ -26,7 +30,7 @@
     '<div class="km-head"><div class="km-emblem" aria-hidden="true"><span>月</span><i></i></div>'+
       '<div class="km-heading"><div class="km-eyebrow">黒月 · BLACK MOON RECORDS</div><div class="km-album">Songs from beneath the veil</div></div>'+
       '<button class="km-icon km-playlist-button" id="km-playlist-toggle" type="button" aria-controls="km-playlist" aria-expanded="false" aria-label="Show playlist" title="Playlist">☷ <span>PLAYLIST</span></button></div>'+
-    '<div class="km-track"><span class="km-number" id="km-track-number">01 / 12</span><div class="km-track-name" id="km-track-name"></div><div class="km-artist" id="km-track-artist"></div></div>'+
+    '<div class="km-track"><span class="km-number" id="km-track-number">01 / 16</span><div class="km-track-name" id="km-track-name"></div><div class="km-artist" id="km-track-artist"></div></div>'+
     '<div class="km-progress"><span id="km-elapsed">0:00</span><input id="km-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek through track"><span id="km-duration">3:38</span></div>'+
     '<div class="km-controls"><div class="km-transport">'+
       '<button class="km-icon" id="km-previous" type="button" title="Previous track" aria-label="Previous track">‹‹</button>'+
@@ -34,7 +38,7 @@
       '<button class="km-icon" id="km-next" type="button" title="Next track" aria-label="Next track">››</button>'+
       '</div><div class="km-sound"><span aria-hidden="true">♫</span><label class="km-sr-only" for="km-volume">Volume</label><input id="km-volume" type="range" min="0" max="100" step="1" value="38" aria-label="Music volume"></div></div>'+
     '<div class="km-state" id="km-state" role="status" aria-live="polite">STARTING THE BLACK MOON THEME…</div>'+
-    '<div class="km-list-panel" id="km-playlist" hidden><div class="km-list-head"><span>THE BLACK MOON COLLECTION</span><small>12 TRACKS</small></div><div class="km-list" id="km-track-list" role="group" aria-label="Choose a song"></div></div>';
+    '<div class="km-list-panel" id="km-playlist" hidden><div class="km-list-head"><span>THE BLACK MOON COLLECTION</span><small>16 TRACKS</small></div><div class="km-list" id="km-track-list" role="group" aria-label="Choose a song"></div></div>';
   const audio=document.createElement("audio");
   audio.id="kurotsuki-audio";
   audio.preload="none";
