@@ -100,7 +100,7 @@ body{padding-top:var(--km-bar-height)!important}
  .km-head{justify-self:end}.km-heading,.km-emblem{display:none}
  .km-playlist-button{height:34px;width:64px;font-size:14px!important}
  .km-track{align-self:center}.km-track-name{font-size:16px}.km-number{font-size:8px}.km-artist{font-size:10px}
- .km-controls{grid-row:auto;justify-content:space-between;align-self:center}
+ .km-controls{grid-row:2 / 3;grid-column:1 / -1;justify-content:space-between;align-self:center}
  .km-transport{gap:5px}.km-play{width:36px;height:33px}
  .km-sound{width:125px;max-width:38%}
  .km-progress{padding:0;align-self:center}
