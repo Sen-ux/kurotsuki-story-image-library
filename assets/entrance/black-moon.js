@@ -37,7 +37,7 @@
 
  art.addEventListener("load",()=>{loaded=true;document.body.classList.add("bm-ready")},{once:true});
  art.addEventListener("error",()=>{loaded=false;document.body.classList.remove("bm-ready");host.hidden=true},{once:true});
- art.src="assets/entrance/kurotsuki-clean-entrance.webp?v=pageflip-v1";
+ art.src="assets/entrance/kurotsuki-clean-entrance.webp?v=pageflip-v2";
 
  function tabAfter(){
   const tab=pendingTab;pendingTab=null;
