@@ -1,6 +1,6 @@
 # Black Moon Records — Kurotsuki Academy soundtrack
 
-The music player (`assets/audio/player.js`) uses the original MP3 filenames as uploaded to GitHub. Track 01 is the main theme and is preselected when the page opens; audio begins only after the visitor presses Play.
+The music player (`assets/audio/player.js`) uses the uploaded MP3 soundtrack files. Track 01 is the main theme and is preselected when the page opens; the player attempts autoplay, subject to browser permissions.
 
 | # | Track | Exact existing file |
 |---|---|---|
@@ -16,6 +16,5 @@ The music player (`assets/audio/player.js`) uses the original MP3 filenames as u
 | 10 | Thunder Without a Master — Tatsuya Kagetsu | `Thunder Without a Master - Tatsyuya Kagetsu.mp3` |
 | 11 | The Foxfire Masquerade — Shizuru Nuehara | `The Foxfire Masquerade - Shizuru Nuehara.mp3` |
 | 12 | Mercy Beneath the Jade Sky — Lóngqí Seiran | `Mercy Beneath the Jade Sky - Lóngqí Seiran.mp3` |
-| 13 | Autumn Festival at Kurotsuki | `../autumn-festival-at-kurotsuki.mp3` |
 
-Track 13 is the original festival bonus theme located in `assets/audio/`. The other 12 tracks are in this directory. The source filenames intentionally retain their original capitalization and spelling; do not rename them without also updating the player references.
+The playlist contains 12 tracks. The former Autumn Festival bonus song is no longer part of the player; its original audio asset remains in the repository. The uploaded filenames are preserved in the repository, and the player uses matching audio aliases.
