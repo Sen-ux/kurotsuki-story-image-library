@@ -15,7 +15,8 @@
  host.setAttribute("aria-label","Kurotsuki Academy opening screen");
  host.innerHTML=
    '<div class="bm-haze" aria-hidden="true"></div><div class="bm-embers" aria-hidden="true"></div>'+
-   '<button class="bm-open-page" id="bm-open-page" type="button" aria-label="Turn the page to enter the Kurotsuki Academy Codex"><span class="bm-sr-only">Turn the page to enter the Kurotsuki Academy Codex</span></button>'+
+   '<button class="bm-open-page" id="bm-open-page" type="button" aria-label="Turn the page to explore the Kurotsuki Academy Codex"><span class="bm-sr-only">Turn the page to explore Kurotsuki Academy</span></button>'+
+   '<aside class="bm-guide" aria-label="Maribel offers to guide you through the Academy"><span class="bm-guide-index">✦ THE HOLLOW LANTERN · A GREETING</span><div class="bm-guide-head"><span class="bm-guide-glyph" aria-hidden="true">灯</span><div><span class="bm-guide-name">Maribel</span><span class="bm-guide-role">Your half-demon guide</span></div></div><p>Lost your way? I can show you around... or you can explore on your own.</p><div class="bm-guide-actions"><button type="button" id="bm-guide-start">✿ FOLLOW MARIBEL</button><button type="button" id="bm-guide-free">EXPLORE ALONE →</button></div></aside>'+
    '<header class="bm-top"><div class="bm-brand"><span class="bm-mon">黒月</span><span>KUROTSUKI ACADEMY</span></div>'+
    '<nav class="bm-toplinks" aria-label="Opening navigation">'+
    '<button type="button" data-bm-tab="overview">ARCHIVE</button>'+
@@ -53,6 +54,7 @@
   gate.style.pointerEvents="";
   window.scrollTo({top:0,behavior:"instant"});
   entering=false;
+  document.dispatchEvent(new CustomEvent("kurotsuki:entrance-complete"));
   tabAfter();
  }
  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
@@ -161,17 +163,19 @@
   raf=requestAnimationFrame(frame);
   return true;
  }
- function start(tab){
+ function start(tab,mode="free"){
   if(entering||!loaded)return;
   pendingTab=tab||null;
-  // Preserve the existing guided/free entry state and page navigation.
-  const original=document.getElementById(tab?"explore-alone":"enter");
+  // Hidden legacy entry controls retain guided-tour state, without showing the obsolete gate.
+  const original=document.getElementById(mode==="guided"?"enter":"explore-alone");
   if(original)original.click();
   if(!entering)enter();
  }
  const open=host.querySelector("#bm-open-page");
- open.addEventListener("click",()=>start(null));
- host.querySelectorAll("[data-bm-tab]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.bmTab)));
+ open.addEventListener("click",()=>start(null,"free"));
+ host.querySelector("#bm-guide-start").addEventListener("click",()=>start(null,"guided"));
+ host.querySelector("#bm-guide-free").addEventListener("click",()=>start(null,"free"));
+ host.querySelectorAll("[data-bm-tab]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.bmTab,"free")));
 
  // Existing gate logic calls the public entry interface; keep both paths equivalent.
  window.KurotsukiEntrance={enter,start,get ready(){return loaded;}};
