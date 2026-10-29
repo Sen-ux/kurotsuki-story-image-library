@@ -67,6 +67,11 @@
       "path": "assets/bestiary/koboto.webp"
     },
     {
+      "id": "kurotsuki-academy-black-moon-codex-1",
+      "name": "Kurotsuki Academy Black Moon Codex 1",
+      "path": "assets/bestiary/kurotsuki-academy-black-moon-codex-1.webp"
+    },
+    {
       "id": "mugetsu",
       "name": "Mugetsu",
       "path": "assets/bestiary/mugetsu.webp"
@@ -95,6 +100,11 @@
       "id": "sennen-koboku",
       "name": "Sennen Koboku",
       "path": "assets/bestiary/sennen-koboku.webp"
+    },
+    {
+      "id": "shirayuki-the-tempest-huntress-1",
+      "name": "Shirayuki The Tempest Huntress 1",
+      "path": "assets/bestiary/shirayuki-the-tempest-huntress-1.webp"
     },
     {
       "id": "shoku-no-tsuki",
