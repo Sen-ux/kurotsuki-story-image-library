@@ -1,66 +1,110 @@
-/* Black Moon Records — Kurotsuki Academy's floating record player. */
+/* Black Moon Records — horizontal soundtrack bar, shared by the Codex and galleries. */
+:root{--km-bar-height:72px}
+html{scroll-padding-top:calc(var(--km-bar-height) + 84px)}
+body{padding-top:var(--km-bar-height)!important}
+#site .site-top{top:var(--km-bar-height)!important}
+#site .rail{top:calc(78px + var(--km-bar-height))!important;height:calc(100dvh - 78px - var(--km-bar-height))!important}
 .kurotsuki-player{
-  --km-gold:#dec198;--km-paper:#f4e4c9;--km-muted:#baa68f;--km-red:#b26863;
-  box-sizing:border-box;position:fixed;z-index:155;bottom:clamp(12px,2vw,28px);right:clamp(12px,2vw,28px);
-  width:min(406px,calc(100vw - 24px));max-height:calc(100dvh - 25px);overflow-y:auto;
-  color:var(--km-paper);border:1px solid #856850;border-radius:11px;
-  background:radial-gradient(circle at 0% 0%,#603c3e77,transparent 47%),linear-gradient(156deg,#201b24f8,#0c1118fa 72%);
-  box-shadow:0 22px 65px #020305dc,inset 0 0 0 2px #c2a27519;
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  font:400 13px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --km-gold:#ddbb88;--km-paper:#f1e3cd;--km-muted:#bea995;
+  box-sizing:border-box;position:fixed;top:0;left:0;right:0;bottom:auto;z-index:155;
+  width:100%;height:var(--km-bar-height);max-height:none;overflow:visible;
+  display:grid;grid-template-columns:minmax(215px,1.2fr) minmax(200px,1.5fr) minmax(143px,.8fr) minmax(216px,1.1fr);
+  grid-template-areas:"head track progress controls";align-items:center;gap:clamp(8px,1.15vw,22px);
+  padding:0 clamp(12px,2.2vw,34px);margin:0;
+  border:0;border-bottom:1px solid #b38a5a;border-radius:0;
+  color:var(--km-paper);
+  background:linear-gradient(96deg,#221921 0%,#161b22 46%,#10141b 100%);
+  box-shadow:0 5px 24px #0506088f,inset 0 -2px #c0996a18;
+  backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+  font:400 12px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .kurotsuki-player *{box-sizing:border-box}
-.kurotsuki-player::before{content:"";position:absolute;top:0;left:20px;right:20px;height:2px;background:linear-gradient(90deg,transparent,#bb7968,#edc48e,#bb7968,transparent);pointer-events:none}
-.km-head{display:flex;align-items:center;gap:12px;padding:15px 16px 9px}
-.km-emblem{position:relative;width:48px;height:48px;flex-shrink:0;border-radius:50%;
-  display:grid;place-items:center;color:#e7c29d;border:1px solid #9d7460;
-  background:repeating-radial-gradient(circle,#211c24 0px,#211c24 3px,#8e644a 4px,#211c24 5px,#211c24 8px);
-  box-shadow:0 0 0 3px #0b0c13,0 0 0 4px #86654d;
-}
-.km-emblem span{font:23px/1 Georgia,"Noto Serif JP",serif;background:#241d27;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;position:relative;z-index:1}
-.km-emblem i{position:absolute;right:3px;bottom:3px;width:5px;height:5px;border-radius:50%;background:#d18f78;z-index:2}
-.kurotsuki-player.is-playing .km-emblem{animation:km-spin 9s linear infinite}
-@keyframes km-spin{to{transform:rotate(360deg)}}
-.km-heading{flex:1;min-width:0}.km-eyebrow{color:var(--km-gold);font-size:9px;font-weight:700;letter-spacing:.19em}
-.km-album{font:italic 18px/1.25 Georgia,"Noto Serif JP",serif;margin-top:3px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.kurotsuki-player::before{position:absolute;content:"";left:0;right:0;top:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent 0%,#a15b56 12%,#caa573 49%,#925d60 87%,transparent)}
 .kurotsuki-player button{font:inherit;cursor:pointer;color:inherit}
-.kurotsuki-player button:focus-visible,.kurotsuki-player input:focus-visible{outline:2px solid #efd1a4;outline-offset:3px}
-.km-icon{border:1px solid transparent;background:transparent;display:inline-flex;align-items:center;justify-content:center;gap:5px}
-.km-playlist-button{flex-shrink:0;flex-direction:column;min-width:65px;padding:7px 5px;border-color:#94765b;border-radius:5px;color:#ead2b4!important;font-size:17px!important;line-height:1!important}
-.km-playlist-button span{font-size:8px;letter-spacing:.12em;line-height:1.5}
-.km-playlist-button:hover,.playlist-open .km-playlist-button{background:#69483a;border-color:#efc38a}
-.km-track{padding:4px 17px 11px}
-.km-number{color:#bd9781;font-size:9px;letter-spacing:.14em;font-weight:700}
-.km-track-name{font:500 clamp(20px,4vw,24px)/1.2 Georgia,"Noto Serif JP",serif;margin:5px 0 4px;white-space:normal}
-.km-artist{font-size:11px;color:var(--km-muted);letter-spacing:.02em}
-.km-progress{display:flex;align-items:center;gap:9px;padding:2px 17px 10px}
-.km-progress>span{font-size:10px;color:#c3ac96;min-width:32px;font-variant-numeric:tabular-nums}
+.kurotsuki-player button:focus-visible,.kurotsuki-player input:focus-visible{outline:2px solid #f5cf9a;outline-offset:3px}
+.km-head{grid-area:head;display:flex;align-items:center;gap:9px;min-width:0;padding:0}
+.km-heading{min-width:0;flex:1}
+.km-emblem{position:relative;flex-shrink:0;width:39px;height:39px;display:grid;place-items:center;border-radius:50%;
+ background:repeating-radial-gradient(circle,#241f29 0px,#241f29 3px,#9e7155 4px,#241f29 5px,#241f29 8px);
+ border:1px solid #c09763;color:#efd1a0;box-shadow:0 0 0 2px #13121a}
+.km-emblem span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#211a22;font:20px/1 Georgia,"Noto Serif JP",serif}
+.km-emblem i{position:absolute;bottom:2px;right:3px;width:4px;height:4px;background:#e1b680;border-radius:50%}
+.is-playing .km-emblem{animation:km-spin 10s linear infinite}
+@keyframes km-spin{to{transform:rotate(360deg)}}
+.km-eyebrow{color:var(--km-gold);font-size:8px;letter-spacing:.13em;font-weight:750;white-space:nowrap}
+.km-album{font:italic 15px/1.3 Georgia,"Noto Serif JP",serif;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.km-icon{background:transparent;border:1px solid transparent;display:inline-flex;justify-content:center;align-items:center;flex-shrink:0;min-width:27px;height:30px;border-radius:4px}
+.km-icon:hover{background:#684a493f}
+.km-playlist-button{display:flex;flex-direction:column;gap:0;width:66px;height:42px;border:1px solid #88715d;border-radius:5px;color:#ecd2a9!important;font-size:16px!important}
+.km-playlist-button span{font:750 8px/1.3 system-ui,sans-serif;letter-spacing:.11em}
+.km-playlist-button:hover,.playlist-open .km-playlist-button{background:#62443c;border-color:#e8ba85}
+.km-track{grid-area:track;min-width:0;padding:0}
+.km-number{display:block;color:#b78f79;font:750 8px/1.2 system-ui,sans-serif;letter-spacing:.14em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.km-track-name{font:500 17px/1.18 Georgia,"Noto Serif JP",serif;color:#f3e3c7;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin:3px 0}
+.km-artist{font:10px/1.25 system-ui,sans-serif;color:#b5a08f;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.km-progress{grid-area:progress;display:flex;align-items:center;gap:7px;padding:0;min-width:0}
+.km-progress>span{font:10px/1 system-ui,sans-serif;color:#c0a48d;min-width:29px;font-variant-numeric:tabular-nums}
 .km-progress>span:last-child{text-align:right}
-.kurotsuki-player input[type=range]{-webkit-appearance:none;appearance:none;border:0;background:#5e4c4c;border-radius:99px;cursor:pointer;height:4px;min-width:0}
-.kurotsuki-player input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:12px;height:12px;border-radius:50%;background:#ebc48c;border:2px solid #3c2930}
-.kurotsuki-player input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:#ebc48c;border:2px solid #3c2930}
-#km-seek{flex:1;background:linear-gradient(90deg,#d8a276 var(--fill,0%),#55454a var(--fill,0%))}
-.km-controls{margin:0 16px;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:5px 0 9px;border-top:1px solid #a8876540}
-.km-transport{display:flex;align-items:center;gap:12px}
-.km-transport .km-icon{font-size:19px!important;padding:5px 9px;border-radius:5px;color:#e5c7a6}
-.km-transport .km-icon:hover{background:#543e46}
-.km-play{display:grid;place-items:center;width:45px;height:40px;background:#7c4544;border:1px solid #c59870;border-radius:7px;font-size:18px!important;box-shadow:inset 0 1px #ffffff20}
-.km-play:hover{background:#98574f}.km-play:active{transform:translateY(1px)}
-.km-sound{display:flex;align-items:center;gap:8px;color:#debea1;min-width:105px;max-width:145px}
-.km-sound span{font-size:16px}#km-volume{flex:1;width:92px;accent-color:#d9ab7c}
-.km-state{margin:0 16px;padding:8px 0 10px;border-top:1px solid #a8876533;color:#af9a87;font-size:9px;font-weight:600;letter-spacing:.10em}
+.kurotsuki-player input[type=range]{appearance:none;-webkit-appearance:none;background:#59474c;border:0;border-radius:99px;height:4px;min-width:0;margin:0;cursor:pointer}
+.kurotsuki-player input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#ecc28b;border:2px solid #382831}
+.kurotsuki-player input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:#ecc28b;border:2px solid #382831}
+#km-seek{width:100%;flex:1;background:linear-gradient(90deg,#dab27c var(--fill,0%),#665057 var(--fill,0%))}
+.km-controls{grid-area:controls;min-width:0;display:flex;justify-content:flex-end;align-items:center;gap:clamp(7px,1vw,16px);padding:0;margin:0;border:0}
+.km-transport{display:flex;align-items:center;gap:4px;white-space:nowrap}
+.km-transport .km-icon{font-size:19px!important;color:#e9cfa7;padding:0 4px}
+.km-play{width:39px;height:38px;display:grid;place-items:center;background:#81504d;border:1px solid #c18e74;border-radius:7px;color:#fff1d7!important;font-size:17px!important}
+.km-play:hover{background:#a4665c}.km-play:active{transform:translateY(1px)}
+.km-sound{display:flex;align-items:center;gap:7px;width:min(120px,40%);min-width:76px;color:#e4bd8e}
+.km-sound>span{font-size:15px}#km-volume{flex:1;width:100%}
+.km-state{display:none;position:absolute;top:calc(100% + 5px);left:50%;transform:translateX(-50%);z-index:2;
+ max-width:calc(100vw - 20px);padding:9px 16px;border:1px solid #ba806d;border-radius:6px;
+ background:#251c23;color:#f3c6a7;font:750 10px/1.4 system-ui,sans-serif;letter-spacing:.1em;text-align:center;box-shadow:0 6px 18px #000b}
+.has-error .km-state{display:block}
 .km-list-panel[hidden]{display:none!important}
-.km-list-panel{margin:0 9px 11px;border-top:1px solid #aa785e78;background:#0d1119b0;border-radius:0 0 5px 5px;animation:km-reveal .2s ease-out}
+.km-list-panel{position:absolute;top:calc(100% + 7px);right:clamp(10px,2vw,32px);z-index:1;
+ width:min(420px,calc(100vw - 20px));max-height:min(560px,72dvh);overflow:hidden;padding:0 9px 10px;
+ border:1px solid #96745b;border-radius:9px;background:linear-gradient(150deg,#25212b,#10151c 70%);
+ box-shadow:0 18px 50px #000c;animation:km-reveal .18s ease-out}
 @keyframes km-reveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
-.km-list-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 10px 8px;color:#e7c295;font-size:9px;letter-spacing:.16em;font-weight:700}
-.km-list-head small{color:#aa8977;font-size:9px;white-space:nowrap}
-.km-list{max-height:min(340px,42dvh);overflow-y:auto;scrollbar-color:#795744 #12141a;scrollbar-width:thin}
-.km-list-item{width:100%;border:0;border-top:1px solid #836c5340;background:transparent;display:flex;align-items:center;gap:10px;text-align:left;padding:9px 10px;border-radius:3px}
-.km-list-item:hover{background:#3b2a2a}.km-list-item.active{background:linear-gradient(90deg,#68423e99,#34252a33);box-shadow:inset 3px 0 #d7a372}
-.km-list-number{font:500 11px Georgia,serif;color:#c4a17c;width:22px;flex-shrink:0}.km-list-info{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
-.km-list-info strong{color:#f0debf;font-size:12px;font-weight:600;line-height:1.25}
-.km-list-info small{color:#b19c88;font-size:10px;line-height:1.3}
-.km-list-duration{font-size:10px;color:#b69d85;white-space:nowrap}
+.km-list-head{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:14px 9px 10px;border-bottom:1px solid #9374576b;
+ color:#e8c395;font:750 10px/1.4 system-ui,sans-serif;letter-spacing:.1em}
+.km-list-head small{color:#c4a486;font-size:9px;white-space:nowrap}
+.km-list{max-height:min(476px,59dvh);overflow-y:auto;scrollbar-color:#765847 #151721;scrollbar-width:thin}
+.km-list-item{width:100%;display:flex;align-items:center;gap:9px;background:transparent;border:0;border-bottom:1px solid #a17c5731;
+ text-align:left;padding:10px 8px;border-radius:3px}
+.km-list-item:hover{background:#4c353a}.km-list-item.active{background:linear-gradient(90deg,#6e49429c,transparent);box-shadow:inset 3px 0 #deb37c}
+.km-list-number{min-width:21px;color:#c1a27b;font:12px Georgia,serif}
+.km-list-info{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.km-list-info strong{font-size:12px;font-weight:650;line-height:1.2;color:#f4dfc2}
+.km-list-info small{color:#bea995;font-size:10px;line-height:1.3}
+.km-list-duration{font-size:10px;color:#b6a18a;white-space:nowrap}
 .km-sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:460px){.kurotsuki-player{width:min(360px,calc(100vw - 18px));right:9px;bottom:9px}.km-head{padding:12px 12px 7px}.km-emblem{width:40px;height:40px}.km-album{font-size:16px}.km-track{padding:3px 13px 9px}.km-track-name{font-size:20px}.km-progress{padding:2px 13px 8px}.km-controls,.km-state{margin:0 13px}.km-list{max-height:35dvh}}
-@media(prefers-reduced-motion:reduce){.kurotsuki-player .km-emblem,.km-list-panel{animation:none!important}}
+@media(max-width:1060px){
+ :root{--km-bar-height:96px}
+ .kurotsuki-player{grid-template-columns:minmax(175px,1fr) minmax(205px,1.3fr) minmax(220px,auto);
+  grid-template-rows:52px 32px;grid-template-areas:"head track controls" "progress progress controls";
+  padding:2px 16px;column-gap:13px;row-gap:0}
+ .km-head{align-self:center}.km-album{font-size:14px}
+ .km-progress{padding:0 7px 0 2px}
+ .km-controls{grid-row:1 / span 2;align-self:center}
+ .km-track-name{font-size:16px}
+}
+@media(max-width:800px){
+ #site .rail{top:calc(70px + var(--km-bar-height))!important;height:auto!important}
+}
+@media(max-width:650px){
+ :root{--km-bar-height:119px}
+ .kurotsuki-player{grid-template-columns:minmax(0,1fr) 68px;grid-template-rows:45px 39px 27px;
+  grid-template-areas:"track head" "controls controls" "progress progress";
+  gap:0 8px;padding:3px 12px}
+ .km-head{justify-self:end}.km-heading,.km-emblem{display:none}
+ .km-playlist-button{height:34px;width:64px;font-size:14px!important}
+ .km-track{align-self:center}.km-track-name{font-size:16px}.km-number{font-size:8px}.km-artist{font-size:10px}
+ .km-controls{grid-row:auto;justify-content:space-between;align-self:center}
+ .km-transport{gap:5px}.km-play{width:36px;height:33px}
+ .km-sound{width:125px;max-width:38%}
+ .km-progress{padding:0;align-self:center}
+ .km-list-panel{right:8px;top:calc(100% + 5px)}
+}
+@media(max-width:360px){.km-track-name{font-size:14px}.km-sound{max-width:39%}.km-artist{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.is-playing .km-emblem,.km-list-panel{animation:none!important}}
