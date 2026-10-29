@@ -73,6 +73,7 @@ body.bm-turning #kurotsuki-player{visibility:hidden!important}
 
 /* The illustration is static and unadorned until the reader turns the page. */
 #blackmoon-landing .bm-art{animation:none!important;transform:none!important}
+#blackmoon-landing::after{display:none!important}
 #blackmoon-landing .bm-haze,#blackmoon-landing .bm-embers{display:none!important}
 #blackmoon-landing .bm-open-page{
  position:absolute;inset:69px 0 0;display:block;z-index:8;width:100%;height:auto;
