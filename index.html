@@ -281,7 +281,7 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
 @media(prefers-reduced-motion:reduce){#gate-scene .maribel-speech{animation:none!important}}
 #modal-copy{white-space:pre-line}
 @media(max-width:540px){#sound{display:inline-flex!important;align-items:center;justify-content:center;font-size:0!important;min-width:38px;height:35px;padding:7px!important;line-height:1!important}#sound::before{content:'♫';font-size:18px;color:#e9c898}#sound[aria-pressed="true"]::before{color:#9ed9c1}}
-</style><link rel="stylesheet" href="assets/audio/player.css?v=black-moon-playlist-v1"></head>
+</style><link rel="stylesheet" href="assets/audio/player.css?v=black-moon-topbar-v3"></head>
 <body>
 <section id="gate-scene" aria-label="The Black Moon — Maribel's invitation">
  <div class="gate-paint" aria-hidden="true"></div><div class="maribel-night" aria-hidden="true"></div>
@@ -298,7 +298,7 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
  <div class="guide-ink-curtain" aria-hidden="true"></div><div class="guide-ink-thread" aria-hidden="true"></div>
  </section>
 <div id="site" aria-label="Kurotsuki Academy interactive archive">
-<header class="site-top"><div class="brandmark"><div class="mon" aria-hidden="true">黒</div><div><b>KUROTSUKI</b><small>THE BLACK MOON CODEX</small></div></div><div class="top-actions"><span class="prototype-tag">THE BLACK MOON CODEX · 2026</span><button id="sound" type="button" aria-label="Show music playlist" aria-controls="km-playlist">♫ Music &amp; Playlist</button><button id="return-gate" type="button">↶ Back to Maribel</button></div></header>
+<header class="site-top"><div class="brandmark"><div class="mon" aria-hidden="true">黒</div><div><b>KUROTSUKI</b><small>THE BLACK MOON CODEX</small></div></div><div class="top-actions"><span class="prototype-tag">THE BLACK MOON CODEX · 2026</span><button id="return-gate" type="button">↶ Back to Maribel</button></div></header>
 <div class="shell"><aside class="rail"><div class="rail-head"><div class="jp">黒月録</div><span>Where stories walk beside you</span></div><nav class="rail-nav" aria-label="Codex tabs">
 <button class="active" data-tab="overview"><span class="number">01</span><span class="symbol">月</span> The Codex</button>
 <button data-tab="academy"><span class="number">02</span><span class="symbol">院</span> The Academy</button>
@@ -340,7 +340,7 @@ $('return-gate').addEventListener('click',()=>{$('site').classList.remove('open'
 const tabs=[...document.querySelectorAll('.rail-nav [data-tab]')];let current='overview',busy=false;
 function switchTo(tab,immediate=false){if(!D||!$('page-'+tab)||(!immediate&&tab===current))return;current=tab;tabs.forEach(b=>{const yes=b.dataset.tab===tab;b.classList.toggle('active',yes);b.setAttribute('aria-current',yes?'page':'false')});const go=()=>{document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+tab));window.scrollTo({top:0,behavior:'instant'})};if(immediate){go();return}const wipe=$('transition-stroke');wipe.classList.remove('swipe');void wipe.offsetWidth;wipe.classList.add('swipe');setTimeout(go,230);setTimeout(()=>wipe.classList.remove('swipe'),570)}
 tabs.forEach(b=>b.addEventListener('click',()=>switchTo(b.dataset.tab)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>switchTo(b.dataset.go)));
-$('sound').addEventListener('click',()=>{const playlist=document.getElementById('km-playlist-toggle');if(playlist)playlist.click()});
+
 const colorMap={red:'#bd6d63',violet:'#ad9bd7',green:'#8dab92',gold:'#d4b275'};
 const overview=$('overview-depts');D.departments.forEach(d=>{const b=document.createElement('button');b.type='button';b.className='ink-card';b.style.cssText='--accent:'+colorMap[d.tone]+';text-align:left;color:inherit';b.innerHTML='<span class="glyph">'+d.glyph+'</span><div class="eyebrow">'+d.name.toUpperCase()+'</div><h4>'+d.quote+'</h4><small>EXPLORE THE DEPARTMENT →</small>';b.addEventListener('click',()=>{switchTo('academy');selectDept(d.id)});overview.append(b)});
 function selectDept(id){const d=D.departments.find(x=>x.id===id)||D.departments[0];$('dept-name').textContent=d.name+' Department';$('dept-motto').textContent=d.quote.toUpperCase();$('dept-description').textContent=d.text+' Head of Department: '+d.lead+'.';$('dept-roster').replaceChildren();D.characters.filter(c=>c.name===d.lead||c.group==='Academy Faculty'&&c.name===d.lead).forEach(c=>{const chip=document.createElement('button');chip.className='faction-option';chip.type='button';chip.style.cssText='padding:12px 17px';chip.textContent='View '+c.name+' →';chip.addEventListener('click',()=>openDossier(c));$('dept-roster').append(chip)});document.querySelectorAll('[data-dept]').forEach(b=>b.style.borderColor=b.dataset.dept===d.id?colorMap[d.tone]:'#8e745439')}
@@ -390,4 +390,4 @@ function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hi
  /* Separate low-cost paper-sweep effect that accompanies the archive's existing ink wipe. */
  const observer=new MutationObserver(()=>{const stage=$('gate-scene');if(stage.classList.contains('vanished'))return;});observer.observe($('gate-scene'),{attributes:true,attributeFilter:['class']});
 })();
-</script><script defer src="assets/audio/player.js?v=black-moon-playlist-v2"></script></body></html>
+</script><script defer src="assets/audio/player.js?v=black-moon-topbar-v3"></script></body></html>
