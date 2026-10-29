@@ -1,54 +1,144 @@
-/* Fixed Codex navigation v1
-   The music console, Codex header and desktop sidebar are viewport anchored.
-   Only article content scrolls; narrow layouts use a scrollable horizontal rail. */
-:root{--codex-header-height:78px;--codex-rail-width:230px}
+/* Kurotsuki Codex — anchored navigation v2
+   Desktop: header at viewport top; record player centered inside it; full-height rail.
+   Mobile: header, music console, then a fixed horizontal section navigation.
+   The document scrolls, never an inner desktop sidebar. */
+:root{
+  --codex-header-height:78px;
+  --codex-rail-width:230px;
+  --codex-nav-height:56px;
+}
+/* The music console floats, so its former global padding must not push the Codex down. */
+body:has(#site.open){padding-top:0!important}
+html:has(#site.open){scroll-padding-top:calc(var(--codex-header-height) + 16px)!important}
 #site.open .site-top{
   position:fixed!important;
-  top:var(--km-bar-height,78px)!important;
-  left:0!important;right:0!important;bottom:auto!important;
+  inset:0 0 auto 0!important;
+  top:0!important;
+  left:0!important;right:0!important;
   height:var(--codex-header-height)!important;
-  width:100%!important;z-index:115!important;
+  width:100%!important;
   margin:0!important;
+  z-index:115!important;
 }
+/* The fixed header's own centered music player remains reachable above its artwork. */
 #site .shell{
   display:grid!important;
   grid-template-columns:var(--codex-rail-width) minmax(0,1fr)!important;
   align-items:start!important;
   padding-top:var(--codex-header-height)!important;
-  min-height:calc(100dvh - var(--codex-header-height))!important;
+  min-height:100dvh!important;
 }
 #site .rail{
   position:fixed!important;
-  left:0!important;right:auto!important;bottom:0!important;
-  top:calc(var(--km-bar-height,78px) + var(--codex-header-height))!important;
+  left:0!important;right:auto!important;
+  top:var(--codex-header-height)!important;bottom:0!important;
   width:var(--codex-rail-width)!important;
-  height:auto!important;
-  max-height:calc(100dvh - var(--km-bar-height,78px) - var(--codex-header-height))!important;
-  overflow-x:hidden!important;
-  overflow-y:auto!important;
-  overscroll-behavior:contain;
-  scrollbar-width:thin;
-  scrollbar-color:#a07b5b #171a1d;
+  height:calc(100dvh - var(--codex-header-height))!important;
+  max-height:none!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  padding:clamp(9px,1.6vh,22px) 12px clamp(8px,1.5vh,18px)!important;
+  overscroll-behavior:none;
   z-index:108!important;
 }
+#site .rail-head{
+  flex:0 0 auto!important;
+  margin-bottom:clamp(6px,1.25vh,15px)!important;
+  padding:3px 12px clamp(7px,1.4vh,16px)!important;
+}
+#site .rail-head .jp{font-size:clamp(18px,2.5vh,24px)!important}
+#site .rail-head span{font-size:9px!important;margin-top:5px!important}
+#site .rail-nav{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-evenly!important;
+  gap:clamp(0px,.35vh,4px)!important;
+}
+#site .rail-nav button{
+  flex:0 1 auto;
+  min-height:0!important;
+  padding:clamp(5px,1.1vh,11px) 7px!important;
+  line-height:1.22!important;
+  font-size:clamp(10px,1.35vh,12px)!important;
+  gap:clamp(4px,.8vw,10px)!important;
+}
+#site .rail-nav button .number{width:17px!important;flex-shrink:0}
+#site .rail-nav button .symbol{width:22px!important;flex-shrink:0}
+#site .rail-gallery-link{
+  flex:0 0 auto;
+  margin:clamp(4px,.75vh,8px) 2px!important;
+  padding:clamp(7px,1vh,11px) 9px!important;
+  font-size:10px!important;
+}
+#site .rail-bottom{
+  flex:0 0 auto;
+  padding:clamp(6px,1.2vh,15px) 9px 1px!important;
+  margin-top:clamp(5px,.75vh,9px)!important;
+  font-size:9px!important;
+  line-height:1.4!important;
+}
+#site .rail-bottom .seal-small{font-size:18px!important;margin-bottom:5px!important}
+#site .rail-bottom p{margin:5px 0!important;font-size:9px!important}
 #site .main-area{
   grid-column:2!important;
   grid-row:1!important;
   min-width:0!important;
   align-self:start!important;
 }
-#site .page{scroll-margin-top:calc(var(--km-bar-height,78px) + var(--codex-header-height) + 18px)}
-@media(max-width:1220px) and (min-width:801px){
+#site .page{scroll-margin-top:calc(var(--codex-header-height) + 16px)!important}
+/* Keep the record player unobstructed between the brand and return button. */
+@media(min-width:1500px){
+  body:has(#site.open) .kurotsuki-player{top:7px!important}
+}
+@media(min-width:801px) and (max-width:1499px){
+  body:has(#site.open) .kurotsuki-player{
+    top:7px!important;
+    width:min(520px,calc(100vw - 410px))!important;
+  }
+  #site.open .site-top .prototype-tag{display:none!important}
+}
+@media(min-width:801px) and (max-width:1180px){
   :root{--codex-rail-width:205px}
+  body:has(#site.open) .kurotsuki-player{
+    width:min(420px,calc(100vw - 410px))!important;
+    grid-template-columns:56px minmax(90px,1fr) minmax(130px,auto)!important;
+    column-gap:6px!important;
+    padding:5px 9px!important;
+  }
+  body:has(#site.open) .km-emblem,
+  body:has(#site.open) .km-heading{display:none!important}
+  body:has(#site.open) .km-head{justify-content:center!important}
+  body:has(#site.open) .km-track-name{font-size:13px!important}
+  body:has(#site.open) .km-controls{gap:3px!important}
+  body:has(#site.open) .km-sound{width:56px!important;min-width:45px!important}
+}
+/* The bottom decorative note yields space on short screens; all eight tabs remain visible. */
+@media(max-height:740px) and (min-width:801px){
+  #site .rail-bottom{display:none!important}
+  #site .rail-head{margin-bottom:4px!important;padding-bottom:6px!important}
+  #site .rail-nav button{padding:4px 7px!important}
+  #site .rail-gallery-link{padding:6px 8px!important}
 }
 @media(max-width:800px){
-  :root{--codex-header-height:70px;--codex-nav-height:59px}
+  :root{--codex-header-height:70px}
+  body:has(#site.open) .kurotsuki-player{
+    top:calc(var(--codex-header-height) + 5px)!important;
+  }
+  #site.open .site-top{
+    top:0!important;
+    height:var(--codex-header-height)!important;
+    z-index:115!important;
+  }
   #site .shell{
     display:block!important;
-    padding-top:calc(var(--codex-header-height) + var(--codex-nav-height))!important;
+    padding-top:calc(var(--codex-header-height) + var(--km-bar-height) + var(--codex-nav-height))!important;
   }
   #site .rail{
-    top:calc(var(--km-bar-height,78px) + var(--codex-header-height))!important;
+    top:calc(var(--codex-header-height) + var(--km-bar-height))!important;
     left:0!important;right:0!important;bottom:auto!important;
     width:100%!important;
     height:var(--codex-nav-height)!important;
@@ -59,18 +149,34 @@
     align-items:center!important;
     overflow-x:auto!important;
     overflow-y:hidden!important;
-    white-space:nowrap;
+    white-space:nowrap!important;
     border-right:0!important;
     border-bottom:1px solid var(--line);
     background:#14181bf5!important;
+    overscroll-behavior-x:contain!important;
   }
-  #site .rail-nav{flex-direction:row!important;flex-wrap:nowrap!important;min-width:max-content}
+  #site .rail-head,#site .rail-bottom{display:none!important}
+  #site .rail-gallery-link{display:none!important}
+  #site .rail-nav{
+    flex:none!important;min-height:0!important;
+    flex-direction:row!important;
+    justify-content:flex-start!important;
+    flex-wrap:nowrap!important;
+    min-width:max-content!important;
+  }
+  #site .rail-nav button{
+    flex:none!important;padding:9px 11px!important;
+    font-size:11px!important;min-height:38px!important;
+  }
+  #site .rail-nav button .number{display:none}
   #site .main-area{
     grid-column:auto!important;grid-row:auto!important;
     margin:0 auto!important;
   }
-  #site .page{scroll-margin-top:calc(var(--km-bar-height,78px) + var(--codex-header-height) + var(--codex-nav-height) + 14px)}
+  html:has(#site.open){scroll-padding-top:calc(var(--codex-header-height) + var(--km-bar-height) + var(--codex-nav-height) + 12px)!important}
+  #site .page{scroll-margin-top:calc(var(--codex-header-height) + var(--km-bar-height) + var(--codex-nav-height) + 12px)!important}
 }
 @media(max-width:540px){
-  #site .site-top{padding:0 12px!important}
+  #site.open .site-top{padding:0 12px!important}
+  #site .rail-nav button{padding:8px 10px!important}
 }
