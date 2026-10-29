@@ -1,0 +1,96 @@
+/* The Hollow Lantern — illustrated setting and full-scale patron dossiers. */
+#site #page-tavern .tavern-establishment{
+  position:relative;display:block;margin:0 0 32px;padding:0;overflow:hidden;isolation:isolate;
+  width:100%;min-height:320px;max-height:580px;aspect-ratio:16/8;
+  border:1px solid #b58d644f;
+  background:linear-gradient(130deg,#2c1e1a,#141b1d);
+  box-shadow:0 18px 45px #0009,inset 0 0 0 3px #a87c4114;
+}
+#site #page-tavern .tavern-establishment>img{
+  display:block;position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;filter:saturate(.96);
+}
+#site #page-tavern .tavern-establishment:after{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(0deg,#090b0ee6 0%,#090b0e9d 24%,transparent 65%);
+}
+#site #page-tavern .tavern-establishment-caption{
+ position:absolute;z-index:1;left:clamp(18px,4vw,55px);bottom:clamp(20px,4vw,42px);
+ max-width:min(90%,690px);display:flex;flex-direction:column;gap:12px;
+ color:#fae9d1;text-shadow:0 2px 12px #000e;
+}
+#site #page-tavern .tavern-establishment-caption .eyebrow{
+ color:#e7bd88;font:700 10px/1.4 var(--sans);letter-spacing:.19em;
+}
+#site #page-tavern .tavern-establishment-caption strong{
+ font:500 clamp(28px,3.5vw,52px)/1.13 var(--ff);
+}
+#site #page-tavern .tavern-establishment-caption em{font-weight:400;color:#eac89b}
+#site #page-tavern .tavern-establishment-caption>span:last-child{
+ font:12px/1.6 var(--ff);color:#dfc5a8;
+}
+#site #page-tavern .tavern-hosts-heading{margin:15px 0 19px}
+#site #page-tavern .tavern-featured-hosts{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:23px;margin-bottom:40px;
+}
+#site #page-tavern .tavern-host-card{
+ display:flex;flex-direction:column;gap:0;overflow:hidden;min-width:0;min-height:520px;padding:0;
+ color:#ecd9be;cursor:pointer;text-align:left;
+ border:1px solid #a886625f;
+ background:radial-gradient(circle at 80% 7%,#80493624,transparent 40%),linear-gradient(155deg,#242023,#12181a 72%);
+ box-shadow:0 15px 38px #0008;
+ transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+#site #page-tavern .tavern-host-card:hover{
+ transform:translateY(-4px);border-color:#d3aa7c;
+ box-shadow:0 18px 45px #000b,0 0 24px #b77d4533;
+}
+#site #page-tavern .tavern-host-card:focus-visible{outline:2px solid #e6cb9f;outline-offset:4px}
+#site #page-tavern .tavern-host-portrait{
+ display:block;position:relative;flex:0 0 auto;aspect-ratio:16/10;min-height:260px;
+ overflow:hidden;background:radial-gradient(circle,#45302b,#14151a 80%);
+ border-bottom:1px solid #a9876255;
+}
+#site #page-tavern .tavern-host-portrait:after{
+ content:"";position:absolute;inset:58% 0 0;pointer-events:none;
+ background:linear-gradient(transparent,#12171b82);
+}
+#site #page-tavern .tavern-host-portrait img{
+ display:block;width:100%;height:100%;object-fit:contain;object-position:center;
+ background:transparent;transition:transform .45s ease;
+}
+#site #page-tavern .tavern-host-card:hover .tavern-host-portrait img{transform:scale(1.025)}
+#site #page-tavern .tavern-host-info{
+ flex:1;display:flex;flex-direction:column;padding:clamp(18px,2.5vw,30px);
+}
+#site #page-tavern .tavern-host-info .eyebrow{
+ font:700 10px/1.5 var(--sans);letter-spacing:.14em;color:#d4a77d;
+}
+#site #page-tavern .tavern-host-info h3{
+ font:500 clamp(27px,2.8vw,39px)/1.2 var(--ff);margin:8px 0 14px;color:#f4e1c5;
+}
+#site #page-tavern .tavern-host-info p{
+ color:#c8b8a7;font:13px/1.9 var(--ff);margin:0 0 22px;
+}
+#site #page-tavern .tavern-profile-link{
+ display:block;margin-top:auto;padding-top:15px;border-top:1px solid #b9986945;
+ color:#e0b489;font:700 10px/1.35 var(--sans);letter-spacing:.13em;
+}
+@media(max-width:970px){
+ #site #page-tavern .tavern-featured-hosts{gap:15px}
+ #site #page-tavern .tavern-host-card{min-height:460px}
+ #site #page-tavern .tavern-host-info{padding:18px}
+}
+@media(max-width:680px){
+ #site #page-tavern .tavern-establishment{aspect-ratio:4/3;min-height:300px}
+ #site #page-tavern .tavern-establishment-caption{left:17px;bottom:17px;gap:8px}
+ #site #page-tavern .tavern-establishment-caption strong{font-size:clamp(25px,7vw,36px)}
+ #site #page-tavern .tavern-featured-hosts{grid-template-columns:1fr;gap:20px}
+ #site #page-tavern .tavern-host-card{min-height:0}
+ #site #page-tavern .tavern-host-portrait{aspect-ratio:16/10}
+ #site #page-tavern .tavern-host-info h3{font-size:30px}
+}
+@media(prefers-reduced-motion:reduce){
+ #site #page-tavern .tavern-host-card,
+ #site #page-tavern .tavern-host-portrait img{transition:none}
+}
