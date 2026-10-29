@@ -1,21 +1,21 @@
-# Kurotsuki Academy — Black Moon Records
+# Black Moon Records — Kurotsuki Academy soundtrack
 
-Place the 11 original user-created MP3 files here with these exact filenames. The shared player at `assets/audio/player.js` reads these files in order.
+The music player (`assets/audio/player.js`) uses the original MP3 filenames as uploaded to GitHub. Track 01 is the main theme and is preselected when the page opens; audio begins only after the visitor presses Play.
 
-| Order | Display title | Required filename |
+| # | Track | Exact existing file |
 |---|---|---|
-| 01 | Whispers Beneath the Black Moon | `whispers-beneath-the-black-moon.mp3` |
-| 02 | Lanterns Beyond the Veil | `lanterns-beyond-the-veil.mp3` |
-| 03 | A Tavern Saved For You | `a-tavern-saved-for-you.mp3` |
-| 04 | One More Round | `one-more-round.mp3` |
-| 05 | One More Round, Dear Friend | `one-more-round-dear-friend.mp3` |
-| 06 | The Lantern's Mischievous Guide (Maribel) | `the-lanterns-mischievous-guide.mp3` |
-| 07 | A Smile Behind the Smoke (Mr. Hollow) | `a-smile-behind-the-smoke.mp3` |
-| 08 | The Hunt's Tempest (Shirayuki) | `the-hunts-tempest.mp3` |
-| 09 | Thunder Without a Master (Tatsuya Kagetsu) | `thunder-without-a-master.mp3` |
-| 10 | The Foxfire Masquerade (Shizuru Nuehara) | `the-foxfire-masquerade.mp3` |
-| 11 | Mercy Beneath the Jade Sky (Lóngqí Seiran) | `mercy-beneath-the-jade-sky.mp3` |
+| 01 | Whispers Beneath the Black Moon | `Whispers Beneath the Black Moon.mp3` |
+| 02 | Lanterns Beyond the Veil | `Lanterns Beyond the Veil.mp3` |
+| 03 | The Night Governs — Tsukuyomi Shizuka | `The Night Governs - Tsukuyomi Shizuka.mp3` |
+| 04 | A Tavern Saved For You | `A Tavern Saved For You - The Hollow Tavern.mp3` |
+| 05 | One More Round | `One More Round - The Hollow Tavern.mp3` |
+| 06 | One More Round, Dear Friend | `One More Round, Dear Friend - The Hollow Tavern.mp3` |
+| 07 | The Lantern's Mischievous Guide — Maribel | `The Lanterns Mishceivous Guide - Maribel.mp3` |
+| 08 | A Smile Behind the Smoke — Mr. Hollow | `A Smile Behind the Smoke - Mr.Hollow.mp3` |
+| 09 | The Hunt's Tempest — Shirayuki | `The Hunt's Tempest - Shirayuki.mp3` |
+| 10 | Thunder Without a Master — Tatsuya Kagetsu | `Thunder Without a Master - Tatsyuya Kagetsu.mp3` |
+| 11 | The Foxfire Masquerade — Shizuru Nuehara | `The Foxfire Masquerade - Shizuru Nuehara.mp3` |
+| 12 | Mercy Beneath the Jade Sky — Lóngqí Seiran | `Mercy Beneath the Jade Sky - Lóngqí Seiran.mp3` |
+| 13 | Autumn Festival at Kurotsuki | `../autumn-festival-at-kurotsuki.mp3` |
 
-The existing `autumn-festival-at-kurotsuki.mp3` stays in the parent directory as bonus track 12. The player never autoplays; listeners choose when to start.
-
-**Status:** The MP3 files are not supplied by this README or the soundtrack player code. They must be added to this folder for the new tracks to play.
+Track 13 is the original festival bonus theme located in `assets/audio/`. The other 12 tracks are in this directory. The source filenames intentionally retain their original capitalization and spelling; do not rename them without also updating the player references.
