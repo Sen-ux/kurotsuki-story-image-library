@@ -218,7 +218,7 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 
 /* Shirayuki's discreet nameplate — on the approved artwork, not part of the image. */
 #blackmoon-landing .bm-shirayuki-pin{
- position:absolute;right:clamp(55px,13vw,245px);top:clamp(220px,43%,440px);
+ position:absolute;right:clamp(20px,5.5vw,110px);top:clamp(165px,39%,410px);
  z-index:23;display:inline-flex;align-items:center;justify-content:center;gap:7px;
  min-height:37px;padding:9px 13px;border:1px solid #d9b38aaf;border-radius:999px;
  background:linear-gradient(115deg,#121723ed,#311d29ed);color:#f3dfc2;
@@ -281,7 +281,7 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
  to{opacity:1;transform:translateY(0) scale(1)}
 }
 @media(max-width:950px){
- #blackmoon-landing .bm-shirayuki-pin{right:18px;top:39%;padding:8px 10px}
+ #blackmoon-landing .bm-shirayuki-pin{right:clamp(12px,3vw,30px);top:37%;padding:8px 10px}
  #blackmoon-landing .bm-shirayuki-card{right:12px;top:48%;width:245px;padding:12px}
 }
 @media(max-width:650px){
