@@ -26,7 +26,6 @@
   const sealedSites=[
     ["Abandoned Pagoda","Hidden Places/Abandoned_Pagoda.png","A silhouette the old maps refuse to acknowledge."],
     ["Hidden Shrine Roads","Hidden Places/Hidden_Shrine_Roads.png","Paths drawn only in the margins of forgotten maps."],
-    ["Masked Territories","Hidden Places/Masked_Territories.png","An estate of masks, etiquette, and unanswered debts."],
     ["Millennium Tree","Hidden Places/Millennium_Tree.png","Ancient roots woven through the oldest whispers."],
     ["Moonlit Serenity Springs","Hidden Places/Moonlit_Serenity_Springs.png","Still waters beyond the paths usually taken."],
     ["Myriad Horrors Forest","Hidden Places/Myriad_Horrors_Forest.png","A forest where even silence can be a warning."],
