@@ -114,19 +114,20 @@
   const unlock=$("ninth-counterseal");
   const cover=$("ninth-seal");
   const gallery=$("ninth-gallery");
+  const grid=$("ninth-cards");
   const reseal=$("ninth-reseal");
   let opened=false;
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
-  function showContents(){
+  function showContents(shouldFocus=true){
     cover.hidden=true;gallery.hidden=false;
-    gallery.replaceChildren(...sealedSites.map((item,i)=>makeCard(item,i,true)));
+    grid.replaceChildren(...sealedSites.map((item,i)=>makeCard(item,i,true)));
     sealedPage.classList.add("is-unsealed");
     unlock.setAttribute("aria-expanded","true");
     opened=true;
     try{sessionStorage.setItem("kurotsuki.ninth-silence.unsealed","yes");}catch(e){}
-    gallery.querySelector(".atlas-site-card")?.focus({preventScroll:true});
+    if(shouldFocus)grid.querySelector(".atlas-site-card")?.focus({preventScroll:true});
   }
-  if(sealedPage&&unlock&&cover&&gallery&&reseal){
+  if(sealedPage&&unlock&&cover&&gallery&&grid&&reseal){
     unlock.addEventListener("click",()=>{
       if(opened||cover.classList.contains("is-opening"))return;
       if(reduced.matches){showContents();return;}
@@ -135,13 +136,13 @@
     });
     reseal.addEventListener("click",()=>{
       opened=false;gallery.hidden=true;cover.hidden=false;
-      gallery.replaceChildren();
+      grid.replaceChildren();
       sealedPage.classList.remove("is-unsealed");
       unlock.setAttribute("aria-expanded","false");
       try{sessionStorage.removeItem("kurotsuki.ninth-silence.unsealed");}catch(e){}
       unlock.focus({preventScroll:true});
     });
-    try{if(sessionStorage.getItem("kurotsuki.ninth-silence.unsealed")==="yes")showContents();}catch(e){}
+    try{if(sessionStorage.getItem("kurotsuki.ninth-silence.unsealed")==="yes")showContents(false);}catch(e){}
   }
   window.KurotsukiVeiledAtlas={mainSites:mainSites.length,sealedSites:sealedSites.length,emblems:Object.keys(emblems).length};
 })();
