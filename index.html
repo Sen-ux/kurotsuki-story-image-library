@@ -283,7 +283,7 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
 @media(prefers-reduced-motion:reduce){#gate-scene .maribel-speech{animation:none!important}}
 #modal-copy{white-space:pre-line}
 @media(max-width:540px){#sound{display:inline-flex!important;align-items:center;justify-content:center;font-size:0!important;min-width:38px;height:35px;padding:7px!important;line-height:1!important}#sound::before{content:'♫';font-size:18px;color:#e9c898}#sound[aria-pressed="true"]::before{color:#9ed9c1}}
-</style><link rel="stylesheet" href="assets/audio/player.css?v=autoplay-v5"></head>
+</style><link rel="stylesheet" href="assets/audio/player.css?v=autoplay-v5"><link rel="stylesheet" href="assets/entrance/black-moon.css?v=blueburn-2026-01"></head>
 <body>
 <section id="gate-scene" aria-label="The Black Moon — Maribel's invitation">
  <div class="gate-paint" aria-hidden="true"></div><div class="maribel-night" aria-hidden="true"></div>
@@ -336,7 +336,7 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
 (()=>{'use strict';
 const D=JSON.parse(document.getElementById('world-data').textContent);const $=id=>document.getElementById(id);
 const img=(src,alt,cl='',fallback=[])=>{const pic=document.createElement('img');pic.src=src;pic.alt=alt;pic.loading='lazy';pic.decoding='async';pic.className=cl;const retry=[...fallback];pic.addEventListener('error',()=>{if(retry.length){pic.src=retry.shift()}else{pic.classList.add('broken');pic.alt=alt+' — artwork temporarily unavailable'}});return pic};
-function gateEnter(){if($('gate-scene').classList.contains('gate-scene-enter'))return;$('gate-scene').classList.add('gate-scene-enter');setTimeout(()=>{$('site').classList.add('open');$('gate-scene').classList.add('vanished');window.scrollTo({top:0,behavior:'instant'});},1450)}
+function gateEnter(){if(window.KurotsukiEntrance?.ready){window.KurotsukiEntrance.enter();return;}if($('gate-scene').classList.contains('gate-scene-enter'))return;$('gate-scene').classList.add('gate-scene-enter');setTimeout(()=>{$('site').classList.add('open');$('gate-scene').classList.add('vanished');window.scrollTo({top:0,behavior:'instant'});},1450)}
 $('enter').addEventListener('click',gateEnter);
 $('return-gate').addEventListener('click',()=>{$('site').classList.remove('open');$('gate-scene').classList.remove('vanished','gate-scene-enter');switchTo('overview',true);window.scrollTo(0,0)});
 const tabs=[...document.querySelectorAll('.rail-nav [data-tab]')];let current='overview',busy=false;
@@ -392,4 +392,4 @@ function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hi
  /* Separate low-cost paper-sweep effect that accompanies the archive's existing ink wipe. */
  const observer=new MutationObserver(()=>{const stage=$('gate-scene');if(stage.classList.contains('vanished'))return;});observer.observe($('gate-scene'),{attributes:true,attributeFilter:['class']});
 })();
-</script><script defer src="assets/audio/player.js?v=hunters-16-v7"></script></body></html>
+</script><script defer src="assets/audio/player.js?v=hunters-16-v7"></script><script defer src="assets/entrance/black-moon.js?v=blueburn-2026-01"></script></body></html>
