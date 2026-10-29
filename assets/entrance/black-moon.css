@@ -150,7 +150,7 @@ body.bm-ready #gate-scene>.gate-fallback-art,
 body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 /* The guide is a real interface overlay, not painted onto the art. */
 #blackmoon-landing .bm-guide{
- position:absolute;left:clamp(22px,5.2vw,88px);top:clamp(132px,28%,270px);
+ position:absolute;left:clamp(22px,5.2vw,88px);top:clamp(220px,43%,440px);
  z-index:20;width:clamp(235px,20vw,300px);padding:17px 18px 16px;
  border:1px solid #c8a376a3;border-radius:7px;
  background:radial-gradient(circle at 10% 0%,#79504844,transparent 55%),linear-gradient(135deg,#171721f3,#18191ef2 76%);
@@ -194,7 +194,7 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 #blackmoon-landing .bm-guide-actions button:focus-visible{outline:2px solid #d9eff2;outline-offset:2px}
 @keyframes bm-guide-arrival{from{opacity:0;transform:translate(-10px,6px)}to{opacity:1;transform:none}}
 @media(max-width:950px){
- #blackmoon-landing .bm-guide{left:clamp(13px,3vw,25px);top:30%;width:250px;padding:13px}
+ #blackmoon-landing .bm-guide{left:clamp(13px,3vw,25px);top:42%;width:250px;padding:13px}
  #blackmoon-landing .bm-guide-name{font-size:19px}
  #blackmoon-landing .bm-guide p{font-size:11px;line-height:1.4}
  #blackmoon-landing .bm-guide-head{margin:5px 0}
@@ -213,4 +213,93 @@ body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
 @media(prefers-reduced-motion:reduce){
  #blackmoon-landing .bm-guide{animation:none!important}
  #blackmoon-landing .bm-guide-actions button{transition:none!important}
+}
+
+
+/* Shirayuki's discreet nameplate — on the approved artwork, not part of the image. */
+#blackmoon-landing .bm-shirayuki-pin{
+ position:absolute;right:clamp(55px,13vw,245px);top:clamp(220px,43%,440px);
+ z-index:23;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+ min-height:37px;padding:9px 13px;border:1px solid #d9b38aaf;border-radius:999px;
+ background:linear-gradient(115deg,#121723ed,#311d29ed);color:#f3dfc2;
+ box-shadow:0 8px 25px #000c,inset 0 0 0 2px #f3d19a12;
+ font:750 10px/1.25 var(--sans);letter-spacing:.12em;text-shadow:0 1px 4px #000;
+ cursor:pointer;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s;
+}
+#blackmoon-landing .bm-shirayuki-pin:hover,
+#blackmoon-landing .bm-shirayuki-pin[aria-expanded="true"]{
+ transform:translateY(-2px);border-color:#f6dcaf;
+ background:linear-gradient(115deg,#39313e,#51313e);
+ box-shadow:0 9px 27px #000c,0 0 20px #e2b47b40;
+}
+#blackmoon-landing .bm-shirayuki-pin:focus-visible,
+#blackmoon-landing .bm-shirayuki-close:focus-visible{outline:2px solid #ffdfaa;outline-offset:3px}
+#blackmoon-landing .bm-shirayuki-spark{color:#e5b985;font-size:13px}
+#blackmoon-landing .bm-shirayuki-card[hidden]{display:none!important}
+#blackmoon-landing .bm-shirayuki-card{
+ position:absolute;right:clamp(25px,6vw,110px);top:clamp(274px,51%,535px);
+ z-index:24;width:clamp(230px,19vw,294px);padding:16px 17px;
+ border:1px solid #c9a57e99;border-radius:8px;
+ background:radial-gradient(ellipse at 88% 0%,#67566d3b,transparent 52%),linear-gradient(135deg,#181a23f9,#14171df8);
+ box-shadow:0 18px 45px #000d,inset 0 0 0 3px #d1aa7a14;
+ color:#f1e1c8;text-align:left;pointer-events:auto;
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+ animation:bm-shira-reveal .24s ease-out both;
+}
+#blackmoon-landing .bm-shirayuki-card::before{
+ content:"";position:absolute;right:43px;top:-8px;width:13px;height:13px;
+ border-top:1px solid #c9a57e99;border-left:1px solid #c9a57e99;
+ background:#211b27;transform:rotate(45deg)
+}
+#blackmoon-landing .bm-shirayuki-close{
+ position:absolute;top:6px;right:7px;width:29px;height:29px;
+ padding:0;border:1px solid transparent;border-radius:4px;
+ background:#24202a;color:#ecd4ad;font:22px/1 var(--sans);cursor:pointer;
+}
+#blackmoon-landing .bm-shirayuki-close:hover{border-color:#bd9c76;background:#4b343b}
+#blackmoon-landing .bm-shirayuki-index{
+ display:block;margin-right:24px;font:750 8px/1.55 var(--sans);
+ letter-spacing:.12em;color:#c6a58a
+}
+#blackmoon-landing .bm-shirayuki-head{display:flex;align-items:center;gap:10px;margin:11px 0}
+#blackmoon-landing .bm-shirayuki-glyph{
+ width:34px;height:34px;flex:none;display:grid;place-items:center;
+ border-radius:50%;border:1px solid #c9a883;background:#48323b;
+ color:#f8e7ca;font:20px/1 var(--ff)
+}
+#blackmoon-landing .bm-shirayuki-name{display:block;font:500 23px/1.2 var(--ff);color:#f7e9cd}
+#blackmoon-landing .bm-shirayuki-role{display:block;font:10px/1.3 var(--sans);letter-spacing:.04em;color:#c7b19b}
+#blackmoon-landing .bm-shirayuki-card p{margin:5px 0 13px;font:12px/1.66 var(--ff);color:#ddcbb6}
+#blackmoon-landing .bm-shirayuki-warning{
+ display:flex;align-items:flex-start;gap:9px;padding:11px 10px;
+ border-left:2px solid #d9a371;background:#754d3d30;
+ color:#e6c2a3;font:11px/1.6 var(--ff)
+}
+#blackmoon-landing .bm-shirayuki-warning>span:first-child{flex:none;color:#f1be80;font-size:15px}
+@keyframes bm-shira-reveal{
+ from{opacity:0;transform:translateY(-7px) scale(.98)}
+ to{opacity:1;transform:translateY(0) scale(1)}
+}
+@media(max-width:950px){
+ #blackmoon-landing .bm-shirayuki-pin{right:18px;top:39%;padding:8px 10px}
+ #blackmoon-landing .bm-shirayuki-card{right:12px;top:48%;width:245px;padding:12px}
+}
+@media(max-width:650px){
+ /* Keep her introduction high on the picture; Maribel's invitation stays below it. */
+ #blackmoon-landing .bm-shirayuki-pin{right:12px;top:17%;min-height:33px;padding:7px 9px}
+ #blackmoon-landing .bm-shirayuki-card{
+   right:12px;top:calc(17% + 43px);bottom:auto;
+   width:min(272px,calc(100vw - 24px));max-height:min(44dvh,310px);
+   overflow-y:auto;overscroll-behavior:contain;
+ }
+ #blackmoon-landing .bm-guide{left:12px;top:auto;bottom:clamp(10px,5vh,40px)}
+}
+@media(max-height:620px) and (min-width:651px){
+ #blackmoon-landing .bm-guide{top:36%}
+ #blackmoon-landing .bm-shirayuki-pin{top:32%}
+ #blackmoon-landing .bm-shirayuki-card{top:41%;max-height:51dvh;overflow-y:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ #blackmoon-landing .bm-shirayuki-card{animation:none!important}
+ #blackmoon-landing .bm-shirayuki-pin{transition:none!important}
 }
