@@ -127,3 +127,90 @@ height:calc(100dvh - 78px - var(--km-bar-height,78px))!important}
 @media(prefers-reduced-motion:reduce){
  #blackmoon-landing .bm-art,#blackmoon-landing .bm-haze,#blackmoon-landing .bm-embers{animation:none!important}
 }
+
+
+/* New opening: only the approved illustration plus Maribel's interactive invitation.
+   Old gate drawings, guide panels, and background artwork are no longer used. */
+#gate-scene .gate-fallback-art{
+ position:absolute;inset:0;width:100%;height:100%;
+ object-fit:cover;object-position:center;display:block;
+}
+#gate-scene .gate-legacy-controls,#gate-scene .gate-legacy-controls[hidden]{display:none!important}
+#gate-scene .gate-fallback-enter{
+ position:absolute;bottom:clamp(20px,9vh,86px);left:50%;transform:translateX(-50%);
+ z-index:2;padding:14px 24px;min-width:185px;white-space:nowrap;
+ border:1px solid #bf9b6b;border-radius:6px;color:#f6e3c5;
+ background:linear-gradient(125deg,#201b26ef,#121920f2);
+ font:600 12px/1.2 var(--ff);letter-spacing:.12em;box-shadow:0 10px 28px #000a;
+}
+#gate-scene .gate-fallback-enter:hover,#gate-scene .gate-fallback-enter:focus-visible{
+ background:#51403e;outline:2px solid #edc78c;outline-offset:3px;
+}
+body.bm-ready #gate-scene>.gate-fallback-art,
+body.bm-ready #gate-scene>.gate-fallback-enter{display:none!important}
+/* The guide is a real interface overlay, not painted onto the art. */
+#blackmoon-landing .bm-guide{
+ position:absolute;left:clamp(22px,5.2vw,88px);top:clamp(132px,28%,270px);
+ z-index:20;width:clamp(235px,20vw,300px);padding:17px 18px 16px;
+ border:1px solid #c8a376a3;border-radius:7px;
+ background:radial-gradient(circle at 10% 0%,#79504844,transparent 55%),linear-gradient(135deg,#171721f3,#18191ef2 76%);
+ box-shadow:0 18px 45px #000b,inset 0 0 0 3px #ae82531a;
+ color:#f3e2c7;text-align:left;pointer-events:auto;
+ backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+ animation:bm-guide-arrival .75s .16s ease-out both;
+}
+#blackmoon-landing .bm-guide::before{
+ content:"";position:absolute;left:-8px;top:31px;width:14px;height:14px;
+ background:#211d22;border-left:1px solid #c8a376a3;border-bottom:1px solid #c8a376a3;
+ transform:rotate(45deg);
+}
+#blackmoon-landing .bm-guide-index{display:block;font:700 8px/1.5 var(--sans);letter-spacing:.13em;color:#c7a781}
+#blackmoon-landing .bm-guide-head{display:flex;gap:9px;align-items:center;margin:8px 0 9px}
+#blackmoon-landing .bm-guide-glyph{
+ width:34px;height:34px;display:grid;place-items:center;flex:none;
+ border:1px solid #c8a27594;color:#ffdda7;background:#422f33a6;
+ font:20px/1 var(--ff);border-radius:50%
+}
+#blackmoon-landing .bm-guide-head>div{min-width:0;display:flex;flex-direction:column;gap:2px}
+#blackmoon-landing .bm-guide-name{font:500 22px/1.1 var(--ff);color:#f9e7cb}
+#blackmoon-landing .bm-guide-role{font:10px/1.2 var(--sans);letter-spacing:.06em;color:#c4a897}
+#blackmoon-landing .bm-guide p{margin:0 0 12px;font:12px/1.65 var(--ff);color:#e0d0bb}
+#blackmoon-landing .bm-guide-actions{display:flex;flex-direction:column;gap:7px}
+#blackmoon-landing .bm-guide-actions button{
+ display:block;position:relative;min-height:37px;width:100%;
+ padding:8px 11px;border:1px solid #ad866880;border-radius:4px;
+ background:linear-gradient(100deg,#51343a,#382b30);
+ color:#f4ddbb;font:750 10px/1.25 var(--sans);
+ letter-spacing:.09em;text-align:center;
+ transition:border-color .2s,background .2s,transform .2s;
+}
+#blackmoon-landing #bm-guide-start{
+ border-color:#d3a47b;background:linear-gradient(110deg,#7d4849,#54343b);
+ box-shadow:inset 0 1px #fff2;
+}
+#blackmoon-landing .bm-guide-actions button:hover{
+ border-color:#f1ce9c;background:#886054;transform:translateY(-1px);
+}
+#blackmoon-landing .bm-guide-actions button:focus-visible{outline:2px solid #d9eff2;outline-offset:2px}
+@keyframes bm-guide-arrival{from{opacity:0;transform:translate(-10px,6px)}to{opacity:1;transform:none}}
+@media(max-width:950px){
+ #blackmoon-landing .bm-guide{left:clamp(13px,3vw,25px);top:30%;width:250px;padding:13px}
+ #blackmoon-landing .bm-guide-name{font-size:19px}
+ #blackmoon-landing .bm-guide p{font-size:11px;line-height:1.4}
+ #blackmoon-landing .bm-guide-head{margin:5px 0}
+}
+@media(max-width:650px){
+ #blackmoon-landing .bm-guide{
+  left:12px;top:auto;bottom:clamp(12px,7vh,55px);
+  width:min(285px,calc(100% - 24px));padding:12px;
+ }
+ #blackmoon-landing .bm-guide::before{top:-8px;left:26px;border-bottom:0;border-top:1px solid #c8a376a3}
+ #blackmoon-landing .bm-guide-index{font-size:8px}
+ #blackmoon-landing .bm-guide-head{margin:5px 0}
+ #blackmoon-landing .bm-guide p{margin-bottom:8px}
+ #blackmoon-landing .bm-guide-actions button{min-height:34px;padding:7px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+ #blackmoon-landing .bm-guide{animation:none!important}
+ #blackmoon-landing .bm-guide-actions button{transition:none!important}
+}
