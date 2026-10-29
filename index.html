@@ -261,7 +261,9 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
 @media(max-width:650px){#gate-scene .maribel-night::before,#gate-scene .maribel-night::after{display:none}}
 
 /* Final location-aware Maribel invitation; she stays unobscured on both large and small screens. */
-#gate-scene .maribel-speech{left:auto!important;right:clamp(15px,4vw,72px)!important;top:clamp(100px,15vh,175px)!important;width:clamp(170px,15vw,218px)!important;padding:9px 12px 10px!important;transform:rotate(2deg)!important;animation:maribelSpeechAside 6.5s ease-in-out infinite alternate!important;z-index:14!important}
+#gate-scene .maribel-speech{left:45.5%!important;right:auto!important;top:clamp(138px,23vh,244px)!important;width:clamp(176px,16vw,205px)!important;padding:10px 13px 11px!important;clip-path:none!important;border-radius:13px 12px 13px 5px;transform:rotate(2deg)!important;animation:maribelSpeechAside 6.5s ease-in-out infinite alternate!important;z-index:14!important}
+/* Speech hangs beside Maribel's head; the parchment pointer faces her, not her face. */
+#gate-scene .maribel-speech::after{content:'';position:absolute;left:-12px;top:32%;width:14px;height:23px;background:#ead8c0;clip-path:polygon(100% 0,0 50%,100% 100%);filter:drop-shadow(-2px 1px 1px #02020344);pointer-events:none}
 #gate-scene .maribel-speech b{font-size:clamp(20px,2.1vw,27px)!important}
 #gate-scene .maribel-speech p{font-size:10px!important;line-height:1.45!important;margin:3px 0 4px!important}
 @keyframes maribelSpeechAside{to{transform:rotate(1deg) translateY(-5px)}}
@@ -277,11 +279,11 @@ body::before{position:fixed;inset:0;content:'';opacity:.18;pointer-events:none;z
 .expressions-link:hover{background:#814034}
 .modal-picture img.broken{opacity:.35}
 @media(max-width:800px){.rail-gallery-link{white-space:nowrap;margin:0 6px;padding:11px 13px}}
-@media(max-width:650px){#gate-scene .maribel-speech{top:clamp(77px,13vh,120px)!important;right:9px!important;left:auto!important;width:clamp(120px,35vw,150px)!important;padding:7px 9px!important;transform:rotate(2deg)!important}#gate-scene .maribel-speech b{font-size:18px!important}#gate-scene .maribel-speech p{font-size:9px!important;line-height:1.3!important}#gate-scene .maribel-speech .smallseal{display:none}}
+@media(max-width:650px){#gate-scene .maribel-speech{top:clamp(142px,23vh,214px)!important;right:9px!important;left:auto!important;width:clamp(116px,35vw,145px)!important;padding:8px 9px!important;transform:rotate(2deg)!important}#gate-scene .maribel-speech b{font-size:17px!important}#gate-scene .maribel-speech p{font-size:9px!important;line-height:1.3!important}#gate-scene .maribel-speech .smallseal{display:none}}
 @media(prefers-reduced-motion:reduce){#gate-scene .maribel-speech{animation:none!important}}
 #modal-copy{white-space:pre-line}
 @media(max-width:540px){#sound{display:inline-flex!important;align-items:center;justify-content:center;font-size:0!important;min-width:38px;height:35px;padding:7px!important;line-height:1!important}#sound::before{content:'♫';font-size:18px;color:#e9c898}#sound[aria-pressed="true"]::before{color:#9ed9c1}}
-</style><link rel="stylesheet" href="assets/audio/player.css?v=black-moon-topbar-v3"></head>
+</style><link rel="stylesheet" href="assets/audio/player.css?v=center-console-v4"></head>
 <body>
 <section id="gate-scene" aria-label="The Black Moon — Maribel's invitation">
  <div class="gate-paint" aria-hidden="true"></div><div class="maribel-night" aria-hidden="true"></div>
@@ -390,4 +392,4 @@ function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hi
  /* Separate low-cost paper-sweep effect that accompanies the archive's existing ink wipe. */
  const observer=new MutationObserver(()=>{const stage=$('gate-scene');if(stage.classList.contains('vanished'))return;});observer.observe($('gate-scene'),{attributes:true,attributeFilter:['class']});
 })();
-</script><script defer src="assets/audio/player.js?v=black-moon-topbar-v3"></script></body></html>
+</script><script defer src="assets/audio/player.js?v=center-console-v4"></script></body></html>
