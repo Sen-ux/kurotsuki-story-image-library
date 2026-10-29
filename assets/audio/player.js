@@ -5,18 +5,18 @@
   if (document.getElementById("kurotsuki-player")) return;
 
   const tracks = [
-    {title:"Whispers Beneath the Black Moon",artist:"Kurotsuki Academy · Main Theme",tag:"THE BLACK MOON",seconds:218,path:"assets/audio/tracks/Whispers Beneath the Black Moon.mp3"},
-    {title:"Lanterns Beyond the Veil",artist:"The World of Kurotsuki",tag:"BEYOND THE VEIL",seconds:188,path:"assets/audio/tracks/Lanterns Beyond the Veil.mp3"},
-    {title:"The Night Governs",artist:"Tsukuyomi Shizuka · Headmaster",tag:"THE HEADMASTER",seconds:0,path:"assets/audio/tracks/The Night Governs - Tsukuyomi Shizuka.mp3"},
-    {title:"A Tavern Saved For You",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:173,path:"assets/audio/tracks/A Tavern Saved For You - The Hollow Tavern.mp3"},
-    {title:"One More Round",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:110,path:"assets/audio/tracks/One More Round - The Hollow Tavern.mp3"},
-    {title:"One More Round, Dear Friend",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:158,path:"assets/audio/tracks/One More Round, Dear Friend - The Hollow Tavern.mp3"},
-    {title:"The Lantern's Mischievous Guide",artist:"Maribel",tag:"CHARACTER THEME",seconds:163,path:"assets/audio/tracks/The Lanterns Mishceivous Guide - Maribel.mp3"},
-    {title:"A Smile Behind the Smoke",artist:"Mr. Hollow",tag:"CHARACTER THEME",seconds:205,path:"assets/audio/tracks/A Smile Behind the Smoke - Mr.Hollow.mp3"},
-    {title:"The Hunt's Tempest",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:168,path:"assets/audio/tracks/The Hunt's Tempest - Shirayuki.mp3"},
-    {title:"Thunder Without a Master",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:203,path:"assets/audio/tracks/Thunder Without a Master - Tatsyuya Kagetsu.mp3"},
-    {title:"The Foxfire Masquerade",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:182,path:"assets/audio/tracks/The Foxfire Masquerade - Shizuru Nuehara.mp3"},
-    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/Mercy Beneath the Jade Sky - Lóngqí Seiran.mp3"},
+    {title:"Whispers Beneath the Black Moon",artist:"Kurotsuki Academy · Main Theme",tag:"THE BLACK MOON",seconds:218,path:"assets/audio/tracks/whispers-beneath-the-black-moon.mp3"},
+    {title:"Lanterns Beyond the Veil",artist:"The World of Kurotsuki",tag:"BEYOND THE VEIL",seconds:188,path:"assets/audio/tracks/lanterns-beyond-the-veil.mp3"},
+    {title:"The Night Governs",artist:"Tsukuyomi Shizuka · Headmaster",tag:"THE HEADMASTER",seconds:0,path:"assets/audio/tracks/the-night-governs.mp3"},
+    {title:"A Tavern Saved For You",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:173,path:"assets/audio/tracks/a-tavern-saved-for-you.mp3"},
+    {title:"One More Round",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:110,path:"assets/audio/tracks/one-more-round.mp3"},
+    {title:"One More Round, Dear Friend",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:158,path:"assets/audio/tracks/one-more-round-dear-friend.mp3"},
+    {title:"The Lantern's Mischievous Guide",artist:"Maribel",tag:"CHARACTER THEME",seconds:163,path:"assets/audio/tracks/the-lanterns-mischievous-guide.mp3"},
+    {title:"A Smile Behind the Smoke",artist:"Mr. Hollow",tag:"CHARACTER THEME",seconds:205,path:"assets/audio/tracks/a-smile-behind-the-smoke.mp3"},
+    {title:"The Hunt's Tempest",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:168,path:"assets/audio/tracks/the-hunts-tempest.mp3"},
+    {title:"Thunder Without a Master",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:203,path:"assets/audio/tracks/thunder-without-a-master.mp3"},
+    {title:"The Foxfire Masquerade",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:182,path:"assets/audio/tracks/the-foxfire-masquerade.mp3"},
+    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/mercy-beneath-the-jade-sky.mp3"},
     {title:"Autumn Festival at Kurotsuki",artist:"Kurotsuki Academy · Festival",tag:"BONUS RECORD",seconds:0,path:"assets/audio/autumn-festival-at-kurotsuki.mp3"}
   ];
   const player=document.createElement("aside");
@@ -82,10 +82,10 @@
   }
   function select(i,autoplay){
     index=(i+tracks.length)%tracks.length;
-    ++request;hasError=false;
+    ++request;hasError=false;player.classList.remove("has-error");
     audio.pause();
     audio.removeAttribute("src");
-    audio.src=tracks[index].path;
+    audio.src=new URL(tracks[index].path, document.baseURI).href;
     audio.load();
     state.textContent="SELECTED · "+tracks[index].tag;
     render();
@@ -93,13 +93,13 @@
   }
   async function play(){
     const serial=++request;
-    hasError=false;
+    hasError=false;player.classList.remove("has-error");
     state.textContent="OPENING THE RECORD…";
     try{
       await audio.play();
       if(serial===request){state.textContent="NOW PLAYING · "+tracks[index].tag;render();}
     }catch(error){
-      if(serial===request&&!hasError){state.textContent="TRACK UNAVAILABLE · CHECK THE AUDIO UPLOAD";render();}
+      if(serial===request&&!hasError){player.classList.add("has-error");state.textContent="AUDIO UNAVAILABLE · REFRESH THE PAGE";render();}
     }
   }
   btn.addEventListener("click",()=>{if(audio.paused)play();else{++request;audio.pause();state.textContent="PAUSED · THE NIGHT CAN WAIT";render();}});
@@ -113,9 +113,9 @@
   audio.addEventListener("timeupdate",render);
   audio.addEventListener("durationchange",render);
   audio.addEventListener("loadedmetadata",render);
-  audio.addEventListener("playing",()=>{hasError=false;state.textContent="NOW PLAYING · "+tracks[index].tag;render();});
+  audio.addEventListener("playing",()=>{hasError=false;player.classList.remove("has-error");state.textContent="NOW PLAYING · "+tracks[index].tag;render();});
   audio.addEventListener("pause",render);
   audio.addEventListener("ended",()=>select(index+1,true));
-  audio.addEventListener("error",()=>{hasError=true;state.textContent="TRACK UNAVAILABLE · UPLOAD THE MP3 FILE";render();});
+  audio.addEventListener("error",()=>{hasError=true;player.classList.add("has-error");state.textContent="AUDIO UNAVAILABLE · REFRESH THE PAGE";render();});
   select(0,false);
 })();
