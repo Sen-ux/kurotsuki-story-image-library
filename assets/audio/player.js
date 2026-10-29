@@ -5,17 +5,18 @@
   if (document.getElementById("kurotsuki-player")) return;
 
   const tracks = [
-    {title:"Whispers Beneath the Black Moon",artist:"Kurotsuki Academy · Main Theme",tag:"THE BLACK MOON",seconds:218,path:"assets/audio/tracks/whispers-beneath-the-black-moon.mp3"},
-    {title:"Lanterns Beyond the Veil",artist:"The World of Kurotsuki",tag:"BEYOND THE VEIL",seconds:188,path:"assets/audio/tracks/lanterns-beyond-the-veil.mp3"},
-    {title:"A Tavern Saved For You",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:173,path:"assets/audio/tracks/a-tavern-saved-for-you.mp3"},
-    {title:"One More Round",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:110,path:"assets/audio/tracks/one-more-round.mp3"},
-    {title:"One More Round, Dear Friend",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:158,path:"assets/audio/tracks/one-more-round-dear-friend.mp3"},
-    {title:"The Lantern's Mischievous Guide",artist:"Maribel",tag:"CHARACTER THEME",seconds:163,path:"assets/audio/tracks/the-lanterns-mischievous-guide.mp3"},
-    {title:"A Smile Behind the Smoke",artist:"Mr. Hollow",tag:"CHARACTER THEME",seconds:205,path:"assets/audio/tracks/a-smile-behind-the-smoke.mp3"},
-    {title:"The Hunt's Tempest",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:168,path:"assets/audio/tracks/the-hunts-tempest.mp3"},
-    {title:"Thunder Without a Master",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:203,path:"assets/audio/tracks/thunder-without-a-master.mp3"},
-    {title:"The Foxfire Masquerade",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:182,path:"assets/audio/tracks/the-foxfire-masquerade.mp3"},
-    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/mercy-beneath-the-jade-sky.mp3"},
+    {title:"Whispers Beneath the Black Moon",artist:"Kurotsuki Academy · Main Theme",tag:"THE BLACK MOON",seconds:218,path:"assets/audio/tracks/Whispers Beneath the Black Moon.mp3"},
+    {title:"Lanterns Beyond the Veil",artist:"The World of Kurotsuki",tag:"BEYOND THE VEIL",seconds:188,path:"assets/audio/tracks/Lanterns Beyond the Veil.mp3"},
+    {title:"The Night Governs",artist:"Tsukuyomi Shizuka · Headmaster",tag:"THE HEADMASTER",seconds:0,path:"assets/audio/tracks/The Night Governs - Tsukuyomi Shizuka.mp3"},
+    {title:"A Tavern Saved For You",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:173,path:"assets/audio/tracks/A Tavern Saved For You - The Hollow Tavern.mp3"},
+    {title:"One More Round",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:110,path:"assets/audio/tracks/One More Round - The Hollow Tavern.mp3"},
+    {title:"One More Round, Dear Friend",artist:"The Hollow Lantern Tavern",tag:"THE HOLLOW LANTERN",seconds:158,path:"assets/audio/tracks/One More Round, Dear Friend - The Hollow Tavern.mp3"},
+    {title:"The Lantern's Mischievous Guide",artist:"Maribel",tag:"CHARACTER THEME",seconds:163,path:"assets/audio/tracks/The Lanterns Mishceivous Guide - Maribel.mp3"},
+    {title:"A Smile Behind the Smoke",artist:"Mr. Hollow",tag:"CHARACTER THEME",seconds:205,path:"assets/audio/tracks/A Smile Behind the Smoke - Mr.Hollow.mp3"},
+    {title:"The Hunt's Tempest",artist:"Shirayuki · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:168,path:"assets/audio/tracks/The Hunt's Tempest - Shirayuki.mp3"},
+    {title:"Thunder Without a Master",artist:"Tatsuya Kagetsu · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:203,path:"assets/audio/tracks/Thunder Without a Master - Tatsyuya Kagetsu.mp3"},
+    {title:"The Foxfire Masquerade",artist:"Shizuru Nuehara · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:182,path:"assets/audio/tracks/The Foxfire Masquerade - Shizuru Nuehara.mp3"},
+    {title:"Mercy Beneath the Jade Sky",artist:"Lóngqí Seiran · Legendary Hunter",tag:"THE LEGENDARY HUNTERS",seconds:229,path:"assets/audio/tracks/Mercy Beneath the Jade Sky - Lóngqí Seiran.mp3"},
     {title:"Autumn Festival at Kurotsuki",artist:"Kurotsuki Academy · Festival",tag:"BONUS RECORD",seconds:0,path:"assets/audio/autumn-festival-at-kurotsuki.mp3"}
   ];
   const player=document.createElement("aside");
@@ -26,7 +27,7 @@
     '<div class="km-head"><div class="km-emblem" aria-hidden="true"><span>月</span><i></i></div>'+
       '<div class="km-heading"><div class="km-eyebrow">黒月 · BLACK MOON RECORDS</div><div class="km-album">Songs from beneath the veil</div></div>'+
       '<button class="km-icon km-playlist-button" id="km-playlist-toggle" type="button" aria-controls="km-playlist" aria-expanded="false" aria-label="Show playlist" title="Playlist">☷ <span>PLAYLIST</span></button></div>'+
-    '<div class="km-track"><span class="km-number" id="km-track-number">01 / 12</span><div class="km-track-name" id="km-track-name"></div><div class="km-artist" id="km-track-artist"></div></div>'+
+    '<div class="km-track"><span class="km-number" id="km-track-number">01 / 13</span><div class="km-track-name" id="km-track-name"></div><div class="km-artist" id="km-track-artist"></div></div>'+
     '<div class="km-progress"><span id="km-elapsed">0:00</span><input id="km-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek through track"><span id="km-duration">3:38</span></div>'+
     '<div class="km-controls"><div class="km-transport">'+
       '<button class="km-icon" id="km-previous" type="button" title="Previous track" aria-label="Previous track">‹‹</button>'+
@@ -34,7 +35,7 @@
       '<button class="km-icon" id="km-next" type="button" title="Next track" aria-label="Next track">››</button>'+
       '</div><div class="km-sound"><span aria-hidden="true">♫</span><label class="km-sr-only" for="km-volume">Volume</label><input id="km-volume" type="range" min="0" max="100" step="1" value="38" aria-label="Music volume"></div></div>'+
     '<div class="km-state" id="km-state" role="status" aria-live="polite">READY · PRESS PLAY TO LISTEN</div>'+
-    '<div class="km-list-panel" id="km-playlist" hidden><div class="km-list-head"><span>THE BLACK MOON COLLECTION</span><small>12 TRACKS</small></div><div class="km-list" id="km-track-list" role="group" aria-label="Choose a song"></div></div>';
+    '<div class="km-list-panel" id="km-playlist" hidden><div class="km-list-head"><span>THE BLACK MOON COLLECTION</span><small>13 TRACKS</small></div><div class="km-list" id="km-track-list" role="group" aria-label="Choose a song"></div></div>';
   const audio=document.createElement("audio");
   audio.id="kurotsuki-audio";
   audio.preload="none";
