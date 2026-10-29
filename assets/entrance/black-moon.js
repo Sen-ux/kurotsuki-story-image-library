@@ -17,6 +17,14 @@
    '<div class="bm-haze" aria-hidden="true"></div><div class="bm-embers" aria-hidden="true"></div>'+
    '<button class="bm-open-page" id="bm-open-page" type="button" aria-label="Turn the page to explore the Kurotsuki Academy Codex"><span class="bm-sr-only">Turn the page to explore Kurotsuki Academy</span></button>'+
    '<aside class="bm-guide" aria-label="Maribel offers to guide you through the Academy"><span class="bm-guide-index">✦ THE HOLLOW LANTERN · A GREETING</span><div class="bm-guide-head"><span class="bm-guide-glyph" aria-hidden="true">灯</span><div><span class="bm-guide-name">Maribel</span><span class="bm-guide-role">Your half-demon guide</span></div></div><p>Lost your way? I can show you around... or you can explore on your own.</p><div class="bm-guide-actions"><button type="button" id="bm-guide-start">✿ FOLLOW MARIBEL</button><button type="button" id="bm-guide-free">EXPLORE ALONE →</button></div></aside>'+
+   '<button class="bm-shirayuki-pin" id="bm-shirayuki-pin" type="button" aria-controls="bm-shirayuki-card" aria-expanded="false" aria-label="Who is Shirayuki?"><span class="bm-shirayuki-spark" aria-hidden="true">✦</span> SHIRAYUKI <span aria-hidden="true">?</span></button>'+ 
+   '<aside class="bm-shirayuki-card" id="bm-shirayuki-card" role="region" aria-labelledby="bm-shirayuki-name" hidden>'+
+   '<button class="bm-shirayuki-close" id="bm-shirayuki-close" type="button" aria-label="Close Shirayuki information">×</button>'+
+   '<span class="bm-shirayuki-index">THE LEGENDARY HUNTERS · INDEPENDENT</span>'+
+   '<div class="bm-shirayuki-head"><span class="bm-shirayuki-glyph" aria-hidden="true">白</span><div><span class="bm-shirayuki-name" id="bm-shirayuki-name">Shirayuki</span><span class="bm-shirayuki-role">The Tempest Huntress</span></div></div>'+
+   '<p>A restless legendary hunter who goes where the wind takes her. Catching her before she disappears again is quite another matter.</p>'+
+   '<div class="bm-shirayuki-warning"><span aria-hidden="true">⚠</span><span>Be warned: her plum wine is deceptively strong. One cup is quite enough.</span></div>'+
+   '</aside>'+
    '<header class="bm-top"><div class="bm-brand"><span class="bm-mon">黒月</span><span>KUROTSUKI ACADEMY</span></div>'+
    '<nav class="bm-toplinks" aria-label="Opening navigation">'+
    '<button type="button" data-bm-tab="overview">ARCHIVE</button>'+
@@ -175,6 +183,32 @@
  open.addEventListener("click",()=>start(null,"free"));
  host.querySelector("#bm-guide-start").addEventListener("click",()=>start(null,"guided"));
  host.querySelector("#bm-guide-free").addEventListener("click",()=>start(null,"free"));
+
+ // Shirayuki: a small discoverable nameplate expands into a lore-and-wine warning.
+ // A dedicated close control, outside-click dismissal and Escape keep it accessible.
+ const shiraPin=host.querySelector("#bm-shirayuki-pin");
+ const shiraCard=host.querySelector("#bm-shirayuki-card");
+ const shiraClose=host.querySelector("#bm-shirayuki-close");
+ function toggleShirayuki(show,restoreFocus=false){
+   const opening=Boolean(show);
+   shiraCard.hidden=!opening;
+   shiraPin.setAttribute("aria-expanded",String(opening));
+   shiraCard.classList.toggle("on",opening);
+   if(!opening&&restoreFocus)shiraPin.focus({preventScroll:true});
+ }
+ shiraPin.addEventListener("click",()=>toggleShirayuki(shiraCard.hidden));
+ shiraClose.addEventListener("click",()=>toggleShirayuki(false,true));
+ document.addEventListener("pointerdown",event=>{
+   if(shiraCard.hidden)return;
+   if(shiraCard.contains(event.target)||shiraPin.contains(event.target))return;
+   toggleShirayuki(false);
+ });
+ document.addEventListener("keydown",event=>{
+   if(event.key==="Escape"&&!shiraCard.hidden){
+     event.preventDefault();
+     toggleShirayuki(false,true);
+   }
+ });
  host.querySelectorAll("[data-bm-tab]").forEach(b=>b.addEventListener("click",()=>start(b.dataset.bmTab,"free")));
 
  // Existing gate logic calls the public entry interface; keep both paths equivalent.
