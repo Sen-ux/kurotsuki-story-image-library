@@ -55,7 +55,7 @@ body{padding-top:var(--km-bar-height)!important}
 .km-sound>span{font-size:13px}#km-volume{width:100%;flex:1}
 .km-state{display:none;position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);max-width:calc(100vw - 26px);z-index:3;padding:9px 13px;
   border:1px solid #af7d6b;border-radius:7px;background:#261d25;color:#f3c8b1;font:700 10px/1.4 system-ui,sans-serif;letter-spacing:.06em;text-align:center;box-shadow:0 7px 18px #0009}
-.has-error .km-state{display:block}
+.has-error .km-state,.autoplay-blocked .km-state{display:block}
 .km-list-panel[hidden]{display:none!important}
 .km-list-panel{position:absolute;top:calc(100% + 7px);right:0;width:min(390px,calc(100vw - 26px));max-height:min(545px,70dvh);overflow:hidden;
  padding:0 8px 9px;border:1px solid #95745a;border-radius:9px;background:linear-gradient(150deg,#251e2a,#10141c 72%);box-shadow:0 20px 48px #000d;animation:km-reveal .18s ease-out}
